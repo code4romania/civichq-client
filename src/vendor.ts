@@ -8,3 +8,5 @@ import '@angular/router';
 
 // RxJS
 import 'rxjs';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
