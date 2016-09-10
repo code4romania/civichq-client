@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppProfileComponent } from './components/app-profile/app-profile.component';
 
+import { ProfileRouting } from './config/profile.routing';
 
 
 @NgModule({
   imports: [
+    ProfileRouting
   ],
   declarations: [
     AppProfileComponent
