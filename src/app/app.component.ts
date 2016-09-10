@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+
+import { HeaderComponent} from './header/header.component.ts'
+
 import './app.component.scss';
 
 
@@ -8,4 +11,8 @@ import './app.component.scss';
 })
 export class AppComponent {
   title = 'Angular 2 starter';
+
+  constructor(){
+
+  }
 }

@@ -1,0 +1,24 @@
+$primary: #ec6433;
+$white: #fff;
+$light-font: $white;
+
+.main-header {
+  .navbar {
+    margin: 0;
+    &.navbar-custom {
+      padding: 15px 0;
+      background: $primary;
+      border: 0;
+      border-radius: 0;
+      .navbar-brand {
+        color: $light-font;
+      }
+      .navbar-nav > li > a {
+        color: $light-font;
+        font-size: 16px;
+      }
+
+    }
+  }
+
+}
