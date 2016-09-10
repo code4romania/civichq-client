@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { HeaderComponent} from './header/header.component.ts'
-
 import './app.component.scss';
 
 
