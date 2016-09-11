@@ -1,0 +1,86 @@
+@import "./../../../../assets/scss/variables";
+.app-profile {
+  padding: 60px 0;
+  .app-logo {
+    max-width: 80%;
+    height: auto;
+    img {
+      width: 100%;
+    }
+  }
+  .social-share {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    span {
+      vertical-align: super;
+      padding: 13px 0;
+    }
+    .social-item {
+      &.facebook {
+        color: #3b5998;
+      }
+      &.twitter {
+        color: #1dcaff;
+      }
+      &.google {
+        color: #d34836;
+      }
+      &.linkedin {
+        color: #0077B5;
+      }
+      &.instagram {
+        color: #fb3958;
+      }
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+  .app-profile .social-share{
+    max-width: 80%;
+    text-align: center;
+  }
+  .card {
+    min-height: 40px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background: $white;
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    &.description {
+      margin-top: 25px;
+      padding: 30px;
+      .title {
+        font-weight: 600;
+        margin: 20px 0;
+      }
+    }
+  }
+  .ngo-profile {
+    .header {
+      background: $primary;
+      color: $white;
+      margin: 50px 0 30px 0;
+      padding: 10px;
+      text-align: center;
+      font-size: 24px;
+      border-radius: 4px;
+    }
+    .ngo-logo {
+      img {
+        width: 100%;
+      }
+    }
+    .ngo-contact {
+      .ngo-phone,
+      .ngo-email,
+      .social-share {
+        margin: 7px 0;
+      }
+
+    }
+  }
+
+}
