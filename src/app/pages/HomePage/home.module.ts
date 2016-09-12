@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeRouting } from './config/home.routing';
 import { CategoriesNavComponent } from './components/categories-nav/categories-nav.component';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
+import { CategoryComponent } from './components/category/category.component';
 
 import { CategoriesService } from './services/category.service';
 
@@ -20,6 +21,7 @@ import { CategoriesService } from './services/category.service';
     HomeComponent,
     CategoriesNavComponent,
     CategoriesListComponent,
+    CategoryComponent,
   ],
   exports: [
     HomeComponent

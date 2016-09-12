@@ -1,5 +1,6 @@
 {{selectedCategory}}
-<categories-nav [categories]="categories" (onCategoryClick)="onCategoryClick($event)">
+<categories-nav [categories]="categoryNames" (onCategoryClick)="onCategoryClick($event)">
 </categories-nav>
-<categories-list>
+----------------------------------
+<categories-list [categories]="categories">
 </categories-list>

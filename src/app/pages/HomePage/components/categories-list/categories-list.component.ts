@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../../services/category.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { Category } from '../../services/category.model';
 })
 
 export class CategoriesListComponent implements OnInit{
-    ngOnInit() {
-    }
+  @Input() categories;
+  ngOnInit() {
+  }
 }

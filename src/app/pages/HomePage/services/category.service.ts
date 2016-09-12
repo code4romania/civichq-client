@@ -62,4 +62,14 @@ export class CategoriesService {
       logoName: apiApp.AppLogoName,
     }
   }
+
+  getReorderedCategories(categories, topIndex){
+    const selectedCategory = categories.filter(category => category.id === topIndex)[0]
+    const index = categories.indexOf(selectedCategory);
+    return [
+      categories[index],
+      ...categories.slice(0,index),
+      ...categories.slice(index+1, categories.length)
+    ];
+  }
 }
