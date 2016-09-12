@@ -1,5 +1,4 @@
-export class Category
-{
+export class Category {
     id: number;
     catname: string;
     apps: Array<any>;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'categories-nav',
@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CategoriesNavComponent implements OnInit{
-    ngOnInit() {
+  @Input() categories;
+  @Output() onCategoryClick = new EventEmitter();
 
-    }
+  ngOnInit() {
+
+  }
+
+  onClick(id) {
+    this.onCategoryClick.emit(id);
+  }
 }

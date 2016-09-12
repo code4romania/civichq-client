@@ -14,6 +14,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.ts']
   },
+  devtool: 'cheap-source-map',
   module: {
     loaders: [
       {
