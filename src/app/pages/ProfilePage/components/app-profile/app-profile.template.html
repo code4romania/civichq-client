@@ -1,1 +1,5 @@
-<div>This is the app profile view</div>
+<div *ngIf="app" class="app-profile">
+    <app-details [appDetails] = "app.appdetail"></app-details>
+    <ngo-details [ngoDetails] = "app.ngodetail"></ngo-details>
+
+</div>
