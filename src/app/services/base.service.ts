@@ -5,7 +5,7 @@ import { Observable }     from 'rxjs/Observable';
  export * BaseService
  */
 export class BaseService {
-    rootAddress: string = "http://localhost:3000/api/";
+    rootAddress: string = "http://localhost:8080/api/";
 
     constructor(private _http: Http) {
 

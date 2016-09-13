@@ -9,13 +9,16 @@ import { CategoriesNavComponent } from './components/categories-nav/categories-n
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { CategoryComponent } from './components/category/category.component';
 
+import { CarouselModule } from 'ng2-bootstrap/components/carousel';
+
 import { CategoriesService } from './services/category.service';
 
 @NgModule({
   imports: [
     BrowserModule,
+    CarouselModule,
     HomeRouting,
-    HttpModule
+    HttpModule,
   ],
   declarations: [
     HomeComponent,

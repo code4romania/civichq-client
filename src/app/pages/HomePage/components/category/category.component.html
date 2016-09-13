@@ -4,5 +4,21 @@
   </div>
   <div>
     apps:{{category.apps.length}}
+    <carousel class="Category-Carousel">
+      <slide *ngFor="let slide of getSlides(); let index=index">
+        <div class="Category-AppSlide">
+          <div class="AppCard"
+            *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
+          <div class="AppCard-Logo">
+            <!--{{app.logoName}}-->
+            {{app.appName}}
+          </div>
+          <div class="AppCard-Hash">
+            {{app.tags}}
+          </div>
+         </div>
+       </div>
+      </slide>
+    </carousel>
   </div>
 </div>

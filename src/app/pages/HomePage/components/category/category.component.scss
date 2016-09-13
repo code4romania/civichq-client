@@ -1,5 +1,22 @@
+
+
 .Category {
-  padding: 20px;
+  padding: 0 20px;
+}
+
+.Category-Carousel {
+  .left.carousel-control,
+  .right.carousel-control {
+    background-image: none;
+    color: #ec6433;
+  }
+
+  .carousel-indicators li {
+    border-color: #ec6433;
+    &.active {
+      background: #ec6433;
+    }
+  }
 }
 
 .Category-Name {
@@ -11,4 +28,40 @@
   color: white;
   border-radius: 4px;
   text-transform: uppercase;
+}
+
+.Category-AppSlide {
+  display: flex;
+  justify-content: center;
+}
+
+.Category .AppCard {
+  cursor: pointer;
+  height: 360px;
+  width: 280px;
+  margin: 0 20px;
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.125);
+  margin-bottom: 60px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+
+  &-Logo {
+    height: 85%;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid gray;
+  }
+
+  &-Hash {
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

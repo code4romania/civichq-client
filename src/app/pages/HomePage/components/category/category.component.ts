@@ -9,7 +9,14 @@ import './category.component.scss';
 
 export class CategoryComponent implements OnInit{
   @Input() category;
-  ngOnInit() {
+  private noOfApps = 3;
 
+  getSlides() {
+    return new Array(Math.ceil(this.category.apps.length / this.noOfApps));
+  }
+
+
+  ngOnInit() {
+    console.log(this.getSlides())
   }
 }
