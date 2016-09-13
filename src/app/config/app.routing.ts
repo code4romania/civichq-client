@@ -5,12 +5,7 @@ import {AppProfileComponent} from '../pages/ProfilePage/components/app-profile/a
 import {HomeComponent} from '../pages/HomePage/components/home/home.component';
 
 const appRoutes:Routes = [
-    // {
-    //     path: 'app-profile', component: AppProfileComponent
-    // },
-    {
-        path: 'home', component: HomeComponent
-    },
+
     {
         path: '',
         redirectTo: '/home',
