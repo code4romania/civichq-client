@@ -1,5 +1,6 @@
 import { Component, OnInit,Input} from '@angular/core';
-import { AppDetails } from './app-details.model.ts';
+import { AppDetails } from './../../../../../shared/models/app-details.model';
+
 
 @Component({
     selector: 'app-details',

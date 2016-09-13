@@ -2,7 +2,7 @@ import { Injectable }  from '@angular/core';
 import { Http,Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import  {AppProfile } from '../components/app-profile/app-profile.model';
+import  {AppProfile } from '../../../shared/models/app-profile.model';
 import {BaseService} from "../../../services/base.service";
 
 @Injectable()

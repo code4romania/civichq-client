@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { AppProfileService } from '../../services/app-profile.service';
-import { AppProfile } from './app-profile.model';
+import { AppProfile } from './../../../../shared/models/app-profile.model';
 
 import './app-profile.scss';
 
@@ -19,9 +19,10 @@ export class AppProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('profile clicked')
         this.appProfileService.getAppProfile()
             .subscribe(
-                app => this.app = app,
+                app => {this.app = app; console.log('app ready')},
                 error =>  this.errorMessage = <any>error
             )
     }
