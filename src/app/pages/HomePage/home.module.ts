@@ -30,7 +30,8 @@ import { CategoriesService } from './services/category.service';
     HomeComponent
   ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    { provide: 'Window',  useValue: window }
   ]
 })
 export class HomeModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
 import './category.component.scss';
 
@@ -9,8 +9,21 @@ import './category.component.scss';
 
 export class CategoryComponent implements OnInit{
   @Input() category;
-  private noOfApps = 3;
+  private noOfApps = 1;
   private theSlides = [];
+  window: Window;
+
+  constructor(@Inject('Window') window: Window){
+    console.log(window.innerWidth);
+    this.noOfApps = this.getNumberOfAppsPerSlide(window.innerWidth);
+  }
+
+  ngOnInit() {
+    console.log(this.window)
+    console.log("init slides");
+    this.theSlides = this.getSlides();
+
+  }
 
   getSlides() {
     return new Array(Math.ceil(this.category.apps.length / this.noOfApps));
@@ -19,13 +32,7 @@ export class CategoryComponent implements OnInit{
   onResize(event) {
     const size = event.target.innerWidth;
     const oldNoOfApps = this.noOfApps;
-    if(size > 1200) {
-      this.noOfApps = 3;
-    } else if(size <=1200 && size > 750) {
-      this.noOfApps = 2;
-    } else {
-      this.noOfApps = 1;
-    }
+    this.noOfApps = this.getNumberOfAppsPerSlide(size);
     if(oldNoOfApps != this.noOfApps) {
       this.theSlides = [];
       setTimeout(() => {
@@ -34,8 +41,13 @@ export class CategoryComponent implements OnInit{
     }
   }
 
-  ngOnInit() {
-    console.log("init slides");
-    this.theSlides = this.getSlides();
+  getNumberOfAppsPerSlide(size) {
+    if(size > 1200) {
+      return 3;
+    } else if(size <=1200 && size > 750) {
+      return 2;
+    } else {
+      return 1;
+    }
   }
 }
