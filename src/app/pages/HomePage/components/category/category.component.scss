@@ -1,7 +1,9 @@
 
 
 .Category {
+  margin-top: 20px;
   padding: 0 20px;
+  min-height: 421px;
 }
 
 .Category-Carousel {
@@ -21,10 +23,10 @@
 
 .Category-Name {
   text-align: center;
-  display: inline-block;
+  display: block;
   background: #ec6433;
-  padding: 15px 20px;
-  margin: 15px 15px;
+  padding: 15px;
+  margin: 15px;
   color: white;
   border-radius: 4px;
   text-transform: uppercase;

@@ -1,24 +1,28 @@
-<div class="Category">
-  <div class="Category-Name">
-    {{category.catname}}
-  </div>
-  <div>
-    apps:{{category.apps.length}}
-    <carousel class="Category-Carousel">
-      <slide *ngFor="let slide of getSlides(); let index=index">
-        <div class="Category-AppSlide">
-          <div class="AppCard"
-            *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
-          <div class="AppCard-Logo">
-            <!--{{app.logoName}}-->
-            {{app.appName}}
-          </div>
-          <div class="AppCard-Hash">
-            {{app.tags}}
-          </div>
+<div class="Category container" (window:resize)="onResize($event)">
+  <div class="row">
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+      <div class="Category-Name">
+        {{category.catname}}
+      </div>
+    </div>
+    <div class="row">
+      <carousel class="Category-Carousel">
+        <slide *ngFor="let slide of theSlides; let index=index">
+          <div class="Category-AppSlide">
+            <div class="AppCard"
+              *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
+            <div class="AppCard-Logo">
+              <!--{{app.logoName}}-->
+              {{app.appName}}
+            </div>
+            <div class="AppCard-Hash">
+              {{app.tags}}
+            </div>
+           </div>
          </div>
-       </div>
-      </slide>
-    </carousel>
+        </slide>
+      </carousel>
+    </div>
   </div>
+
 </div>
