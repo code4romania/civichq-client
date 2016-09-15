@@ -10,6 +10,7 @@ import { AppRouting } from './config/app.routing';
 import { HomeModule } from './pages/HomePage/home.module';
 import { ProfileModule } from './pages/ProfilePage/profile.module';
 import { AddAppModule } from './pages/AddAppPage/addApp.module';
+import { ApproveAppModule } from './pages/ApproveApp/approveApp.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { AddAppModule } from './pages/AddAppPage/addApp.module';
     AppRouting,
     HomeModule,
     ProfileModule,
-    AddAppModule
+    AddAppModule,
+    ApproveAppModule
   ],
   declarations: [
     HeaderComponent,
