@@ -1,1 +1,5 @@
-<div>Approve app view</div>
+<div *ngIf="apps" class="approve-app container">
+    <div *ngFor="let app of apps ">
+        {{app.appName}}
+    </div>
+</div>
