@@ -6,8 +6,8 @@
                     <div class="app-card-logo">
                         {{app.appName}}
                     </div>
-                    <div class="app-card-hash">
-                        <div>{{app.tags}}</div>{{app.isApproved}}
+                    <div class="app-card-bottom-banner">
+                        <div class="app-card-hash">{{app.tags}}</div>
                         <label class="switch">
                             <input [(ngModel)]= "app.isApproved" [checked]="app.isApproved"  (ngModelChange)="updateApp(app)" type="checkbox">
                             <div class="slider round"></div>
