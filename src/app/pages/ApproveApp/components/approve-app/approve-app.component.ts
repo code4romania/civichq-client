@@ -3,6 +3,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { AppService } from '../../../../services/app.service';
 import  { App } from './../../../../shared/models/app.model';
 
+import './approve-apps.scss'
 
 @Component({
     selector: 'approve-app',
@@ -13,15 +14,21 @@ import  { App } from './../../../../shared/models/app.model';
 export class ApproveAppComponent implements OnInit {
     apps:App;
 
-    constructor(private appService: AppService){
+    constructor(private appService:AppService) {
 
     }
-    ngOnInit(){
-        this.appService.getAllApps()
-                        .subscribe(
-                            apps=>  this.apps = apps
-                        )
 
+    ngOnInit() {
+        this.appService.getApps()
+            .subscribe(
+                apps =>  this.apps = apps
+            )
+
+    }
+
+    updateApp(app) {
+        this.appService.update(app)
+            .subscribe(success => console.log('success?', success))
     }
 
 }

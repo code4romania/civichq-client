@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { FormsModule }   from '@angular/forms';
 
 
 import { ApproveAppComponent } from './components/approve-app/approve-app.component';
@@ -11,7 +12,8 @@ import { ApproveAppRouting } from './config/approve-app.routing';
     imports: [
         ApproveAppRouting,
         BrowserModule,
-        HttpModule
+        HttpModule,
+        FormsModule
     ],
     declarations: [
         ApproveAppComponent,

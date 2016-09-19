@@ -1,5 +1,23 @@
 <div *ngIf="apps" class="approve-app container">
+    <div class="row">
     <div *ngFor="let app of apps ">
-        {{app.appName}}
+            <div class="col-xs-12 col-sm-4">
+                <div class="app-card">
+                    <div class="app-card-logo">
+                        {{app.appName}}
+                    </div>
+                    <div class="app-card-hash">
+                        <div>{{app.tags}}</div>{{app.isApproved}}
+                        <label class="switch">
+                            <input [(ngModel)]= "app.isApproved" [checked]="app.isApproved"  (ngModelChange)="updateApp(app)" type="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

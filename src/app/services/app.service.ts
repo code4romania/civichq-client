@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response, Http } from '@angular/http';
+import { Response, Http,Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { BaseService } from "./base.service";
 
@@ -8,47 +8,31 @@ import { App } from './../shared/models/app.model';
 
 @Injectable()
 export class AppService extends BaseService {
+    private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+
     constructor(private http:Http) {
         super(http);
     }
 
-    getApprovedApps() {
-        return this.http.get(this.rootAddress + '/approvedapps')
+    getApps() {
+        return this.http.get(this.rootAddress + '/apps')
             .map((response:Response) => {
                 return response.json().map(
-                    app => this.parseApiApprovedApp(app)
+                    app => this.parseApps(app)
                 );
             })
     }
 
-    getUnapprovedApps(){
-        return this.http.get(this.rootAddress + '/appstoapprove')
+    update(app:App) {
+        const url = `${this.rootAddress + '/updateapp'}/${app.id}`;
+
+        return this.http.put(url, JSON.stringify(app), {headers: this.headers})
             .map((response:Response) => {
-                return response.json().map(
-                    app => this.parseApiUnapprovedApp(app)
-                );
+                return response.json();
             })
-
-    }
-    getAllApps(){
-        return Observable.forkJoin([
-            this.getApprovedApps(),
-            this.getUnapprovedApps()
-        ]).map(res => {
-            return res[0].concat(res[1]);
-        })
     }
 
-    parseApiApprovedApp(apiApp): App {
-        return {
-            id: apiApp.AppId,
-            appName: apiApp.AppName,
-            tags: apiApp.Tags,
-            logoName: apiApp.AppLogoName,
-            isApproved: true
-        }
-    }
-    parseApiUnapprovedApp(apiApp): App {
+    parseApps(apiApp):App {
         return {
             id: apiApp.appdetail.id,
             appName: apiApp.appdetail.name,
