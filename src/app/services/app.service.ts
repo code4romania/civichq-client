@@ -37,8 +37,8 @@ export class AppService extends BaseService {
             id: apiApp.appdetail.id,
             appName: apiApp.appdetail.name,
             tags: apiApp.appdetail.hashtags,
-            logoName: apiApp.appdetail.logoname,
-            isApproved: apiApp.appdetail.isapproved
+            logoName:apiApp.appdetail.logoname,
+            isApproved: apiApp.appdetail.isapproved === 'true'
         }
     }
 
