@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import './category.component.scss';
+import { AppProfile } from '../../../../shared/models/app-profile.model';
 
 @Component({
     selector: 'category',
@@ -13,15 +15,19 @@ export class CategoryComponent implements OnInit{
   private theSlides = [];
   window: Window;
 
-  constructor(@Inject('Window') window: Window){
+  constructor(@Inject('Window') window: Window, private router: Router){
     console.log(window.innerWidth);
     this.noOfApps = this.getNumberOfAppsPerSlide(window.innerWidth);
   }
 
   ngOnInit() {
     console.log(this.window)
-    console.log("init slides");
     this.theSlides = this.getSlides();
+
+  }
+  goToApp(app){
+    let link = ['/profile', app.id];
+    this.router.navigate(link);
 
   }
 

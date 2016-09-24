@@ -15,11 +15,21 @@ export class AppService extends BaseService {
     }
 
     getApps() {
-        return this.http.get(this.rootAddress + '/apps')
+        const url = `${this.rootAddress + '/apps'}`;
+        return this.http.get(url)
             .map((response:Response) => {
                 return response.json().map(
                     app => this.parseApps(app)
                 );
+            })
+    }
+
+    getApp(id) {
+
+        const url = `${this.rootAddress + '/appprofile'}/${id}`;
+        return this.http.get(url)
+            .map((response:Response) => {
+                return response.json()
             })
     }
 
@@ -37,7 +47,7 @@ export class AppService extends BaseService {
             id: apiApp.appdetail.id,
             appName: apiApp.appdetail.name,
             tags: apiApp.appdetail.hashtags,
-            logoName:apiApp.appdetail.logoname,
+            logoName: apiApp.appdetail.logoname,
             isApproved: apiApp.appdetail.isapproved === 'true'
         }
     }
