@@ -33,6 +33,14 @@ export class AppService extends BaseService {
             })
     }
 
+    addApp(app){
+        const url = `${this.rootAddress + 'addapp'}`;
+        return this.http.post(url,JSON.stringify(app), {headers: this.headers})
+            .map((response: Response) => {
+                return response.json()
+            })
+    }
+
     update(app:App) {
         const url = `${this.rootAddress + '/updateapp'}/${app.id}`;
 
