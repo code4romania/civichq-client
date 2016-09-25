@@ -10,6 +10,7 @@
   .left.carousel-control,
   .right.carousel-control {
     background-image: none;
+    width: initial;
     color: #ec6433;
   }
 
@@ -34,7 +35,7 @@
 
 .Category-AppSlide {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .Category .AppCard {
