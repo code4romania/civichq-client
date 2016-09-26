@@ -18,52 +18,39 @@ export class AppService extends BaseService {
     }
 
     getApps() {
-<<<<<<< HEAD
         return this.http.get(this.rootAddress + 'apps')
             .map((response: Response) => {
-=======
-        const url = `${this.rootAddress + '/apps'}`;
-        return this.http.get(url)
-            .map((response:Response) => {
->>>>>>> master
                 return response.json().map(
                     app => this.parseApps(app)
                 );
             })
     }
 
-<<<<<<< HEAD
-    update(app: App) {
-        const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
-=======
     getApp(id) {
 
-        const url = `${this.rootAddress + '/appprofile'}/${id}`;
+        const url = `${this.rootAddress + 'appprofile'}/${id}`;
         return this.http.get(url)
-            .map((response:Response) => {
+            .map((response: Response) => {
                 return response.json()
             })
     }
 
-    update(app:App) {
-        const url = `${this.rootAddress + '/updateapp'}/${app.id}`;
->>>>>>> master
-
-        //console.log('Getting token...');
-        //console.log('app id este ' + app.id);
+    update(app: App) {
+        const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
 
         return this.getToken().map((resp: Response) => {
 
             if (this.token) {
                 this.headers.append('x-access-token', this.token);
-                console.log(`Token (update) este ${this.token}`);
+                //console.log(`Token (update) este ${this.token}`);
 
-                console.log('url update este ' + urlupd );
-                
-                this.http.put(urlupd, '', { headers: this.headers })
-                    .map((resps: Response) => {
-                        console.log(resps);
-                    })
+                //console.log('url update este ' + urlupd);
+                //console.log(this.headers);
+
+                return this.http.put(urlupd, '', { headers: this.headers })
+                    .toPromise()
+                    .then(r => r.json())
+                    .catch(err => JSON.stringify({success: false}));
             }
 
         });
@@ -72,7 +59,7 @@ export class AppService extends BaseService {
     getToken(): Observable<any> {
         const url = `${this.rootAddress + 'auth'}`;
 
-              
+
         //console.log('Form stringify este ' + JSON.stringify({ username: 'code4', password: 'civitas123#' }));
 
         return this.http.post(url,
