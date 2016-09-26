@@ -24,6 +24,7 @@
     "@angular/platform-browser": "^2.0.0-rc.6",
     "@angular/platform-browser-dynamic": "^2.0.0-rc.6",
     "@angular/router": "^3.0.0-rc.2",
+    "angular2-jwt": "^0.1.23",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-bootstrap": "^1.1.1",
