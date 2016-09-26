@@ -10,6 +10,7 @@
         <slide *ngFor="let slide of theSlides; let index=index">
           <div class="Category-AppSlide">
             <div class="AppCard"
+              (click)="goToApp(app)"
               *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
             <div class="AppCard-Logo">
               <!--{{app.logoName}}-->

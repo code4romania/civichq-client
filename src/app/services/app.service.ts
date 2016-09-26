@@ -18,16 +18,36 @@ export class AppService extends BaseService {
     }
 
     getApps() {
+<<<<<<< HEAD
         return this.http.get(this.rootAddress + 'apps')
             .map((response: Response) => {
+=======
+        const url = `${this.rootAddress + '/apps'}`;
+        return this.http.get(url)
+            .map((response:Response) => {
+>>>>>>> master
                 return response.json().map(
                     app => this.parseApps(app)
                 );
             })
     }
 
+<<<<<<< HEAD
     update(app: App) {
         const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
+=======
+    getApp(id) {
+
+        const url = `${this.rootAddress + '/appprofile'}/${id}`;
+        return this.http.get(url)
+            .map((response:Response) => {
+                return response.json()
+            })
+    }
+
+    update(app:App) {
+        const url = `${this.rootAddress + '/updateapp'}/${app.id}`;
+>>>>>>> master
 
         //console.log('Getting token...');
         //console.log('app id este ' + app.id);

@@ -4,7 +4,10 @@ import { AppProfileComponent } from '../components/app-profile/app-profile.compo
 
 const appRoutes:Routes = [
     {
-        path: 'profile', component: AppProfileComponent
+        path: 'profile/:id', component: AppProfileComponent, data : [{name: "Profile"}]
+    },
+    {
+        path: 'profile', component: AppProfileComponent, data : [{name: "About"}]
     }
 ];
 
