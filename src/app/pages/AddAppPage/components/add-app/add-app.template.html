@@ -1,84 +1,92 @@
 <div class="container">
     <div *ngIf="app" class="add-app">
-        <div class="header">
-            <h2> Add App</h2>
-        </div>
 
         <div class="row">
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.name" placeholder="Name"/>
+                    <input type="text" class="form-control" [(ngModel)]="app.appname" placeholder="Name"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.website"
+                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite"
                            placeholder="Website-ul aplicatiei">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.github"
+                    <input type="text" class="form-control" [(ngModel)]="app.appgithub"
                            placeholder="Github link">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.facebook"
+                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook"
                            placeholder="Pagina de Facebook a aplicatiei">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.creationdate"
+                    <input type="text" class="form-control" [(ngModel)]="app.appdescription"
                            placeholder="Data crearii aplicatiei">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.logoname"
+                    <input type="text" class="form-control" [(ngModel)]="app.applogoname"
                            placeholder="Upload logo">
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control" [(ngModel)]="app.appdetail.description"
+                    <textarea type="text" class="form-control" [(ngModel)]="app.description"
                               placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.categoryid"
-                           placeholder="Alege domeniul">
+                    <ng-select [items]="categories"
+                               (data)="refreshValue($event)"
+                               (selected)="selectCat($event)"
+                               placeholder="Alege domeniul">
+
+                    </ng-select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdetail.hashtags"
-                           placeholder="Alege un #hastag pentru aplicatia ta">
+                    <ng-select [items]="tags"
+                               (data)="refreshValue($event)"
+                               [multiple]="true"
+                               (selected)="selectTags($event)"
+                               (removed)="removeTags($event)"
+                               (typed)="loadTags($event)"
+                               placeholder="Alege un #hastag pentru aplicatia ta">
+
+                    </ng-select>
                 </div>
 
             </section>
 
             <section class="col-xs-12 col-md-6 ngo-details">
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.name"
+                    <input type="text" class="form-control" [(ngModel)]="app.ngoname"
                            placeholder="Numele organizatiei"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.phone" placeholder="Telefon">
+                    <input type="text" class="form-control" [(ngModel)]="app.ngophone" placeholder="Telefon">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.email" placeholder="Email">
+                    <input type="text" class="form-control" [(ngModel)]="app.ngoemail" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.facebook"
+                    <input type="text" class="form-control" [(ngModel)]="app.ngofacebook"
                            placeholder="Facebook page">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.googleplus" placeholder="G+">
+                    <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.linkedin"
+                    <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin"
                            placeholder="LinkedIn page">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.twitter" placeholder="Twitter">
+                    <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" placeholder="Twitter">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.Instagram"
+                    <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram"
                            placeholder="Instagram">
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control" [(ngModel)]="app.ngodetail.description"
+                    <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription"
                               placeholder="Descriere organizatie (500 de caractere)"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngodetail.logoname"
+                    <input type="text" class="form-control" [(ngModel)]="app.ngologoname"
                            placeholder="Upload logo">
                 </div>
             </section>

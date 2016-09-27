@@ -9,9 +9,7 @@ import { App } from './../shared/models/app.model';
 
 @Injectable()
 export class AppService extends BaseService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
-    //private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    private token: string;
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {
         super(http);
@@ -30,6 +28,14 @@ export class AppService extends BaseService {
 
         const url = `${this.rootAddress + 'appprofile'}/${id}`;
         return this.http.get(url)
+            .map((response: Response) => {
+                return response.json()
+            })
+    }
+
+    addApp(app){
+        const url = `${this.rootAddress + 'addapp'}`;
+        return this.http.post(url,JSON.stringify(app), {headers: this.headers})
             .map((response: Response) => {
                 return response.json()
             })
