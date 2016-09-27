@@ -10,6 +10,7 @@ import { App } from './../shared/models/app.model';
 @Injectable()
 export class AppService extends BaseService {
     private headers = new Headers({'Content-Type': 'application/json'});
+    private token: string;
 
     constructor(private http: Http) {
         super(http);
