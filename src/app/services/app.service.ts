@@ -8,7 +8,7 @@ import { App } from './../shared/models/app.model';
 
 @Injectable()
 export class AppService extends BaseService {
-    private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http:Http) {
         super(http);

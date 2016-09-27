@@ -1,5 +1,5 @@
 export  class AddAppModel {
-    apname: string;
+    appname: string;
     appcategoryid: number;
     appwebsite: string;
     appfacebook: string;

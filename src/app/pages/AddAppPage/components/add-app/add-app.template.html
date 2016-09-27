@@ -4,7 +4,7 @@
         <div class="row">
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.apname" placeholder="Name"/>
+                    <input type="text" class="form-control" [(ngModel)]="app.appname" placeholder="Name"/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.appwebsite"
@@ -31,8 +31,12 @@
                               placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appcategoryid"
-                           placeholder="Alege domeniul">
+                    <ng-select [items]="categories"
+                               (data)="refreshValue($event)"
+                               (selected)="selectCat($event)"
+                               placeholder="Alege domeniul">
+
+                    </ng-select>
                 </div>
                 <div class="form-group">
                     <ng-select [items]="tags"
