@@ -28,7 +28,7 @@ export class CategoryComponent implements OnInit {
 
     goToApp(app) {
         let appName = app.appName = app.appName.replace(/\s+/g, '');
-        let link = ['/profile', app.id, appName];
+        let link = ['/apps', app.id, appName];
         this.router.navigate(link);
 
     }
