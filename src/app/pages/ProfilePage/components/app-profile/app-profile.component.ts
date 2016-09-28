@@ -30,7 +30,7 @@ export class AppProfileComponent implements OnInit {
             else {
                 this.appProfileService.getAppProfile()
                     .subscribe(
-                        app => {this.app = app; console.log('app ready')},
+                        app => {this.app = app;},
                         error =>  this.errorMessage = <any>error
                     );
             }
