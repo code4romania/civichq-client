@@ -10,13 +10,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Centrul Civic</a>
+                <a [routerLink]="['/home']" routerLinkActive="active" class="navbar-brand">Centrul Civic</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav  navbar-right">
                     <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
-                    <li><a [routerLink]="['/profile']" routerLinkActive="active">Despre centru</a></li>
+                    <li><a [routerLink]="['/about']" routerLinkActive="active">Despre centru</a></li>
                     <li><a [routerLink]="['/add-app']" routerLinkActive="active"> Adauga App</a></li>
                     <li><a [routerLink]="['/approve-app']" routerLinkActive="active"> Aproba App</a></li>
                     <li>
