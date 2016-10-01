@@ -7,6 +7,7 @@ import { AddAppComponent } from './components/add-app/add-app.component';
 import { AddAppRouting } from './config/add-app.routing';
 import { SelectModule } from 'ng2-select/ng2-select';
 
+
 @NgModule({
     imports: [
         AddAppRouting,
@@ -18,7 +19,7 @@ import { SelectModule } from 'ng2-select/ng2-select';
 
     ],
     declarations: [
-        AddAppComponent,
+        AddAppComponent
     ],
     exports: [
         AddAppComponent

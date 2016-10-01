@@ -23,8 +23,10 @@
                            placeholder="Data crearii aplicatiei">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.applogoname"
-                           placeholder="Upload logo">
+                    <!--<input type="text" class="form-control" [(ngModel)]="app.applogoname"
+                           placeholder="Upload logo">-->
+                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"  placeholder="Upload logo" />
+             
                 </div>
                 <div class="form-group">
                     <textarea type="text" class="form-control" [(ngModel)]="app.description"
@@ -86,8 +88,10 @@
                               placeholder="Descriere organizatie (500 de caractere)"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngologoname"
-                           placeholder="Upload logo">
+            <!--        <input type="text" class="form-control" [(ngModel)]="app.ngologoname"
+                           placeholder="Upload logo">-->
+                   <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"  placeholder="Upload logo" />
+             
                 </div>
             </section>
         </div>
