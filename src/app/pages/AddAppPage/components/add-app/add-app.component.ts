@@ -19,22 +19,28 @@ import './add-app.scss';
 
 export class AddAppComponent implements OnInit {
     @Input() app:AddAppModel;
-    public categories:Array<string>;
+    public categories:Array<Object> = [{id: null, text: 'Alege o categorie'}];
     public tags:Array<string> = [];
     private value:any = {};
     private selectedAppTags:Array<string> = [];
     private newTag:string;
+    private submitted:boolean;
+    private message;
+    private error;
+
 
     constructor(private appService:AppService, private tagsService:TagsService, private categoriesService:CategoriesService) {
+        this.submitted = false;
     }
 
     ngOnInit() {
         this.app = new AddAppModel();
+        this.app.appcategoryid = null;
         this.categoriesService.getCategories()
             .subscribe(cats => {
-                this.categories = cats.map((category) => {
+                this.categories = this.categories.concat(cats.map((category) => {
                     return {id: category.id, text: category.catname}
-                });
+                }))
             })
 
     }
@@ -42,10 +48,6 @@ export class AddAppComponent implements OnInit {
     public selectTags(value:any):void {
         this.newTag = '';
         this.selectedAppTags.push(value.text)
-    }
-
-    public selectCat(value:any):void {
-        this.app.appcategoryid = value.id
     }
 
     public refreshValue(value:any):void {
@@ -71,10 +73,25 @@ export class AddAppComponent implements OnInit {
 
     }
 
-    addApp() {
-        this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
-            : this.app.apphashtags = this.newTag;
-        this.appService.addApp(this.app)
-            .subscribe(response => console.log('response', response))
+    addApp(form) {
+        console.log('form', form)
+        this.submitted = true;
+        if (form.valid) {
+            this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
+                : this.app.apphashtags = this.newTag;
+            this.appService.addApp(this.app)
+                .subscribe(response => {
+                    this.message = response.result;
+                    if (this.message === 'success') {
+                        this.error = null;
+                    }
+                    else {
+                        let errorRegex = /\(ERROR\)\:(.*)/;
+                        this.error = errorRegex.exec(response.result)[1];
+                    }
+
+                })
+        }
+
     }
 }
