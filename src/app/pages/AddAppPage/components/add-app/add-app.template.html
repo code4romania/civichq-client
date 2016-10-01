@@ -84,10 +84,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail" placeholder="Email" #ngoEmail = "ngModel"
+                        <input name="ngoEmail" type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [ngModel]="app.ngoemail" placeholder="Email" #ngoEmail = "ngModel"
                                 required>
-                        <div *ngIf="submitted" [hidden]="ngoEmail.valid" class="alert alert-danger">
-                            Campul este obligatoriu!
+                        <div  *ngIf="submitted" [hidden]="ngoEmail.valid" class="alert alert-danger">
+                            Campul este obligatoriu si trebuie sa aiba un format valid!
                         </div>
                     </div>
                     <div class="form-group">
