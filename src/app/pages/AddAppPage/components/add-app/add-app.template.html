@@ -2,103 +2,134 @@
     <div *ngIf="app" class="add-app">
 
         <div class="row">
-            <section class="col-xs-12 col-md-6 app-details">
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appname" placeholder="Name"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite"
-                           placeholder="Website-ul aplicatiei">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appgithub"
-                           placeholder="Github link">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook"
-                           placeholder="Pagina de Facebook a aplicatiei">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appdescription"
-                           placeholder="Data crearii aplicatiei">
-                </div>
-                <div class="form-group">
-                    <!--<input type="text" class="form-control" [(ngModel)]="app.applogoname"
-                           placeholder="Upload logo">-->
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"  placeholder="Upload logo" />
+
+            <div class="custom-messages col-xs-12">
+                <h3 class="bg-success" *ngIf="submitted && message =='success' && !error"> Aplicatie adaugata cu success!</h3>
+                <h3 class="bg-danger" *ngIf="submitted && error"> {{error}}!</h3>
+            </div>
+            <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
+                <section class="col-xs-12 col-md-6 app-details">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName"
+                               placeholder="Name" required #appName="ngModel"/>
+
+
+                        <div *ngIf="submitted" [hidden]="appName.valid" class="alert alert-danger">
+                            Campul este obligatoriu!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite"
+                               placeholder="Website-ul aplicatiei" #appWebsite = "ngModel" required>
+
+                        <div *ngIf="submitted" [hidden]="appWebsite.valid" class="alert alert-danger">
+                            Campul este obligatoriu!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select  class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid" #appCategory = "ngModel">
+                            <option [disabled] = "c.id == null" *ngFor="let c of categories" [value]="c.id">{{c.text}}</option>
+
+                        </select>
+                        <div *ngIf="submitted" [hidden]="appCategory.valid" class="alert alert-danger">
+                            Campul este obligatoriu!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit"
+                               placeholder="Github link">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb"
+                               placeholder="Pagina de Facebook a aplicatiei">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.appdescription" name="appCreatedOn"
+                               placeholder="Data crearii aplicatiei">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"  placeholder="Upload logo" />
              
-                </div>
-                <div class="form-group">
-                    <textarea type="text" class="form-control" [(ngModel)]="app.description"
+                    </div>
+                    <div class="form-group">
+                    <textarea type="text" class="form-control" [(ngModel)]="app.description" name="appDescription"
                               placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
-                </div>
-                <div class="form-group">
-                    <ng-select [items]="categories"
-                               (data)="refreshValue($event)"
-                               (selected)="selectCat($event)"
-                               placeholder="Alege domeniul">
+                    </div>
+                    <div class="form-group">
+                        <ng-select [items]="tags"
+                                   name="appTags"
+                                   (data)="refreshValue($event)"
+                                   [multiple]="true"
+                                   (selected)="selectTags($event)"
+                                   (removed)="removeTags($event)"
+                                   (typed)="loadTags($event)"
+                                   placeholder="Alege un #hastag pentru aplicatia ta">
 
-                    </ng-select>
-                </div>
-                <div class="form-group">
-                    <ng-select [items]="tags"
-                               (data)="refreshValue($event)"
-                               [multiple]="true"
-                               (selected)="selectTags($event)"
-                               (removed)="removeTags($event)"
-                               (typed)="loadTags($event)"
-                               placeholder="Alege un #hastag pentru aplicatia ta">
+                        </ng-select>
+                    </div>
 
-                    </ng-select>
-                </div>
+                </section>
 
-            </section>
-
-            <section class="col-xs-12 col-md-6 ngo-details">
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngoname"
-                           placeholder="Numele organizatiei"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngophone" placeholder="Telefon">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngoemail" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngofacebook"
-                           placeholder="Facebook page">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin"
-                           placeholder="LinkedIn page">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" placeholder="Twitter">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram"
-                           placeholder="Instagram">
-                </div>
-                <div class="form-group">
-                    <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription"
+                <section class="col-xs-12 col-md-6 ngo-details">
+                    <div class="form-group">
+                        <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname"  #ngoName = "ngModel"  required
+                               placeholder="Numele organizatiei"/>
+                        <div *ngIf="submitted" [hidden]="ngoName.valid" class="alert alert-danger">
+                            Campul este obligatoriu!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone" placeholder="Telefon" #ngoPhone="ngModel"
+                               required>
+                        <div *ngIf="submitted" [hidden]="ngoPhone.valid" class="alert alert-danger">
+                            Campul este obligatoriu!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input name="ngoEmail" type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [ngModel]="app.ngoemail" placeholder="Email" #ngoEmail = "ngModel"
+                                required>
+                        <div  *ngIf="submitted" [hidden]="ngoEmail.valid" class="alert alert-danger">
+                            Campul este obligatoriu si trebuie sa aiba un format valid!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb"
+                               placeholder="Facebook page">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+"
+                               name="ngoGooglePlus">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn"
+                               placeholder="LinkedIn page">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter "
+                               placeholder="Twitter">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram"
+                               placeholder="Instagram">
+                    </div>
+                    <div class="form-group">
+                    <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription"
                               placeholder="Descriere organizatie (500 de caractere)"></textarea>
-                </div>
-                <div class="form-group">
-            <!--        <input type="text" class="form-control" [(ngModel)]="app.ngologoname"
-                           placeholder="Upload logo">-->
-                   <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"  placeholder="Upload logo" />
-             
-                </div>
-            </section>
-        </div>
 
-        <div class="form-actions">
-            <button id="save" (click)="addApp()" type="button" class="btn btn-default pull-right">Adauga aplicatie
-            </button>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"  placeholder="Upload logo" />
+             
+                    </div>
+                </section>
+                <div class="form-actions">
+                    <button id="save" type="submit" class="btn btn-default pull-right">Adauga
+                        aplicatie
+                    </button>
+                </div>
+            </form>
+
+
         </div>
 
 
