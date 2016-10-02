@@ -13,7 +13,7 @@ import './login.scss';
 
 export class LoginComponent implements OnInit {
     private submitted:boolean = false;
-    @Output() onLogIn = new EventEmitter<boolean>();
+    errors: string
     private user = {
         username: '',
         password: ''
@@ -29,9 +29,12 @@ export class LoginComponent implements OnInit {
         if(form.valid){
             this.auth.login(form.value.username, form.value.password)
                 .subscribe(res => {
-                    this.onLogIn.emit(res.success);
+                    console.log('res',res)
                     if(res.success){
                         this.router.navigate(['/approve-app'])
+                    }
+                    else {
+                        this.errors = res.message;
                     }
                 })
         }
