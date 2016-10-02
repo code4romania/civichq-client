@@ -27,6 +27,7 @@
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
     "bootstrap": "^3.3.7",
+    "config": "^1.21.0",
     "core-js": "^2.4.1",
     "ng2-bootstrap": "^1.1.1",
     "ng2-select": "^1.1.0",
