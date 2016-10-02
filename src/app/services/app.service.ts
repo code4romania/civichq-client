@@ -44,7 +44,7 @@ export class AppService extends BaseService {
 
     update(app: App) {
         const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
-
+        
         return this.getToken().map((resp: Response) => {
 
             if (this.token) {
