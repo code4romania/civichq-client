@@ -1,0 +1,8 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /www/civichq-client
+hooks:
+  AfterInstall:
+    - location: scripts/install_and_build.sh
