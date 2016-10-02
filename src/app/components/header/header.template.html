@@ -18,7 +18,9 @@
                     <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
                     <li><a [routerLink]="['/about']" routerLinkActive="active">Despre centru</a></li>
                     <li><a [routerLink]="['/add-app']" routerLinkActive="active"> Adauga App</a></li>
-                    <li><a [routerLink]="['/approve-app']" routerLinkActive="active"> Aproba App</a></li>
+                    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aproba App</a></li>
+                    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+                    <li *ngIf="isLoggedIn"><a><span class="fake-link" (click)="logout()">Logout</span></a></li>
                     <li>
                         <form class="navbar-form">
                             <div class="form-group">

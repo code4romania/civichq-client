@@ -11,6 +11,9 @@ import { HomeModule } from './pages/HomePage/home.module';
 import { ProfileModule } from './pages/ProfilePage/profile.module';
 import { AddAppModule } from './pages/AddAppPage/addApp.module';
 import { ApproveAppModule } from './pages/ApproveApp/approveApp.module';
+import { LoginModule } from './pages/LoginPage/login.module';
+
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -20,7 +23,8 @@ import { ApproveAppModule } from './pages/ApproveApp/approveApp.module';
     HomeModule,
     ProfileModule,
     AddAppModule,
-    ApproveAppModule
+    ApproveAppModule,
+    LoginModule
   ],
   declarations: [
     HeaderComponent,
