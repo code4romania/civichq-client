@@ -1,11 +1,13 @@
 import { Http } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
+declare var SERVER_ADDRESS: string;
+
 /**
  export * BaseService
  */
 export class BaseService {
-    rootAddress: string = "http://localhost:8080/api/";
+    rootAddress: string = SERVER_ADDRESS;//"http://localhost:8080/api/";
 
     constructor(private _http: Http) {
 

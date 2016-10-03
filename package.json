@@ -8,7 +8,10 @@
     "w": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ty": "typings install",
-    "postinstall": "npm run ty"
+    "postinstall": "npm run ty",
+    "prebuild": "rimraf dist",
+    "build": "webpack --config webpack.prod.js --progress --profile --bail",
+    "start:dist": "http-server dist -a localhost -p 8381 "
   },
   "keywords": [
     "ng2"
@@ -39,8 +42,10 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "http-server": "^0.9.0",
     "node-sass": "^3.9.3",
     "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",

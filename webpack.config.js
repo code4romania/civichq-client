@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 module.exports = {
   entry: {
@@ -45,6 +46,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new DefinePlugin({
+      SERVER_ADDRESS: JSON.stringify("http://localhost:8080/api/")
     })
   ]
-}
+};

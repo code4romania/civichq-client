@@ -5,14 +5,16 @@ import { Observable } from 'rxjs';
 import { Category } from './category.model';
 import { App } from './app.model';
 
+declare var SERVER_ADDRESS: string;
+
 @Injectable()
 export class CategoriesService {
 
-  apiUrl = 'http://localhost:8080/api';
+  apiUrl = SERVER_ADDRESS;//'http://localhost:8080/api';
   constructor(private http: Http) { }
 
   getCategories() {
-    return this.http.get(`${this.apiUrl}/categories`)
+    return this.http.get(`${this.apiUrl}categories`)
         .map((response: Response) => {
           return response.json().map(
             category => this.parseApiCategory(category)
@@ -21,7 +23,7 @@ export class CategoriesService {
   }
 
   getApps() {
-    return this.http.get(`${this.apiUrl}/approvedapps`)
+    return this.http.get(`${this.apiUrl}approvedapps`)
         .map((response: Response) => {
           return response.json().map(
             app => this.parseApiApp(app)
