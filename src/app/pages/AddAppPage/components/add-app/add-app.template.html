@@ -2,6 +2,7 @@
     <div *ngIf="app" class="add-app">
 
         <div class="row">
+
             <div class="custom-messages col-xs-12">
                 <h3 class="bg-success" *ngIf="submitted && message =='success' && !error"> Aplicatie adaugata cu success!</h3>
                 <h3 class="bg-danger" *ngIf="submitted && error"> {{error}}!</h3>
@@ -11,6 +12,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName"
                                placeholder="Name" required #appName="ngModel"/>
+
 
                         <div *ngIf="submitted" [hidden]="appName.valid" class="alert alert-danger">
                             Campul este obligatoriu!
@@ -46,8 +48,8 @@
                                placeholder="Data crearii aplicatiei">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" [(ngModel)]="app.applogoname" name="appLogo"
-                               placeholder="Upload logo">
+                        <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"  placeholder="Upload logo" />
+             
                     </div>
                     <div class="form-group">
                     <textarea type="text" class="form-control" [(ngModel)]="app.description" name="appDescription"
@@ -113,10 +115,11 @@
                     <div class="form-group">
                     <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription"
                               placeholder="Descriere organizatie (500 de caractere)"></textarea>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" [(ngModel)]="app.ngologoname" name="ngoLogo"
-                               placeholder="Upload logo">
+                        <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"  placeholder="Upload logo" />
+             
                     </div>
                 </section>
                 <div class="form-actions">
@@ -125,6 +128,7 @@
                     </button>
                 </div>
             </form>
+
 
         </div>
 
