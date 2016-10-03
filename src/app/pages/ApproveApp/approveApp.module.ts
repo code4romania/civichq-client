@@ -8,7 +8,6 @@ import { ApproveAppComponent } from './components/approve-app/approve-app.compon
 
 import { ApproveAppRouting } from './config/approve-app.routing';
 
-import {AuthService} from './../../services/auth.service';
 import {LoggedInGuard} from './../../services/login-guard';
 
 
@@ -22,7 +21,7 @@ import {LoggedInGuard} from './../../services/login-guard';
     declarations: [
         ApproveAppComponent,
     ],
-    providers: [AuthService, LoggedInGuard],
+    providers: [LoggedInGuard],
     exports: [
         ApproveAppComponent
     ]

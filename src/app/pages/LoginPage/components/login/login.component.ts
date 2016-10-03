@@ -7,7 +7,6 @@ import './login.scss';
 
 @Component({
     selector: 'login',
-    providers: [AuthService],
     templateUrl: './login.template.html',
 })
 

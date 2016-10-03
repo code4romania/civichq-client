@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
     ApproveAppModule,
     LoginModule
   ],
+  providers: [AuthService],
   declarations: [
     HeaderComponent,
     AppComponent,
