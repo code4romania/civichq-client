@@ -8,6 +8,9 @@ import { ApproveAppComponent } from './components/approve-app/approve-app.compon
 
 import { ApproveAppRouting } from './config/approve-app.routing';
 
+import {LoggedInGuard} from './../../services/login-guard';
+
+
 @NgModule({
     imports: [
         ApproveAppRouting,
@@ -18,6 +21,7 @@ import { ApproveAppRouting } from './config/approve-app.routing';
     declarations: [
         ApproveAppComponent,
     ],
+    providers: [LoggedInGuard],
     exports: [
         ApproveAppComponent
     ]

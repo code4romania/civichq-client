@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 
+import { AuthService } from './../../services/auth.service';
+import { Subscription }   from 'rxjs/Subscription';
+
 
 import './header.component.scss';
 @Component({
@@ -8,4 +11,17 @@ import './header.component.scss';
 })
 
 
-export class HeaderComponent {}
+export class HeaderComponent{
+    isLoggedIn:boolean;
+    subscription: Subscription;
+    constructor(private authService: AuthService){
+        this.subscription = authService.isLoggedIn$.subscribe((data)=>{
+            this.isLoggedIn = data;
+        })
+    }
+
+
+    logout(){
+        this.authService.logout();
+    }
+}

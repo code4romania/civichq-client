@@ -1,0 +1,15 @@
+.login{
+  padding-top: 80px;
+  input.ng-valid[required] {
+    border-left: 5px solid #42A948; /* green */
+  }
+
+  input.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+  }
+  .custom-messages {
+    h3 {
+      padding: 15px;
+    }
+  }
+}
