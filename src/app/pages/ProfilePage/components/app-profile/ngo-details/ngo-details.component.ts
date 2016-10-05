@@ -8,6 +8,7 @@ import { NgoDetails } from './../../../../../shared/models/ngo-details.model';
 })
 
 export class NgoDetailsComponent{
+    logoSrc = require('./../../../../../assets/images/mock-logo.png');
     @Input() ngoDetails: NgoDetails;
 
 }
