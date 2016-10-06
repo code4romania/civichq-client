@@ -10,3 +10,4 @@ import '@angular/router';
 import 'rxjs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';

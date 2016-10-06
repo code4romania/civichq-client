@@ -13,7 +13,11 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.ts']
+    extensions: ['', '.js', '.ts'],
+    alias: {
+      assets: './src/app/assets',
+      shared: './src/app/shared',
+    }
   },
   devtool: 'cheap-source-map',
   module: {
@@ -27,7 +31,7 @@ module.exports = {
         loader: 'raw'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        test: /\.(jpe|png|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         loader: 'file?name=assets/[name].[hash].[ext]'
       },
       {

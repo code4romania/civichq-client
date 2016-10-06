@@ -28,7 +28,7 @@ module.exports = {
                 loader: 'raw'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                test: /\.(jpe|jpg|png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
                 loader: 'file?name=assets/[name].[hash].[ext]'
             },
             {

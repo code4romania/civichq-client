@@ -11,6 +11,7 @@
     "postinstall": "npm run ty",
     "prebuild": "rimraf dist",
     "build": "webpack --config webpack.prod.js --progress --profile --bail",
+    "prestart:dist": "npm run build",
     "start:dist": "http-server dist -a localhost -p 8381 "
   },
   "keywords": [
@@ -32,6 +33,7 @@
     "bootstrap": "^3.3.7",
     "config": "^1.21.0",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.6.3",
     "ng2-bootstrap": "^1.1.1",
     "ng2-select": "^1.1.0",
     "rxjs": "5.0.0-beta.12",
