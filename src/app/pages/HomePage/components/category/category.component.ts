@@ -16,12 +16,10 @@ export class CategoryComponent implements OnInit {
     window:Window;
 
     constructor(@Inject('Window') window:Window, private router:Router) {
-        console.log(window.innerWidth);
         this.noOfApps = this.getNumberOfAppsPerSlide(window.innerWidth);
     }
 
     ngOnInit() {
-        console.log(this.window)
         this.theSlides = this.getSlides();
 
     }

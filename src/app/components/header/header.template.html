@@ -24,7 +24,7 @@
                     <li>
                         <form class="navbar-form">
                             <div class="form-group">
-                                <input  class="form-control" id="search-box" placeholder="Cauta"     />
+                                <input #searchBox  class="form-control" id="search-box" (keyup.enter) = "search(searchBox.value)" placeholder="Cauta"     />
 
                             </div>
                         </form>
