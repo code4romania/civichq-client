@@ -2,6 +2,7 @@ import { AuthResponse } from './../shared/models/auth-response.model';
 import { Injectable } from '@angular/core';
 import { Response, Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Subject }    from 'rxjs/Subject';
 import { BaseService } from "./base.service";
 
 import { App } from './../shared/models/app.model';
@@ -10,7 +11,7 @@ import { App } from './../shared/models/app.model';
 @Injectable()
 export class AppService extends BaseService {
     private headers = new Headers({'Content-Type': 'application/json'});
-    private token: string;
+    private token:string;
 
     constructor(private http: Http) {
         super(http);
@@ -44,7 +45,7 @@ export class AppService extends BaseService {
 
     update(app: App) {
         const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
-        
+
         return this.getToken().map((resp: Response) => {
 
             if (this.token) {
@@ -63,16 +64,30 @@ export class AppService extends BaseService {
         });
     }
 
-    getToken(): Observable<any> {
+    searchBy(src:string):Observable<any> {
+        const url = `${this.rootAddress + 'search'}/${src}`;
+        if (!src) {
+            return;
+        }
+        return this.http.get(url)
+            .map((response:Response) => {
+                return response.json().map(
+                    app =>this.parseAppsFromSearch(app)
+                );
+            });
+
+    }
+
+    getToken():Observable<any> {
         const url = `${this.rootAddress + 'auth'}`;
 
 
         //console.log('Form stringify este ' + JSON.stringify({ username: 'code4', password: 'civitas123#' }));
 
         return this.http.post(url,
-            JSON.stringify({ username: 'code4', password: 'civitas123#' }),
-            { headers: this.headers })
-            .map((response: Response) => {
+            JSON.stringify({username: 'code4', password: 'civitas123#'}),
+            {headers: this.headers})
+            .map((response:Response) => {
                 let r = response.json() as AuthResponse;
                 //console.log('r este ' + JSON.stringify(r));
                 if (r) {
@@ -82,13 +97,23 @@ export class AppService extends BaseService {
             });
     }
 
-    parseApps(apiApp): App {
+    parseApps(apiApp):App {
         return {
             id: apiApp.appdetail.id,
             appName: apiApp.appdetail.name,
             tags: apiApp.appdetail.hashtags,
             logoName: apiApp.appdetail.logoname,
             isApproved: apiApp.appdetail.isapproved === 'true'
+        }
+    }
+
+    parseAppsFromSearch(apiApp):App {
+        return {
+            id: apiApp.AppId,
+            appName: apiApp.AppName,
+            tags: apiApp.Tags,
+            logoName: apiApp.AppLogoName,
+            isApproved: true
         }
     }
 
