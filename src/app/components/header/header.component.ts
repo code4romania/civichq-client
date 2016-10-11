@@ -13,7 +13,7 @@ import './header.component.scss';
 
 
 export class HeaderComponent{
-    isLoggedIn:boolean;
+    isLoggedIn:boolean = this.authService.isLoggedIn();
     subscription: Subscription;
 
     constructor(private authService: AuthService, private router: Router,private route: ActivatedRoute){
