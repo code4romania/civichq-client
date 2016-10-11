@@ -15,6 +15,7 @@ import './header.component.scss';
 export class HeaderComponent{
     isLoggedIn:boolean = this.authService.isLoggedIn();
     subscription: Subscription;
+    public isCollapsed: boolean = true;
 
     constructor(private authService: AuthService, private router: Router,private route: ActivatedRoute){
         this.subscription = authService.isLoggedIn$.subscribe((data)=>{
