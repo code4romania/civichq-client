@@ -5,6 +5,7 @@ import { Subject }    from 'rxjs/Subject';
 import { Observable } from 'rxjs';
 import { BaseService } from "./base.service";
 import { Router } from '@angular/router';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -15,7 +16,7 @@ export class AuthService extends BaseService {
     isLoggedIn$ = this.isLoggedInSource.asObservable();
     constructor(private http: Http,private router: Router){
         super(http);
-        this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedIn = !!localStorage.getItem('auth_token') && tokenNotExpired('auth_token');
 
     }
 
@@ -44,6 +45,6 @@ export class AuthService extends BaseService {
         this.isLoggedInSource.next(this.loggedIn);
     }
     isLoggedIn() {
-        return this.loggedIn;
+        return this.loggedIn && tokenNotExpired('auth_token');
     }
 }
