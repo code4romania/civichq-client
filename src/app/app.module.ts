@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { CollapseDirective } from 'ng2-bootstrap'
 
 import { AppComponent } from './components/app/app.component';
 import { HeaderComponent} from './components/header/header.component';
@@ -34,6 +35,7 @@ enableProdMode();
   declarations: [
     HeaderComponent,
     AppComponent,
+    CollapseDirective
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,9 +1,28 @@
 @import "./../../assets/scss/variables";
 
+*{-webkit-font-smoothing: antialiased;}
+
+
 .main-header {
   .navbar {
     margin: 0;
     &.navbar-custom {
+      .navbar-collapse,.navbar-form{
+        border: 0;
+        box-shadow: none;
+      }
+      .navbar-collapse[aria-hidden="false"]{
+        .search-box{
+          width: 100%;
+        }
+      }
+
+      .navbar-toggle{
+        border-color: $white;
+        &:hover{
+          background-color: transparent;
+        }
+      }
       padding: 15px 0;
       background: $primary;
       border: 0;
@@ -14,6 +33,54 @@
       .navbar-nav > li > a {
         color: $light-font;
         font-size: 16px;
+      }
+      .search {
+        position: relative;
+        margin: 0;
+        .search-box {
+          color: $white;
+          &::-webkit-input-placeholder {
+            color:$white;
+          }
+
+          &::-moz-placeholder {
+            color:$white;
+          }
+          &::-ms-placeholder {
+            color:$white;
+          }
+
+          &::placeholder {
+            color:$white;
+          }
+          background: transparent;
+          border: 0;
+          border-bottom: 1px solid white;
+          box-shadow: none;
+          border-radius: 0;
+          width: 150px;
+          padding: 0 12px;
+          -webkit-transition: width 1s ease-in-out;
+          -moz-transition: width 1s ease-in-out;
+          -o-transition: width 1s ease-in-out;
+          transition: width 1s ease-in-out;
+          &:focus {
+            width: 370px;
+          }
+
+        }
+        &:after {
+          content: "\F002";
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          width: 12px;
+          height: 12px;
+          position: absolute;
+          right: 21px;
+          top: 50%;
+          margin-top: -6px;
+          color: $white;
+        }
       }
 
     }
