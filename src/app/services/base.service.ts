@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 declare var SERVER_ADDRESS: string;
@@ -8,6 +8,12 @@ declare var SERVER_ADDRESS: string;
  */
 export class BaseService {
     rootAddress: string = SERVER_ADDRESS;//"http://localhost:8080/api/";
+    
+    sentinelToken: string;
+    sentinelLoggedIn: boolean;
+    readonly sentinelTokenName = 'sentinel_token';
+    readonly authHeaderName = 'x-access-token';
+    headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private _http: Http) {
 

@@ -25,7 +25,7 @@ export class AppProfileComponent implements OnInit {
             if(params['id']){
                 let id = +params['id'];
                 this.appService.getApp(id)
-                    .subscribe(app => this.app = app);
+                    .subscribe(app => this.app = app.json() as AppProfile);
             }
             else {
                 this.appProfileService.getAppProfile()

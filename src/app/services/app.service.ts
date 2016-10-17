@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { AuthResponse } from './../shared/models/auth-response.model';
 import { Injectable } from '@angular/core';
 import { Response, Http, Headers } from '@angular/http';
@@ -10,10 +11,10 @@ import { App } from './../shared/models/app.model';
 
 @Injectable()
 export class AppService extends BaseService {
-    private headers = new Headers({'Content-Type': 'application/json'});
+    
     private token:string;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private auth: AuthService) {
         super(http);
     }
 
@@ -27,12 +28,12 @@ export class AppService extends BaseService {
     }
 
     getApp(id) {
+        return this.auth.loginSentinel().flatMap(() => {
+            const url = `${this.rootAddress + 'appprofile'}/${id}`;
 
-        const url = `${this.rootAddress + 'appprofile'}/${id}`;
-        return this.http.get(url)
-            .map((response: Response) => {
-                return response.json()
-            })
+            return this.http.get(url, { headers: this.auth.headers });
+        });
+
     }
 
     addApp(app){
@@ -49,11 +50,8 @@ export class AppService extends BaseService {
         return this.getToken().map((resp: Response) => {
 
             if (this.token) {
-                this.headers.append('x-access-token', this.token);
-                //console.log(`Token (update) este ${this.token}`);
+                this.headers.append(this.authHeaderName, this.token);
 
-                //console.log('url update este ' + urlupd);
-                //console.log(this.headers);
 
                 return this.http.put(urlupd, '', { headers: this.headers })
                     .toPromise()
