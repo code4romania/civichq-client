@@ -1,7 +1,8 @@
+import { AuthService } from './../../../services/auth.service';
 import { Injectable } from '@angular/core';
 import { Response, Http } from '@angular/http';
 import { Observable } from 'rxjs';
-
+//import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { Category } from './category.model';
 import { App } from './app.model';
 
@@ -11,15 +12,18 @@ declare var SERVER_ADDRESS: string;
 export class CategoriesService {
 
   apiUrl = SERVER_ADDRESS;//'http://localhost:8080/api';
-  constructor(private http: Http) { }
+  constructor(private http: Http, private auth: AuthService) {
+    
+   }
 
   getCategories() {
+
     return this.http.get(`${this.apiUrl}categories`)
-        .map((response: Response) => {
-          return response.json().map(
-            category => this.parseApiCategory(category)
-          );
-        })
+      .map((response: Response) => {
+        return response.json().map(
+          category => this.parseApiCategory(category)
+        );
+      })
   }
 
   getApps() {
