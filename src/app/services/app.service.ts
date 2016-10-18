@@ -31,7 +31,10 @@ export class AppService extends BaseService {
         return this.auth.loginSentinel().flatMap(() => {
             const url = `${this.rootAddress + 'appprofile'}/${id}`;
 
-            return this.http.get(url, { headers: this.auth.headers });
+            return this.http.get(url, { headers: this.auth.headers })
+                .map((response: Response) => {
+                    return response.json()
+                });
         });
 
     }

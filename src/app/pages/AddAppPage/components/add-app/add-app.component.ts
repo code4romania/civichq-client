@@ -110,7 +110,7 @@ export class AddAppComponent implements OnInit {
             this.isAppLogoValid = false;
             this.app.applogoname = '';
             this.appLogo = null;
-            console.log(this.error);
+            //console.log(this.error);
         }
 
         //console.log(fileInput);
@@ -135,7 +135,7 @@ export class AddAppComponent implements OnInit {
             this.isNgoLogoValid = false;
             this.app.ngologoname = '';
             this.ngoLogo = null;
-            console.log(this.error);
+            //console.log(this.error);
         }
 
         //console.log(fileInput);
@@ -144,8 +144,8 @@ export class AddAppComponent implements OnInit {
 
     private uploadLogo(theLogo: CivicFile, isUploadingAppLogo: boolean): Promise<any> {
         return this.uploadService.uploadLogo(theLogo).then(r => {
-            console.log('Dupa upload, response este');
-            console.log(r);
+            //console.log('Dupa upload, response este');
+            //console.log(r);
             if (isUploadingAppLogo) {
                 this.isAppLogoUploaded = (r == '200');
             } else {
@@ -182,6 +182,7 @@ export class AddAppComponent implements OnInit {
                     if (form.valid) {
                         this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
                             : this.app.apphashtags = this.newTag;
+                            
                         this.appService.addApp(this.app)
                             .subscribe(response => {
                                 this.message = response.result;
