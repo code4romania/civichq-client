@@ -3,6 +3,7 @@
 .navbar-custom {
   background: $primary;
   border: 0;
+  border-radius: 0;
   padding: ($distance / 4) 0;
 
   @media ($screen-md) {
@@ -23,10 +24,13 @@
     margin: 0 0 0 ($distance / 4);
     padding: 13px 10px;
 
-    &:hover,
+    &:hover {
+      background: darken($primary, 5);
+    }
+
     &:active,
     &:focus {
-      background: darken($primary, 5);
+      background: transparent;
     }
   }
 
@@ -34,14 +38,26 @@
     background: darken($primary, 8);
     color: $white;
     float: right;
+    height: 40px;
     margin-right: ($distance / 4);
     padding: 0;
     text-indent: -9999px;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:active,
+    &:focus {
       background: darken($primary, 8);
+    }
+
+    &.brand-small {
+      background: transparent;
+      color: $secondary;
+      font-size: 28px;
+      line-height: 40px;
+      text-align: center;
+      text-indent: 0;
+      transform: rotate(-90deg);
+      width: 40px;
     }
   }
 
@@ -57,6 +73,7 @@
       }
 
       > a {
+        border-radius: $radius;
         color: $white;
         font-weight: 700;
         letter-spacing: 1px;
@@ -97,12 +114,6 @@
   padding: 0;
 }
 
-.brand-small {
-  height: 40px;
-  width: 40px;
-}
-
 .brand-logo {
-  height: 40px;
-  width: 100px;
+  width: 160px;
 }

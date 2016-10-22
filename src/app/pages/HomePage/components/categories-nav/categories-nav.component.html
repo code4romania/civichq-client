@@ -1,13 +1,9 @@
-<div class="CategoriesNav container">
-  <div class="row clearfix">
-      <div class="col-lg-4 col-sm-6 col-xs-12 clearfix" *ngFor="let category of categories">
-        <div
-          class="CategoriesNav-Category"
-          (click)="onClick(category.id)"
-          [ngClass]="{ 'CategoriesNav-Category--selected': category.id == selectedId }"
-        >
-          {{category.name}}
-        </div>
-      </div>
+<div class="row categories">
+  <div class="col-xs-12 col-sm-6 col-lg-4" *ngFor="let category of categories">
+    <div class="category-item"
+      (click)="onClick(category.id)"
+      [ngClass]="{ 'category-item-selected': category.id == selectedId }">
+        {{category.name}}
+    </div>
   </div>
 </div>

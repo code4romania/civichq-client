@@ -1,25 +1,38 @@
-.CategoriesNav {
-  padding: 90px 0 50px 0;
+@import '../../../../assets/scss/variables';
+
+.categories {
+  margin-bottom: ($distance * 2 / 3);
+
+  @media ($screen-md) {
+    margin-top: ($distance / 3);
+  }
 }
 
-.CategoriesNav-Category {
-  box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
-  background: #ec6433;
-  padding: 15px;
-  margin: 15px;
-  color: white;
+.category-item {
+  background: $primary;
+  border-radius: $radius;
+  box-shadow: 3px 3px 3px 0 $grey;
+  color: $white;
   cursor: pointer;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: ($distance / 6);
+  padding: ($distance / 6) ($distance / 4);
   text-align: center;
-  &:hover {
-    opacity: 0.9;
+  text-transform: uppercase;
+
+  @media ($screen-sm) {
+    font-size: 16px;
+    margin-bottom: ($distance / 4);
+    padding: ($distance / 4) ($distance / 3);
   }
 
-  &--selected {
-    background-color: #441e5c;
+  &:hover {
+    opacity: .9;
+  }
+
+  &.category-item-selected {
+    background: $secondary;
   }
 }
