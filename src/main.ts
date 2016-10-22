@@ -8,7 +8,7 @@ import {escapeRegexp} from 'ng2-select/components/select/common';
 import {HighlightPipe} from 'ng2-select/components/select/select-pipes';
 
 
-HighlightPipe.prototype.transform = (value: any, args: any[]) => {
+HighlightPipe.prototype.transform = (value: any, args: any) => {
     if (args.length < 1) {
         return value;
     }
