@@ -40,11 +40,13 @@ export class AppService extends BaseService {
     }
 
     addApp(app){
-        const url = `${this.rootAddress + 'addapp'}`;
-        return this.http.post(url,JSON.stringify(app), {headers: this.headers})
-            .map((response: Response) => {
-                return response.json()
-            })
+        return this.auth.loginSentinel().flatMap(() => {
+            const url = `${this.rootAddress + 'addapp'}`;
+            return this.http.post(url, JSON.stringify(app), { headers: this.auth.headers })
+                .map((response: Response) => {
+                    return response.json()
+                });
+        });
     }
 
     update(app: App) {
