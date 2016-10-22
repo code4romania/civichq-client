@@ -16,7 +16,7 @@ import { LoginModule } from './pages/LoginPage/login.module';
 import { SearchModule } from './pages/SearchPage/search.module';
 
 import { AuthService } from './services/auth.service';
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 enableProdMode();
 @NgModule({

@@ -1,16 +1,14 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Subscription }   from 'rxjs/Subscription';
 
-
-
 import './header.component.scss';
+
 @Component({
     selector: 'header-component',
     templateUrl: './header.template.html'
 })
-
 
 export class HeaderComponent{
     isLoggedIn:boolean = this.authService.isLoggedIn();
