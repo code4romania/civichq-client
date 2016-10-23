@@ -60,12 +60,12 @@
 .carousel-control {
   background: rgba(darken($primary, 8), 80);
   border-radius: ($radius * 2);
-  height: $distance;
-  width: $distance;
+  height: ($distance * 2 / 3);
+  width: ($distance * 2 / 3);
   cursor: pointer;
   text-align: center;
   top: 50%;
-  margin-top: -75px;
+  margin-top: -65px;
 
   @media ($screen-md) {
     display: block;
@@ -91,13 +91,13 @@
   .icon-prev {
     width: auto;
     height: auto;
-    font-size: 30px;
-    margin: 0 0 0 -15px;
+    font-size: 18px;
+    margin: 0 0 0 -6px;
     right: auto;
     left: 50%;
     top: auto;
     bottom: auto;
-    line-height: 60px;
+    line-height: ($distance * 2 / 3) + 2;
     text-align: center;
     display: block;
   }

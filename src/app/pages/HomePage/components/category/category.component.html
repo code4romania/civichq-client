@@ -1,8 +1,8 @@
 <div class="category col-xs-12" (window:resize)="onResize($event)">
-  <h2 class="category-name text-center">
+  <h1 class="category-name text-center">
     {{category.catname}}
     <small class="category-no">{{category.apps.length}} aplicații</small>
-  </h2>
+  </h1>
   <carousel class="category-carousel">
     <slide *ngFor="let slide of theSlides; let index=index" class="row">
       <div class="app-card"
@@ -12,7 +12,8 @@
 
             <div class="card">
               <div class="card-image">
-                <img src="/assets/images/{{app.logoName}}" alt="{{app.appName}}" class="img-responsive">
+                <img src="http://www.fillmurray.com/500/500" alt="{{app.appName}}" class="img-responsive">
+                <!-- <img src="/assets/images/{{app.logoName}}" alt="{{app.appName}}" class="img-responsive"> -->
               </div>
               <div class="card-meta media">
                 <div class="media-left media-middle">
