@@ -1,22 +1,22 @@
-<div class="Category container" (window:resize)="onResize($event)">
+<div class="category container" (window:resize)="onResize($event)">
   <div class="row">
     <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="Category-Name">
+      <div class="category-name">
         {{category.catname}}
       </div>
     </div>
     <div class="row">
-      <carousel class="Category-Carousel">
+      <carousel class="category-carousel">
         <slide *ngFor="let slide of theSlides; let index=index">
-          <div class="Category-AppSlide">
-            <div class="AppCard"
+          <div class="category-app-slide">
+            <div class="app-card"
               (click)="goToApp(app)"
               *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
-            <div class="AppCard-Logo">
+            <div class="app-card-logo">
               <!--{{app.logoName}}-->
               {{app.appName}}
             </div>
-            <div class="AppCard-Hash">
+            <div class="app-card-hash">
               {{app.tags}}
             </div>
            </div>

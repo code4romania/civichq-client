@@ -17,9 +17,6 @@
                     <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
                     <li><a [routerLink]="['/about']" routerLinkActive="active">Despre Centru</a></li>
                     <li><a [routerLink]="['/add-app']" routerLinkActive="active">Adaugă</a></li>
-                    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aprobă</a></li>
-                    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-                    <li *ngIf="isLoggedIn"><a [routerLink]="['/login']" (click)="logout()">Logout</a></li>
                     <li>
                         <i class="fa fa-search" aria-hidden="true"></i>
                         <!-- <form class="navbar-form search">

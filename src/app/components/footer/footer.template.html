@@ -1,0 +1,9 @@
+<footer class="footer container">
+  &copy; 2016. Code for Romania.
+
+  <ul class="admin">
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aprobă</a></li>
+    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/login']" (click)="logout()">Logout</a></li>
+  </ul>
+</footer>

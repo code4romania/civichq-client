@@ -1,10 +1,10 @@
-.Category {
+.category {
   margin-top: 20px;
   padding: 0 20px;
   min-height: 421px;
 }
 
-.Category-Carousel {
+.category-carousel {
   .left.carousel-control,
   .right.carousel-control {
     background-image: none;
@@ -20,7 +20,7 @@
   }
 }
 
-.Category-Name {
+.category-name {
   text-align: center;
   display: block;
   background: #ec6433;
@@ -31,12 +31,12 @@
   text-transform: uppercase;
 }
 
-.Category-AppSlide {
+.category-app-slide {
   // display: flex;
   // justify-content: space-around;
 }
 
-.Category .AppCard {
+.app-card {
   cursor: pointer;
   height: 360px;
   width: 280px;
@@ -50,7 +50,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
 
-  &-Logo {
+  &-logo {
     // height: 85%;
     padding: 20px;
     // display: flex;
@@ -58,7 +58,7 @@
     border-bottom: 1px solid gray;
   }
 
-  &-Hash {
+  &-hash {
     // height: 15%;
     // display: flex;
     // align-items: center;
