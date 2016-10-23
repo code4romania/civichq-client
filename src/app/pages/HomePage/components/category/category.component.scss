@@ -58,8 +58,53 @@
 }
 
 .carousel-control {
-  display: none;
+  background: rgba(darken($primary, 8), 80);
+  border-radius: ($radius * 2);
+  height: $distance;
+  width: $distance;
+  cursor: pointer;
+  text-align: center;
+  top: 50%;
+  margin-top: -75px;
+
+  &.right {
+    right: -20px;
+  }
+
+  &.left {
+    left: -20px;
+  }
+
+  .icon-next,
+  .icon-prev {
+    width: auto;
+    height: auto;
+    font-size: 30px;
+    margin: 0 0 0 -15px;
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: auto;
+    line-height: 60px;
+    text-align: center;
+    display: block;
+  }
+
+  .icon-prev {
+    &::before {
+      content: "\F060";
+      font-family: FontAwesome;
+    }
+  }
+
+  .icon-next {
+    &::before {
+      content: "\F061";
+      font-family: FontAwesome;
+    }
+  }
 }
+
 
 .card {
   background: $white;
