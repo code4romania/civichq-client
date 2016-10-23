@@ -67,12 +67,24 @@
   top: 50%;
   margin-top: -75px;
 
+  @media ($screen-md) {
+    display: block;
+  }
+
   &.right {
-    right: -20px;
+    right: -5px;
+
+    @media ($screen-lg) {
+      right: -25px;
+    }
   }
 
   &.left {
-    left: -20px;
+    left: -5px;
+
+    @media ($screen-md) {
+      left: -25px;
+    }
   }
 
   .icon-next,
