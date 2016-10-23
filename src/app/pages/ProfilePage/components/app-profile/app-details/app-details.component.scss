@@ -13,7 +13,17 @@
   }
 
   .media-left {
-    margin-right: 20px;
+    @media ($screen-md) {
+      padding-right: $distance;
+    }
+  }
+
+  .media-body {
+    width: auto;
+
+    @media ($screen-md) {
+      width: 1000px;
+    }
   }
 }
 
