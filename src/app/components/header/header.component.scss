@@ -74,7 +74,7 @@
 
       > a {
         border-radius: $radius;
-        color: $white;
+        color: rgba($white, .8);
         font-weight: 700;
         letter-spacing: 1px;
         padding: ($distance / 6) ($distance / 3);
@@ -85,6 +85,18 @@
         &:active,
         &.active {
           background: darken($primary, 5);
+          color: $white;
+        }
+
+        &.add {
+          background: rgba(darken($secondary, 10), .9);
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.active {
+            background: $secondary;
+          }
         }
       }
     }
@@ -99,7 +111,7 @@
   }
 
   .fa-search {
-    color: $white;
+    color: rgba($white, .8);
     cursor: pointer;
     font-size: 18px;
     line-height: 40px;
@@ -115,5 +127,5 @@
 }
 
 .brand-logo {
-  width: 160px;
+  width: 200px;
 }

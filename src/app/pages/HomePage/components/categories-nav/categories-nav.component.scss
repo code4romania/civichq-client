@@ -12,7 +12,7 @@
   background: $primary;
   border-radius: $radius;
   box-shadow: 3px 3px 3px 0 $grey;
-  color: $white;
+  color: rgba($white, .8);
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
@@ -30,9 +30,11 @@
 
   &:hover {
     background: darken($primary, 8);
+    color: $white;
   }
 
   &.category-item-selected {
     background: $secondary;
+    color: $white;
   }
 }
