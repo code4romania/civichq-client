@@ -17,22 +17,26 @@ export class CategoriesService {
    }
 
   getCategories() {
-
-    return this.http.get(`${this.apiUrl}categories`)
-      .map((response: Response) => {
-        return response.json().map(
-          category => this.parseApiCategory(category)
-        );
-      })
+    return this.auth.loginSentinel().flatMap(() => {
+      return this.http.get(`${this.apiUrl}categories`,{headers: this.auth.headers})
+        .map((response: Response) => {
+          return response.json().map(
+            category => this.parseApiCategory(category)
+          );
+        })
+    });
   }
 
   getApps() {
-    return this.http.get(`${this.apiUrl}approvedapps`)
+    return this.auth.loginSentinel().flatMap(() => {
+      return this.http.get(`${this.apiUrl}approvedapps`, {headers: this.auth.headers})
         .map((response: Response) => {
           return response.json().map(
             app => this.parseApiApp(app)
           );
         })
+    })
+
   }
 
   getCategoriesWithApps() {
