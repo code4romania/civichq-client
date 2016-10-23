@@ -1,6 +1,8 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { NgoDetails } from './../../../../../shared/models/ngo-details.model';
 
+import './ngo-details.component.scss';
+
 @Component({
     selector: 'ngo-details',
     templateUrl: './ngo-details.template.html'
@@ -8,7 +10,7 @@ import { NgoDetails } from './../../../../../shared/models/ngo-details.model';
 })
 
 export class NgoDetailsComponent{
-    logoSrc = require('./../../../../../assets/images/mock-logo.png');
+
     @Input() ngoDetails: NgoDetails;
 
 }

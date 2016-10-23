@@ -1,7 +1,7 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { AppDetails } from './../../../../../shared/models/app-details.model';
 
-//import imgSrc from './mock-logo.png';
+import './app-details.component.scss';
 
 @Component({
     selector: 'app-details',
@@ -11,8 +11,6 @@ import { AppDetails } from './../../../../../shared/models/app-details.model';
 
 export class AppDetailsComponent {
 
-    logoSrc = require('./../../../../../assets/images/mock-logo.png');
     @Input() appDetails: AppDetails;
-
 
 }

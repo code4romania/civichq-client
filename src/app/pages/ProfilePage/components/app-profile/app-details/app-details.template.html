@@ -1,19 +1,41 @@
 <div class="row">
-  <div class="col-xs-12">
-  <pre>
-    <code>
-      {{appDetails | json}}
-    </code>
-  </pre>
+  <div class="col-xs-12 col-md-offset-1 col-md-10">
 
-      <img [src]="logoSrc">
+    <div class="profile media">
+      <div class="media-left media-middle">
+        <div class="profile-image">
+          <img src="http://www.fillmurray.com/500/500" alt="{{appDetails.name}}" class="img-responsive">
+          <!-- <img src="/assets/images/{{appDetails.logoname}}" alt="{{appDetails.name}}" class="img-responsive"> -->
+        </div>
+      </div>
+      <div class="media-body">
+        <strong class="profile-category">{{appDetails.categoryname}}</strong>
+        <em class="profile-date">{{appDetails.creationdate}}</em>
+        <h1>{{appDetails.name}}</h1>
+        <span class="text-muted">{{appDetails.hashtags}}</span>
+        <p>{{appDetails.description}}</p>
+        <div class="clearfix">
+          <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="btn btn-primary" target="_blank">
+            <i class="fa fa-external-link" aria-hidden="true"></i>
+            Vezi aplicația
+          </a>
+          <a *ngIf="appDetails.github" href="{{appDetails.github}}" class="btn btn-primary" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            Vezi codul sursă
+          </a>
+          <a *ngIf="appDetails.facebook" href="{{appDetails.facebook}}" class="btn btn-primary" target="_blank">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            Vezi activitatea pe Facebook
+          </a>
+        </div>
+      </div>
+    </div>
 
-      <h1>{{appDetails.name}}</h1>
-      <h2 class="text-mute">{{appDetails.hashtags}}</h2>
-
-      <p>{{appDetails.description}}</p>
-
-      fb: {{appDetails.facebook}}
-      url: {{appDetails.website}}
   </div>
 </div>
+
+<pre>
+  <code>
+    {{appDetails | json}}
+  </code>
+</pre>
