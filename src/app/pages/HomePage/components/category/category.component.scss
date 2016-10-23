@@ -104,14 +104,14 @@
 
   .icon-prev {
     &::before {
-      content: "\F060";
+      content: '\f053';
       font-family: FontAwesome;
     }
   }
 
   .icon-next {
     &::before {
-      content: "\F061";
+      content: '\f054';
       font-family: FontAwesome;
     }
   }
@@ -140,6 +140,7 @@
   height: 0;
   padding-top: 100%;
   position: relative;
+  background: $grey;
 
   img {
     left: 0;

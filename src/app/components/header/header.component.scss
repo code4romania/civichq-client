@@ -64,6 +64,11 @@
   .navbar-collapse {
     border: 0;
     box-shadow: none;
+
+    @media ($screen-sm) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .nav {
@@ -80,6 +85,14 @@
         padding: ($distance / 6) ($distance / 3);
         text-transform: uppercase;
 
+        @media ($screen-sm) {
+          padding: ($distance / 6);
+        }
+
+        @media ($screen-md) {
+          padding: ($distance / 6) ($distance / 3);
+        }
+
         &:hover,
         &:focus,
         &:active,
@@ -88,15 +101,11 @@
           color: $white;
         }
 
-        &.add {
-          background: rgba(darken($secondary, 10), .9);
-
-          &:hover,
-          &:focus,
-          &:active,
-          &.active {
-            background: $secondary;
-          }
+        .fa {
+          font-size: 18px;
+          margin-right: 5px;
+          position: relative;
+          top: 1px;
         }
       }
     }
@@ -109,14 +118,6 @@
   @media ($screen-sm) {
     margin: 0;
   }
-
-  .fa-search {
-    color: rgba($white, .8);
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 40px;
-    padding: 0 12px;
-  }
 }
 
 .navbar-form {
@@ -124,6 +125,76 @@
   box-shadow: none;
   margin: 0;
   padding: 0;
+}
+
+.form-search {
+  position: relative;
+
+  .form-control {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: rgba($white, .8);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: ($distance / 6) ($distance / 3) ($distance / 6) 46px;
+    height: 40px;
+    line-height: 40px;
+    transition: $ease-in-out;
+
+    @media ($screen-sm) {
+      padding: ($distance / 6) ($distance / 6) ($distance / 6) 36px;
+      width: 110px;
+    }
+
+    @media ($screen-md) {
+      padding: ($distance / 6) ($distance / 3) ($distance / 6) 46px;
+      width: 120px;
+    }
+
+    &::-webkit-input-placeholder {
+      color: rgba($white, .8);
+    }
+
+    &:focus {
+      background: darken($primary, 5);
+      color: $white;
+      box-shadow: none;
+
+      @media ($screen-sm) {
+        width: 200px;
+      }
+
+      @media ($screen-lg) {
+        width: 270px;
+      }
+
+      &::-webkit-input-placeholder {
+        color: $white;
+      }
+
+      + .fa-search {
+        color: $white;
+      }
+    }
+  }
+
+  .fa-search {
+    color: rgba($white, .8);
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+
+    @media ($screen-sm) {
+      left: 10px;
+    }
+
+    @media ($screen-md) {
+      left: 20px;
+    }
+  }
 }
 
 .brand-logo {

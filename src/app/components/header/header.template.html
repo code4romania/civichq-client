@@ -14,17 +14,31 @@
             </div>
             <div class="collapse navbar-collapse" id="collapse" [collapse]="isCollapsed">
                 <ul class="nav navbar-nav  navbar-right">
-                    <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
-                    <li><a [routerLink]="['/about']" routerLinkActive="active">Despre Centru</a></li>
-                    <li><a [routerLink]="['/add-app']" routerLinkActive="active" class="add">Adaugă</a></li>
                     <li>
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        <!-- <form class="navbar-form search">
-                            <div class="form-group">
-                                <input #searchBox type="text"  class="form-control search-box" (keyup.enter) = "search(searchBox.value)" placeholder="Cauta"     />
+                        <a [routerLink]="['/home']" routerLinkActive="active">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/about']" routerLinkActive="active">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            Despre Centru
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/add-app']" routerLinkActive="active">
+                            <i class="fa fa-plus-square" aria-hidden="true"></i>
+                            Adaugă
+                        </a>
+                    </li>
+                    <li>
+                        <form class="navbar-form search">
+                            <div class="form-group form-search">
+                                <input #searchBox type="text"  class="form-control search-box" (keyup.enter) = "search(searchBox.value)" placeholder="Caută"     />
+                                <i class="fa fa-search" aria-hidden="true"></i>
                             </div>
-
-                        </form> -->
+                        </form>
                     </li>
                 </ul>
 
