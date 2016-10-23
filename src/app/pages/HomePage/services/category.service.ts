@@ -17,7 +17,9 @@ export class CategoriesService {
    }
 
   getCategories() {
+    
     return this.auth.loginSentinel().flatMap(() => {
+      
       return this.http.get(`${this.apiUrl}categories`,{headers: this.auth.headers})
         .map((response: Response) => {
           return response.json().map(

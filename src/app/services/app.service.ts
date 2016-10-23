@@ -72,13 +72,15 @@ export class AppService extends BaseService {
         if (!src) {
             return;
         }
-        return this.http.get(url)
-            .map((response:Response) => {
-                return response.json().map(
-                    app =>this.parseAppsFromSearch(app)
-                );
-            });
 
+        return this.auth.loginSentinel().flatMap(() => {
+            return this.http.get(url, {headers: this.auth.headers})
+                .map((response: Response) => {
+                    return response.json().map(
+                        app => this.parseAppsFromSearch(app)
+                    );
+                });
+        })
     }
 
     getToken():Observable<any> {
