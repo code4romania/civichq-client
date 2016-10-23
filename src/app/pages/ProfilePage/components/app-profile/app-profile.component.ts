@@ -5,7 +5,7 @@ import { AppProfile } from './../../../../shared/models/app-profile.model';
 import { AppProfileService } from '../../services/app-profile.service';
 import { AppService } from './../../../../services/app.service';
 
-import './app-profile.scss';
+import './app-profile.component.scss';
 
 @Component({
     selector: 'profile',
