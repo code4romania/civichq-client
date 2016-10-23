@@ -21,13 +21,13 @@
 
   @media ($screen-md) {
     margin-bottom: 0;
-    padding-bottom: $distance;
+    padding-bottom: ($distance * 4 / 3);
 
   }
 }
 
 .carousel-indicators {
-  bottom: ($distance / 3);
+  bottom: ($distance * 2 / 3);
   display: none;
   left: 0;
   margin: 0;
@@ -74,8 +74,8 @@
   &.right {
     right: -5px;
 
-    @media ($screen-lg) {
-      right: -25px;
+    @media ($screen-md) {
+      right: -15px;
     }
   }
 
@@ -83,7 +83,7 @@
     left: -5px;
 
     @media ($screen-md) {
-      left: -25px;
+      right: -15px;
     }
   }
 
@@ -160,7 +160,7 @@
     text-overflow: ellipsis;
     transition: $ease-in-out;
     white-space: nowrap;
-    width: 200px;
+    width: 180px;
   }
 
   span {

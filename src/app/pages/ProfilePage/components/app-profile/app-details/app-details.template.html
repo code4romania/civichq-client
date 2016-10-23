@@ -1,47 +1,19 @@
-<section  class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-4">
-            <div class="app-logo">
-                <img [src]="logoSrc">
-            </div>
-            <ul class="social-share">
-                <span>Share on: </span>
-                <li class="social-item facebook"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i></li>
-                <li class="social-item twitter"><i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i></li>
-                <li class="social-item google"><i class="fa fa-2x fa-google-plus-square" aria-hidden="true"></i>+
-                </li>
-                <li class="social-item linkedin"><i class="fa fa-2x fa-linkedin-square" aria-hidden="true"></i></li>
-                <li class="social-item instagram"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></li>
-            </ul>
-        </div>
-        <div class="col-xs-12 col-md-8 app-info">
-            <div class="card app-name ">{{appDetails.name}} - app tagline/short description</div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        {{appDetails.hashtags}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">Domeniu</div>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="card"> {{appDetails.facebook}}</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card"> {{appDetails.website}}</div>
+<div class="row">
+  <div class="col-xs-12">
+  <pre>
+    <code>
+      {{appDetails | json}}
+    </code>
+  </pre>
 
-                </div>
-            </div>
-            <div class="app-date card">Data proiectului: 11/08/2016</div>
-            <div class="app-git card">GitHub: url</div>
-        </div>
-        <div class="col-xs-12 app-info">
-            <div class="card description">
-                <div class="title">Description:</div>
-                <div>{{appDetails.description}}</div>
+      <img [src]="logoSrc">
 
-            </div>
-        </div>
-    </div>
-</section>
+      <h1>{{appDetails.name}}</h1>
+      <h2 class="text-mute">{{appDetails.hashtags}}</h2>
+
+      <p>{{appDetails.description}}</p>
+
+      fb: {{appDetails.facebook}}
+      url: {{appDetails.website}}
+  </div>
+</div>
