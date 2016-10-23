@@ -49,10 +49,12 @@ export class CategoryComponent implements OnInit {
 
     getNumberOfAppsPerSlide(size) {
         if (size > 1200) {
+            return 4;
+        } else if (size > 992) {
             return 3;
-        } else if (size <= 1200 && size > 750) {
+        } else if (size > 768) {
             return 2;
-        } else {
+        } else{
             return 1;
         }
     }

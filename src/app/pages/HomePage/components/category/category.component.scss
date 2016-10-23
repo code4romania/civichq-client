@@ -1,67 +1,101 @@
-.category {
-  margin-top: 20px;
-  padding: 0 20px;
-  min-height: 421px;
+@import '../../../../assets/scss/variables';
+
+.carousel {
+  margin-top: ($distance / 3) 0;
+  padding-bottom: $distance;
 }
 
-.category-carousel {
-  .left.carousel-control,
-  .right.carousel-control {
-    background-image: none;
-    width: initial;
-    color: #ec6433;
+.carousel-indicators {
+  bottom: ($distance / 3);
+  display: none;
+  left: 0;
+  margin: 0;
+  width: 100%;
+
+  @media ($screen-md) {
+    display: block;
   }
 
-  .carousel-indicators li {
-    border-color: #ec6433;
-    &.active {
-      background: #ec6433;
+  li {
+    border-color: $primary;
+    height: auto;
+    margin: 1px 4px;
+    padding: 5px;
+    width: auto;
+  }
+
+  .active {
+    background: $primary;
+    height: auto;
+    margin: 1px 4px;
+    width: auto;
+  }
+}
+
+.carousel-inner {
+  padding: 10px;
+}
+
+.carousel-control {
+  display: none;
+}
+
+.card {
+  background: $white;
+  border-radius: ($radius * 2);
+  box-shadow: 3px 3px 3px 0 $grey;
+  cursor: pointer;
+  overflow: hidden;
+  transition: $ease-in-out;
+
+  &:hover {
+    box-shadow: 3px 3px 3px 0 darken($grey, 8);
+
+    h4,
+    span {
+      color: $primary;
     }
   }
 }
 
-.category-name {
-  text-align: center;
-  display: block;
-  background: #ec6433;
-  padding: 15px;
-  margin: 15px;
-  color: white;
-  border-radius: 4px;
-  text-transform: uppercase;
+.card-image {
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+
+  img {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 }
 
-.category-app-slide {
-  // display: flex;
-  // justify-content: space-around;
+.card-meta {
+  margin: 0;
+  min-height: ($distance + 5);
+  padding: ($distance / 6) ($distance / 4);
+
+  h4 {
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: $ease-in-out;
+    white-space: nowrap;
+    width: 200px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: $ease-in-out;
+  }
 }
 
-.app-card {
-  cursor: pointer;
-  height: 360px;
-  width: 280px;
-  display: inline-block;
-  border-radius: .25rem;
-  border: 1px solid rgba(0,0,0,.125);
-  margin-bottom: 60px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-  &:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  }
-
-  &-logo {
-    // height: 85%;
-    padding: 20px;
-    // display: flex;
-    // align-items: flex-end;
-    border-bottom: 1px solid gray;
-  }
-
-  &-hash {
-    // height: 15%;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-  }
+.card-owner {
+  border-radius: 50%;
+  overflow: hidden;
+  width: ($distance * 2 / 3);
 }
