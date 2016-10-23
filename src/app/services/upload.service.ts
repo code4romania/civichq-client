@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { CivicFileValidationResult } from './../shared/models/file-validation-result.model';
 import { CivicFile } from './../shared/models/civic-file.model';
 import { Http } from '@angular/http';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UploadService extends BaseService {
-    constructor(private http: Http) {
+    constructor(private http: Http, private auth: AuthService) {
         super(http);
     }
       uploadLogo(logo: CivicFile) : Promise<any>
@@ -23,24 +24,30 @@ export class UploadService extends BaseService {
       }
   
      private makeFileRequest(url: string, params: Array<string>, files: Array<CivicFile>) {
-          return new Promise((resolve, reject) => {
-              var formData: any = new FormData();
-              var xhr = new XMLHttpRequest();
-              for(var i = 0; i < files.length; i++) {
-                  formData.append("uploads[]", files[i].TheFile, files[i].NewFileName);
-              }
-              xhr.onreadystatechange = function () {
-                  if (xhr.readyState == 4) {
-                      if (xhr.status == 200) {
-                          resolve(JSON.parse(xhr.response));
-                      } else {
-                          reject(xhr.response);
-                      }
-                  }
-              }
-              xhr.open("POST", url, true);
-              xhr.send(formData);
-          });
+         return this.auth.loginSentinel()
+         .toPromise()
+            .then(() => {
+                 return new Promise((resolve, reject) => {
+                 var formData: any = new FormData();
+                 var xhr = new XMLHttpRequest();
+                 
+                 for (var i = 0; i < files.length; i++) {
+                     formData.append("uploads[]", files[i].TheFile, files[i].NewFileName);
+                 }
+                 xhr.onreadystatechange = function () {
+                     if (xhr.readyState == 4) {
+                         if (xhr.status == 200) {
+                             resolve(JSON.parse(xhr.response));
+                         } else {
+                             reject(xhr.response);
+                         }
+                     }
+                 }
+                 xhr.open("POST", url, true);
+                 xhr.setRequestHeader(this.auth.authHeaderName, this.auth.sentinelToken);
+                 xhr.send(formData);
+             });
+            });
       }
 
 
