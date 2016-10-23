@@ -1,8 +1,29 @@
 @import '../../../../assets/scss/variables';
 
+.category-name {
+  font-weight: 700;
+
+  small {
+    display: block;
+    font-size: 16px;
+    margin-top: 3px;
+
+    @media ($screen-sm) {
+      display: inline;
+      font-size: 20px;
+      margin-top: 0;
+    }
+  }
+}
+
 .carousel {
-  margin-top: ($distance / 3) 0;
-  padding-bottom: $distance;
+  margin: ($distance / 3) 0 ;
+
+  @media ($screen-md) {
+    margin-bottom: 0;
+    padding-bottom: $distance;
+
+  }
 }
 
 .carousel-indicators {
