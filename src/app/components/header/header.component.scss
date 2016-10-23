@@ -1,92 +1,119 @@
-@import "./../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
-*{-webkit-font-smoothing: antialiased;}
+.navbar-custom {
+  background: $primary;
+  border: 0;
+  border-radius: 0;
+  padding: ($distance / 4) 0;
 
+  @media ($screen-md) {
+    padding: ($distance / 3) 0;
+  }
 
-.main-header {
-  .navbar {
-    margin: 0;
-    &.navbar-custom {
-      .navbar-collapse,.navbar-form{
-        border: 0;
-        box-shadow: none;
+  > .container {
+    .navbar-brand {
+      @media ($screen-sm) {
+        margin-left: 0;
       }
-      .navbar-collapse[aria-hidden="false"]{
-        .search-box{
-          width: 100%;
-        }
-      }
-
-      .navbar-toggle{
-        border-color: $white;
-        &:hover{
-          background-color: transparent;
-        }
-      }
-      padding: 15px 0;
-      background: $primary;
-      border: 0;
-      border-radius: 0;
-      .navbar-brand {
-        color: $light-font;
-      }
-      .navbar-nav > li > a {
-        color: $light-font;
-        font-size: 16px;
-      }
-      .search {
-        position: relative;
-        margin: 0;
-        .search-box {
-          color: $white;
-          &::-webkit-input-placeholder {
-            color:$white;
-          }
-
-          &::-moz-placeholder {
-            color:$white;
-          }
-          &::-ms-placeholder {
-            color:$white;
-          }
-
-          &::placeholder {
-            color:$white;
-          }
-          background: transparent;
-          border: 0;
-          border-bottom: 1px solid white;
-          box-shadow: none;
-          border-radius: 0;
-          width: 150px;
-          padding: 0 12px;
-          -webkit-transition: width 1s ease-in-out;
-          -moz-transition: width 1s ease-in-out;
-          -o-transition: width 1s ease-in-out;
-          transition: width 1s ease-in-out;
-          &:focus {
-            width: 370px;
-          }
-
-        }
-        &:after {
-          content: "\F002";
-          display: inline-block;
-          font: normal normal normal 14px/1 FontAwesome;
-          width: 12px;
-          height: 12px;
-          position: absolute;
-          right: 21px;
-          top: 50%;
-          margin-top: -6px;
-          color: $white;
-        }
-      }
-
     }
   }
-  .fake-link {
-    cursor: pointer;
+
+  .navbar-toggle {
+    border: 0;
+    float: none;
+    margin: 0 0 0 ($distance / 4);
+    padding: 13px 10px;
+
+    &:hover {
+      background: darken($primary, 5);
+    }
+
+    &:active,
+    &:focus {
+      background: transparent;
+    }
   }
 
+  .navbar-brand {
+    background: darken($primary, 8);
+    color: $white;
+    float: right;
+    height: 40px;
+    margin-right: ($distance / 4);
+    padding: 0;
+    text-indent: -9999px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken($primary, 8);
+    }
+
+    &.brand-small {
+      background: transparent;
+      color: $secondary;
+      font-size: 28px;
+      line-height: 40px;
+      text-align: center;
+      text-indent: 0;
+      transform: rotate(-90deg);
+      width: 40px;
+    }
+  }
+
+  .navbar-collapse {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .nav {
+    > li {
+      @media ($screen-sm) {
+        margin-left: ($distance / 6);
+      }
+
+      > a {
+        border-radius: $radius;
+        color: $white;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: ($distance / 6) ($distance / 3);
+        text-transform: uppercase;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          background: darken($primary, 5);
+        }
+      }
+    }
+  }
+}
+
+.navbar-nav {
+  margin: ($distance / 6) (-$distance / 6) 0;
+
+  @media ($screen-sm) {
+    margin: 0;
+  }
+
+  .fa-search {
+    color: $white;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
+    padding: 0 12px;
+  }
+}
+
+.navbar-form {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-logo {
+  width: 160px;
 }

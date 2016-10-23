@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'tools';
+
+@import 'inputs';
+
+img {
+  height: 100%;
+  width: auto;
+}
+
+a {
+  color: $primary;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($primary, 8);
+  }
+}

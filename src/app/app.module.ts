@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CollapseDirective } from 'ng2-bootstrap'
 
 import { AppComponent } from './components/app/app.component';
-import { HeaderComponent} from './components/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { AppRouting } from './config/app.routing';
 
@@ -16,7 +17,7 @@ import { LoginModule } from './pages/LoginPage/login.module';
 import { SearchModule } from './pages/SearchPage/search.module';
 
 import { AuthService } from './services/auth.service';
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 enableProdMode();
 @NgModule({
@@ -34,6 +35,7 @@ enableProdMode();
   providers: [AuthService],
   declarations: [
     HeaderComponent,
+    FooterComponent,
     AppComponent,
     CollapseDirective
   ],

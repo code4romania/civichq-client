@@ -1,5 +1,9 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/base';
+
 body {
-  font-family: 'Raleway', sans-serif;
   background-color: $light-grey;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 }

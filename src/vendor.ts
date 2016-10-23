@@ -9,5 +9,5 @@ import '@angular/router';
 // RxJS
 import 'rxjs';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'font-awesome/css/font-awesome.css';

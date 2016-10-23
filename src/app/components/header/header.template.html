@@ -1,39 +1,35 @@
 <header class="main-header">
     <nav class="navbar navbar-inverse navbar-custom">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" (click)="isCollapsed = !isCollapsed" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
+                <button type="button" (click)="isCollapsed = !isCollapsed" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a [routerLink]="['/home']" routerLinkActive="active" class="navbar-brand">Centrul Civic</a>
+                <a [routerLink]="['/home']" routerLinkActive="active" class="navbar-brand brand-small hidden-md hidden-lg">
+                    <i class="fa fa-usb" aria-hidden="true"></i>
+                </a>
+                <a [routerLink]="['/home']" routerLinkActive="active" class="navbar-brand brand-logo visible-md visible-lg">Centru Civic</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="collapse" [collapse]="isCollapsed">
                 <ul class="nav navbar-nav  navbar-right">
                     <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
-                    <li><a [routerLink]="['/about']" routerLinkActive="active">Despre centru</a></li>
-                    <li><a [routerLink]="['/add-app']" routerLinkActive="active"> Adauga App</a></li>
-                    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aproba App</a></li>
-                    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-                    <li *ngIf="isLoggedIn"><a><span class="fake-link" (click)="logout()">Logout</span></a></li>
+                    <li><a [routerLink]="['/about']" routerLinkActive="active">Despre Centru</a></li>
+                    <li><a [routerLink]="['/add-app']" routerLinkActive="active">Adaugă</a></li>
                     <li>
-                        <form class="navbar-form search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <!-- <form class="navbar-form search">
                             <div class="form-group">
                                 <input #searchBox type="text"  class="form-control search-box" (keyup.enter) = "search(searchBox.value)" placeholder="Cauta"     />
                             </div>
 
-                        </form>
+                        </form> -->
                     </li>
                 </ul>
 
             </div>
         </div>
-        <!-- /.navbar-collapse -->
     </nav>
 
 </header>

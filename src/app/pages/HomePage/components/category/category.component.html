@@ -1,29 +1,34 @@
-<div class="Category container" (window:resize)="onResize($event)">
-  <div class="row">
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="Category-Name">
-        {{category.catname}}
-      </div>
-    </div>
-    <div class="row">
-      <carousel class="Category-Carousel">
-        <slide *ngFor="let slide of theSlides; let index=index">
-          <div class="Category-AppSlide">
-            <div class="AppCard"
-              (click)="goToApp(app)"
-              *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
-            <div class="AppCard-Logo">
-              <!--{{app.logoName}}-->
-              {{app.appName}}
-            </div>
-            <div class="AppCard-Hash">
-              {{app.tags}}
-            </div>
-           </div>
-         </div>
-        </slide>
-      </carousel>
-    </div>
-  </div>
+<div class="category col-xs-12" (window:resize)="onResize($event)">
+  <h2 class="category-name text-center">
+    {{category.catname}}
+    <small class="category-no">{{category.apps.length}} aplicații</small>
+  </h2>
+  <carousel class="category-carousel">
+    <slide *ngFor="let slide of theSlides; let index=index" class="row">
+      <div class="app-card"
+        (click)="goToApp(app)"
+        *ngFor="let app of category.apps.slice(index * noOfApps, (index+1)*noOfApps)">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
+            <div class="card">
+              <div class="card-image">
+                <img src="http://www.fillmurray.com/500/500" alt="{{app.logoName}}" class="img-responsive">
+              </div>
+              <div class="card-meta media">
+                <div class="media-left media-middle">
+                  <div class="card-owner">
+                    <img src="http://www.fillmurray.com/100/100" alt="{{app.ownerName}}" class="img-responsive">
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{app.appName}}</h4>
+                  <span class="text-muted">{{app.tags}}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </slide>
+  </carousel>
 </div>

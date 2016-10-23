@@ -1,0 +1,62 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="social list-unstyled">
+          <li>
+            <a href="https://www.facebook.com/centrucivic/" target="_blank">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/code4romania/civichq-api" target="_blank">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span>/api</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/code4romania/civichq-client" target="_blank">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span>/client</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/Code4Romania" target="_blank">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/code-for-romania" target="_blank">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <a class="footer-logo" [routerLink]="['/home']">
+          alt logo
+        </a>
+        <p class="info">
+          Centru civic bla bla something<br/>
+          <a href="mailto:centrucivic@code4.ro">centrucivic@code4.ro</a>
+        </p>
+      </div>
+      <div class="col-xs-12 col-md-offset-1 col-md-5 code">
+        <a class="code-logo" href="http://code4.ro/" target="_blank">
+          <img src="http://code4.ro/wp-content/themes/code4/dist/images/footer-logo.png" alt="Code for Romania">
+        </a>
+        <p class="legal">
+          &copy; 2016 Code for Society / Code for Romania.<br/>
+          Organizație neguvernamentală independentă, neafiliată politic și apolitică.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <ul class="admin" style="display: none;">
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aprobă</a></li>
+    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/login']" (click)="logout()">Logout</a></li>
+  </ul>
+</footer>
