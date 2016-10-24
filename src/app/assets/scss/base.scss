@@ -55,6 +55,21 @@ a {
   }
 }
 
+.btn {
+  background: $grey;
+  color: $black;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  .fa {
+    font-size: 18px;
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+  }
+}
+
 .main-content {
   min-height: 600px;
 }
