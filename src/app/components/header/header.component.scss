@@ -34,20 +34,20 @@
     }
   }
 
-  .navbar-brand {
-    background: darken($primary, 8);
+  .logo-type {
     color: $white;
-    float: right;
-    height: 40px;
-    margin-right: ($distance / 4);
-    padding: 0;
-    text-indent: -9999px;
 
     &:hover,
     &:active,
     &:focus {
-      background: darken($primary, 8);
+      background: transparent;
     }
+  }
+
+  .navbar-brand {
+    float: right;
+    margin-right: ($distance / 4);
+    padding: 0;
 
     &.brand-small {
       background: transparent;
@@ -58,6 +58,12 @@
       text-indent: 0;
       transform: rotate(-90deg);
       width: 40px;
+    }
+
+    &:hover {
+      .fa {
+        color: $white;
+      }
     }
   }
 
@@ -163,11 +169,11 @@
       box-shadow: none;
 
       @media ($screen-sm) {
-        width: 200px;
+        width: 180px;
       }
 
       @media ($screen-lg) {
-        width: 270px;
+        width: 250px;
       }
 
       &::-webkit-input-placeholder {
@@ -197,6 +203,27 @@
   }
 }
 
-.brand-logo {
-  width: 200px;
+.logo-type {
+  font-family: 'Raleway';
+  font-size: 38px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 40px;
+  height: 40px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $secondary;
+    text-decoration: none;
+  }
+
+  .fa {
+    color: $secondary;
+    transform: rotate(-90deg);
+    margin: 0 -4px;
+    font-size: 30px;
+    position: relative;
+    top: -2px;
+  }
 }

@@ -88,13 +88,23 @@
 }
 
 .footer-logo {
-  background: lighten($primary, 50);
-  display: inline-block;
+  color: lighten($primary, 50);
+  font-size: 30px;
   height: 30px;
-  margin: 0 auto;
-  opacity: .8;
-  text-indent: -9999px;
-  width: 180px;
+  line-height: 30px;
+
+  .fa {
+    color: lighten($primary, 50);
+    font-size: 20px;
+  }
+
+  &:hover {
+    color: $primary;
+
+    .fa {
+      color: $primary;
+    }
+  }
 }
 
 .code-logo {
