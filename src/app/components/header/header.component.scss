@@ -54,6 +54,7 @@
       color: $secondary;
       font-size: 28px;
       line-height: 40px;
+      margin: -6px 6px 0 0;
       text-align: center;
       text-indent: 0;
       transform: rotate(-90deg);
@@ -151,12 +152,7 @@
 
     @media ($screen-sm) {
       padding: ($distance / 6) ($distance / 6) ($distance / 6) 36px;
-      width: 110px;
-    }
-
-    @media ($screen-md) {
-      padding: ($distance / 6) ($distance / 3) ($distance / 6) 46px;
-      width: 120px;
+      width: 100px;
     }
 
     &::-webkit-input-placeholder {
@@ -169,7 +165,7 @@
       box-shadow: none;
 
       @media ($screen-sm) {
-        width: 180px;
+        width: 170px;
       }
 
       @media ($screen-lg) {
@@ -195,10 +191,6 @@
 
     @media ($screen-sm) {
       left: 10px;
-    }
-
-    @media ($screen-md) {
-      left: 20px;
     }
   }
 }
