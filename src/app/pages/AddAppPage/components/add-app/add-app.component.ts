@@ -11,7 +11,7 @@ import { CategoriesService } from './../../services/category.service';
 import { TagsService } from './../../../../services/tags.service';
 import { AddAppModel } from './../../services/add-app.model';
 
-import './add-app.scss';
+import './add-app.component.scss';
 
 
 @Component({
@@ -175,14 +175,14 @@ export class AddAppComponent implements OnInit {
             if (this.isNgoLogoValid && this.ngoLogo) {
                 l2 = this.uploadLogo(this.ngoLogo, false);
             }
-            
+
             Promise.all([l1, l2]).then(() => {
                 if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
 
                     if (form.valid) {
                         this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
                             : this.app.apphashtags = this.newTag;
-                            
+
                         this.appService.addApp(this.app)
                             .subscribe(response => {
                                 this.message = response.result;
@@ -217,7 +217,7 @@ export class AddAppComponent implements OnInit {
         this.isNgoLogoValid = true; //da, true
     }
 
-   
+
 
 
 }

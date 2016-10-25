@@ -3,6 +3,43 @@
 
 @import 'inputs';
 
+h1 {
+  font-weight: 700;
+
+  .search-results & {
+    font-weight: 400;
+  }
+}
+
+p {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.page-title {
+  margin-bottom: ($distance * 2 / 3);
+  margin-top: ($distance / 3);
+  text-align: center;
+
+  h1,
+  p {
+    width: 100%;
+
+    @media ($screen-md) {
+      margin: 0 auto;
+      max-width: 60%;
+    }
+  }
+
+  p {
+    margin-top: ($distance / 3);
+
+    @media ($screen-md) {
+      max-width: 70%;
+    }
+  }
+}
+
 img {
   height: 100%;
   width: auto;
@@ -15,6 +52,21 @@ a {
   &:focus,
   &:active {
     color: darken($primary, 8);
+  }
+}
+
+.btn {
+  background: $grey;
+  color: $black;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  .fa {
+    font-size: 18px;
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
   }
 }
 

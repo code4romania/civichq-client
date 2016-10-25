@@ -1,41 +1,44 @@
-<div class="row">
-  <div class="col-xs-12 col-md-offset-1 col-md-10">
-
-    <div class="profile media">
-      <div class="media-left media-middle">
-        <div class="profile-image">
-          <img src="http://www.fillmurray.com/500/500" alt="{{appDetails.name}}" class="img-responsive">
-          <!-- <img src="/assets/images/{{appDetails.logoname}}" alt="{{appDetails.name}}" class="img-responsive"> -->
-        </div>
-      </div>
-      <div class="media-body">
-        <strong class="profile-category">{{appDetails.categoryname}}</strong>
-        <em class="profile-date">{{appDetails.creationdate}}</em>
-        <h1>{{appDetails.name}}</h1>
-        <span class="text-muted">{{appDetails.hashtags}}</span>
-        <p>{{appDetails.description}}</p>
-        <div class="clearfix">
-          <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="btn btn-primary" target="_blank">
-            <i class="fa fa-external-link" aria-hidden="true"></i>
-            Vezi aplicația
-          </a>
-          <a *ngIf="appDetails.github" href="{{appDetails.github}}" class="btn btn-primary" target="_blank">
-            <i class="fa fa-github" aria-hidden="true"></i>
-            Vezi codul sursă
-          </a>
-          <a *ngIf="appDetails.facebook" href="{{appDetails.facebook}}" class="btn btn-primary" target="_blank">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            Vezi activitatea pe Facebook
-          </a>
-        </div>
+<div class="col-xs-12 col-lg-offset-2 col-lg-8">
+  <div class="profile media">
+    <a [routerLink]="['/home']" class="back">
+      <i class="fa fa-caret-left" aria-hidden="true"></i>
+      Înapoi
+    </a>
+    <div class="profile-media media-left media-middle">
+      <div class="profile-image">
+        <img src="http://www.fillmurray.com/500/500" alt="{{appDetails.name}}" class="img-responsive">
+        <!-- <img src="/assets/images/{{appDetails.logoname}}" alt="{{appDetails.name}}" class="img-responsive"> -->
       </div>
     </div>
-
+    <div class="profile-body media-body media-middle">
+      <strong class="profile-category">{{appDetails.categoryname}}</strong>
+      <h1 class="profile-name">{{appDetails.name}}</h1>
+      <p class="profile-meta text-muted" *ngIf="appDetails.creationdate || appDetails.hashtags">
+        <strong>{{appDetails.hashtags}}</strong>
+        <i class="fa fa-circle" aria-hidden="true" *ngIf="appDetails.creationdate && appDetails.hashtags"></i>
+        <span *ngIf="appDetails.creationdate" class="profile-date">{{appDetails.creationdate | date:'dd / MM / yyyy'}}</span>
+      </p>
+      <div class="clearfix">
+        <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="btn btn-primary" target="_blank">
+          <i class="fa fa-external-link" aria-hidden="true"></i>
+          Vezi aplicația
+        </a>
+        <a *ngIf="appDetails.github" href="{{appDetails.github}}" class="btn btn-secondary" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
+          Vezi codul sursă
+        </a>
+        <a *ngIf="appDetails.facebook" href="{{appDetails.facebook}}" class="btn btn-facebook" target="_blank">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+          Vezi activitatea pe Facebook
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
-<pre>
-  <code>
-    {{appDetails | json}}
-  </code>
-</pre>
+<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-5">
+  <div class="profile-description">
+    <h2 class="subtitle">Aplicația</h2>
+    <p>{{appDetails.description}}</p>
+  </div>
+</div>

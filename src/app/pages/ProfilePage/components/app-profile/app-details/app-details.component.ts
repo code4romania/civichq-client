@@ -1,4 +1,5 @@
 import { Component, OnInit,Input} from '@angular/core';
+import { Router } from '@angular/router';
 import { AppDetails } from './../../../../../shared/models/app-details.model';
 
 import './app-details.component.scss';

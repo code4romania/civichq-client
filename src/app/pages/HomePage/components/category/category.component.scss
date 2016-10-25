@@ -54,64 +54,68 @@
 }
 
 .carousel-inner {
-  padding: 10px;
+  padding: ($distance / 6) ($distance * 2 / 3);
+
+  @media ($screen-md) {
+    padding: ($distance / 6) $distance;
+  }
 }
 
 .carousel-control {
   background: rgba(darken($primary, 8), 80);
-  border-radius: ($radius * 2);
-  height: ($distance * 2 / 3);
-  width: ($distance * 2 / 3);
+  border-radius: $radius;
   cursor: pointer;
   text-align: center;
   top: 50%;
   margin-top: -65px;
+  display: block;
+  height: ($distance / 2);
+  width: ($distance / 2);
 
   @media ($screen-md) {
-    display: block;
+    height: ($distance * 2 / 3);
+    width: ($distance * 2 / 3);
   }
 
   &.right {
-    right: -5px;
-
-    @media ($screen-md) {
-      right: -15px;
-    }
+    right: 0;
   }
 
   &.left {
-    left: -5px;
-
-    @media ($screen-md) {
-      right: -15px;
-    }
+    left: 0;
   }
 
   .icon-next,
   .icon-prev {
     width: auto;
     height: auto;
-    font-size: 18px;
-    margin: 0 0 0 -6px;
-    right: auto;
-    left: 50%;
-    top: auto;
-    bottom: auto;
-    line-height: ($distance * 2 / 3) + 2;
+    font-size: 16px;
+    margin: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    line-height: ($distance / 2);
     text-align: center;
-    display: block;
+    display: inline;
+    position: static;
+
+    @media ($screen-md) {
+      font-size: 20px;
+      line-height: ($distance * 2 / 3);
+    }
   }
 
   .icon-prev {
     &::before {
-      content: '\f053';
+      content: '\f0d9';
       font-family: FontAwesome;
     }
   }
 
   .icon-next {
     &::before {
-      content: '\f054';
+      content: '\f0da';
       font-family: FontAwesome;
     }
   }
@@ -161,14 +165,21 @@
     text-overflow: ellipsis;
     transition: $ease-in-out;
     white-space: nowrap;
-    width: 180px;
+
+    @media ($screen-sm) {
+      width: 200px;
+    }
+
+    @media ($screen-md) {
+      width: 150px;
+    }
   }
 
   span {
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-transform: lowercase;
     transition: $ease-in-out;
   }
 }
