@@ -1,63 +1,85 @@
-
 <div *ngIf="app" class="add-app">
     <div class="page-title">
         <h1>Adaugă-ți aplicația în Centru</h1>
+
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.</p>
+            tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
 
     <div class="col-xs-12">
         <div class="custom-messages col-xs-12">
-            <h3 class="bg-success" *ngIf="submitted && message =='success' && !error"> Aplicatie adaugata cu success!</h3>
+            <h3 class="bg-success" *ngIf="submitted && message =='success' && !error"> Aplicatie adaugata cu
+                success!</h3>
+
             <h3 class="bg-danger" *ngIf="submitted && error"> {{error}}!</h3>
         </div>
         <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName"
-                           placeholder="Name" required #appName="ngModel"/>
+                           placeholder="Name" required minlength="2" #appName="ngModel"/>
 
 
-                    <div *ngIf="submitted" [hidden]="appName.valid" class="alert alert-danger">
+                    <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
+                    </div>
+                    <div *ngIf="submitted" [hidden]="!appName.errors?.minlength" class="alert alert-danger">
+                        Numele trebuie sa aiba cel putin 2 caractere!
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite"
-                           placeholder="Website-ul aplicatiei" #appWebsite = "ngModel" required>
+                           placeholder="Website-ul aplicatiei" #appWebsite="ngModel" required url>
 
-                    <div *ngIf="submitted" [hidden]="appWebsite.valid" class="alert alert-danger">
+                    <div *ngIf="submitted" [hidden]="!appWebsite.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
+                    </div>
+                    <div *ngIf="submitted" [hidden]="!appWebsite.errors?.url" class="alert alert-danger">
+                        Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <select  class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid" #appCategory = "ngModel">
-                        <option [disabled] = "c.id == null" *ngFor="let c of categories" [value]="c.id">{{c.text}}</option>
+                    <select class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid"
+                            #appCategory="ngModel">
+                        <option [disabled]="c.id == null" *ngFor="let c of categories" [value]="c.id">{{c.text}}
+                        </option>
 
                     </select>
-                    <div *ngIf="submitted" [hidden]="appCategory.valid" class="alert alert-danger">
+
+                    <div *ngIf="submitted" [hidden]="!appCategory.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit"
-                           placeholder="Github link">
+                    <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit" #appGit="ngModel"
+                           placeholder="Github link" url>
+
+                    <div *ngIf="submitted" [hidden]="!appGit.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb"
-                           placeholder="Pagina de Facebook a aplicatiei">
+                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb" #appFb="ngModel"
+                           placeholder="Pagina de Facebook a aplicatiei" url>
+
+                    <div *ngIf="submitted" [hidden]="!appFb.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appcreationdate" name="appCreatedOn"
+                    <input type="date" class="form-control" [(ngModel)]="app.appcreationdate" name="appCreatedOn"
                            placeholder="Data crearii aplicatiei">
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"  placeholder="Upload logo" />
+                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
+                           (change)="appLogoChangeEvent($event)" placeholder="Upload logo"/>
 
                 </div>
                 <div class="form-group">
-                <textarea type="text" class="form-control" [(ngModel)]="app.appdescription" name="appDescription"
+                <textarea type="text" class="form-control" [(ngModel)]="app.appdescription" maxlength="1000"
+                          #appDescription="ngModel" name="appDescription"
                           placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
+
                 </div>
                 <div class="form-group">
                     <ng-select [items]="tags"
@@ -76,50 +98,85 @@
 
             <section class="col-xs-12 col-md-6 ngo-details">
                 <div class="form-group">
-                    <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname"  #ngoName = "ngModel"  required
+                    <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname" #ngoName="ngModel"
+                           required
+                           minlength="2"
                            placeholder="Numele organizatiei"/>
-                    <div *ngIf="submitted" [hidden]="ngoName.valid" class="alert alert-danger">
+
+                    <div *ngIf="submitted" [hidden]="!ngoName.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
                     </div>
-                </div>
-                <div class="form-group">
-                    <input name="ngoEmail" type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [(ngModel)]="app.ngoemail" placeholder="Email" #ngoEmail = "ngModel"
-                            required>
-                    <div  *ngIf="submitted" [hidden]="ngoEmail.valid" class="alert alert-danger">
-                        Campul este obligatoriu si trebuie sa aiba un format valid!
+                    <div *ngIf="submitted" [hidden]="!ngoName.errors?.minlength" class="alert alert-danger">
+                        Numele trebuie sa aiba cel putin 2 caractere!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone" placeholder="Telefon" #ngoPhone="ngModel"
-                           required>
+                    <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail"
+                           placeholder="Email" #ngoEmail="ngModel"
+                           required email>
+
+                    <div *ngIf="submitted" [hidden]="!ngoEmail.errors?.required" class="alert alert-danger">
+                        Campul este obligatoriu
+                    </div>
+                    <div *ngIf="submitted" [hidden]="!ngoEmail.errors?.email" class="alert alert-danger">
+                        Adresa de email nu este valida!
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb"
-                           placeholder="Facebook page">
+                    <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone"
+                           pattern="{{phoneRegex}}"
+                           placeholder="Telefon" #ngoPhone="ngModel">
+
+                    <div *ngIf="submitted" [hidden]="!ngoPhone.errors?.pattern" class="alert alert-danger">
+                        Numarul de telefon nu este valid!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb" #ngoFb="ngModel"
+                           placeholder="Facebook page" url>
+
+                    <div *ngIf="submitted" [hidden]="!ngoFb.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+"
-                           name="ngoGooglePlus">
+                           name="ngoGooglePlus" #ngoGooglePlus="ngModel" url>
+
+                    <div *ngIf="submitted" [hidden]="!ngoGooglePlus.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn"
-                           placeholder="LinkedIn page">
+                           placeholder="LinkedIn page" #ngoLinkedIn="ngModel" url>
+
+                    <div *ngIf="submitted" [hidden]="!ngoLinkedIn.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter "
-                           placeholder="Twitter">
+                           placeholder="Twitter" #ngoTwitter="ngModel" url>
+                    <div *ngIf="submitted" [hidden]="!ngoTwitter.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram"
-                           placeholder="Instagram">
+                           placeholder="Instagram" #ngoInstagram ="ngModel" url>
+                    <div *ngIf="submitted" [hidden]="!ngoInstagram.errors?.url" class="alert alert-danger">
+                        Url invalid!
+                    </div>
                 </div>
                 <div class="form-group">
-                <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription"
+                <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription" maxlength="500"
                           placeholder="Descriere organizatie (500 de caractere)"></textarea>
 
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"  placeholder="Upload logo" />
+                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
+                           (change)="ngoLogoChangeEvent($event)" placeholder="Upload logo"/>
 
                 </div>
             </section>
