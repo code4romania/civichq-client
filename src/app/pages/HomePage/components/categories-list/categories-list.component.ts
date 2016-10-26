@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Category } from '../../services/category.model';
+//import { Category } from '../../services/category.model';
 
 import './categories-list.component.scss';
 
