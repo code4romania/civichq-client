@@ -1,0 +1,9 @@
+@import '../../../../assets/scss/variables';
+
+.category-list {
+  category:first-child {
+    .category-name {
+      color: $secondary;
+    }
+  }
+}

@@ -1,27 +1,33 @@
 @import '../../../../assets/scss/variables';
 
 .category-name {
-  font-weight: 400;
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 0;
   padding-left: ($distance * 2 / 3);
   text-align: left;
   text-transform: uppercase;
-  margin-bottom: 0;
+
+  @media ($screen-sm) {
+    font-size: 36px;
+  }
 
   @media ($screen-md) {
     padding-left: $distance;
   }
 
-  small {
-    display: block;
-    font-size: 16px;
-    margin-top: 3px;
-    text-transform: lowercase;
+}
 
-    @media ($screen-sm) {
-      display: inline;
-      font-size: 20px;
-      margin-top: 0;
-    }
+.category-no {
+  color: $font-grey;
+  display: block;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-top: 3px;
+
+  @media ($screen-sm) {
+    display: inline;
+    margin-top: 0;
   }
 }
 
@@ -200,5 +206,5 @@
 .card-owner {
   border-radius: 50%;
   overflow: hidden;
-  width: ($distance * 2 / 3);
+  width: ($distance / 2);
 }

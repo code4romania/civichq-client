@@ -17,8 +17,9 @@
       <h1 class="profile-name">{{appDetails.name}}</h1>
       <p class="profile-meta text-muted" *ngIf="appDetails.creationdate || appDetails.hashtags">
         <strong>{{appDetails.hashtags}}</strong>
-        <i class="fa fa-circle" aria-hidden="true" *ngIf="appDetails.creationdate && appDetails.hashtags"></i>
-        <span *ngIf="appDetails.creationdate" class="profile-date">{{appDetails.creationdate | date:'dd / MM / yyyy'}}</span>
+        <span *ngIf="appDetails.creationdate" class="profile-date">
+          Data lansării: {{appDetails.creationdate | date:'dd / MM / yyyy'}}
+        </span>
       </p>
       <div class="clearfix">
         <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="btn btn-primary" target="_blank">
@@ -31,7 +32,6 @@
         </a>
         <a *ngIf="appDetails.facebook" href="{{appDetails.facebook}}" class="btn btn-facebook" target="_blank">
           <i class="fa fa-facebook" aria-hidden="true"></i>
-          Vezi activitatea pe Facebook
         </a>
       </div>
     </div>

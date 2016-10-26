@@ -1,7 +1,7 @@
 <div class="category col-xs-12" (window:resize)="onResize($event)">
   <h1 class="category-name">
     {{category.catname}}
-    <small class="category-no">{{category.apps.length}} aplicații</small>
+    <strong class="category-no">{{category.apps.length}} aplicații</strong>
   </h1>
   <carousel class="category-carousel">
     <slide *ngFor="let slide of theSlides; let index=index" class="row">
