@@ -10,8 +10,8 @@ import { CategoriesListComponent } from './components/categories-list/categories
 import { CategoryComponent } from './components/category/category.component';
 
 import { CarouselModule } from 'ng2-bootstrap/components/carousel';
+import { CategoriesService } from './../../services/category.service';
 
-import { CategoriesService } from './services/category.service';
 
 @NgModule({
   imports: [

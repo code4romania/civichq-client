@@ -7,7 +7,7 @@ import { NgoDetails } from './../../../../shared/models/ngo-details.model';
 import { CivicFileValidationResult } from './../../../../shared/models/file-validation-result.model';
 
 import { AppService } from './../../../../services/app.service';
-import { CategoriesService } from './../../services/category.service';
+import { CategoriesService } from './../../../../services/category.service';
 import { TagsService } from './../../../../services/tags.service';
 import { AddAppModel } from './../../services/add-app.model';
 
