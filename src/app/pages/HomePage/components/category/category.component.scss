@@ -1,12 +1,21 @@
 @import '../../../../assets/scss/variables';
 
 .category-name {
-  font-weight: 700;
+  font-weight: 400;
+  padding-left: ($distance * 2 / 3);
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 0;
+
+  @media ($screen-md) {
+    padding-left: $distance;
+  }
 
   small {
     display: block;
     font-size: 16px;
     margin-top: 3px;
+    text-transform: lowercase;
 
     @media ($screen-sm) {
       display: inline;
@@ -17,7 +26,7 @@
 }
 
 .carousel {
-  margin: ($distance / 3) 0 ;
+  margin: ($distance / 6) 0 ($distance / 3);
 
   @media ($screen-md) {
     margin-bottom: 0;
@@ -67,12 +76,13 @@
   cursor: pointer;
   text-align: center;
   top: 50%;
-  margin-top: -65px;
+  margin-top: -35px;
   display: block;
   height: ($distance / 2);
   width: ($distance / 2);
 
   @media ($screen-md) {
+    margin-top: -65px;
     height: ($distance * 2 / 3);
     width: ($distance * 2 / 3);
   }
@@ -124,7 +134,6 @@
 
 .card {
   background: $white;
-  border-radius: ($radius * 2);
   box-shadow: 3px 3px 3px 0 $grey;
   cursor: pointer;
   overflow: hidden;
@@ -159,20 +168,25 @@
   min-height: ($distance + 5);
   padding: ($distance / 6) ($distance / 4);
 
-  h4 {
-    font-weight: 700;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  h4,
+  span {
     transition: $ease-in-out;
-    white-space: nowrap;
 
     @media ($screen-sm) {
-      width: 200px;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 210px;
     }
 
     @media ($screen-md) {
-      width: 150px;
+      width: 160px;
     }
+  }
+
+  h4 {
+    font-weight: 700;
   }
 
   span {
@@ -180,7 +194,6 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: lowercase;
-    transition: $ease-in-out;
   }
 }
 
