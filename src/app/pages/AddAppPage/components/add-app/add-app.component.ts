@@ -44,6 +44,7 @@ export class AddAppComponent implements OnInit {
     private isAppLogoValid: boolean;
     private isNgoLogoUploaded: boolean;
     private isNgoLogoValid: boolean;
+    public phoneRegex = '\\+4\\d{10}';
 
     ngOnInit() {
         this.app = new AddAppModel();
