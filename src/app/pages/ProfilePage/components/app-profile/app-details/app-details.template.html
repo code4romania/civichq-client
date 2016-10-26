@@ -1,9 +1,11 @@
-<div class="col-xs-12 col-lg-offset-2 col-lg-8">
+<div class="col-xs-12 col-md-1">
+  <a [routerLink]="['/home']" class="back">
+    <i class="fa fa-caret-left" aria-hidden="true"></i>
+    Înapoi
+  </a>
+</div>
+<div class="col-xs-12 col-md-10">
   <div class="profile media">
-    <a [routerLink]="['/home']" class="back">
-      <i class="fa fa-caret-left" aria-hidden="true"></i>
-      Înapoi
-    </a>
     <div class="profile-media media-left media-middle">
       <div class="profile-image">
         <img src="http://www.fillmurray.com/500/500" alt="{{appDetails.name}}" class="img-responsive">
@@ -36,7 +38,7 @@
   </div>
 </div>
 
-<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-5">
+<div class="col-xs-12 col-md-offset-1 col-md-5">
   <div class="profile-description">
     <h2 class="subtitle">Aplicația</h2>
     <p>{{appDetails.description}}</p>

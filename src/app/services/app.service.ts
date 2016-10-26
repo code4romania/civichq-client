@@ -55,7 +55,7 @@ export class AppService extends BaseService {
         return this.getToken().map((resp: Response) => {
 
             if (this.token) {
-                this.headers.append(this.authHeaderName, this.token);
+                this.headers.set(this.authHeaderName, this.token);
 
 
                 return this.http.put(urlupd, '', { headers: this.headers })

@@ -8,6 +8,7 @@
   color: $primary;
   display: inline-block;
   padding: 10px;
+  white-space: nowrap;
 
   &:hover {
     background: $grey;
@@ -31,20 +32,20 @@
   margin: ($distance / 3) 0 0;
   position: relative;
 
-  .media-left,
-  .media-right,
-  .media-body {
-    display: block;
+  // .media-left,
+  // .media-right,
+  // .media-body {
+  //   display: block;
 
-    @media ($screen-md) {
-      display: table-cell;
-    }
-  }
+  //   @media ($screen-md) {
+  //     display: table-cell;
+  //   }
+  // }
 
   h1 {
     @media ($screen-md) {
-      margin-left: $distance;
-      margin-right: $distance;
+      // margin-left: $distance;
+      // margin-right: $distance;
     }
   }
 }
@@ -52,11 +53,11 @@
 .profile-media {
   padding-right: 0;
   width: 100%;
-  margin: 0 auto;
   max-width: 250px;
 
   @media ($screen-md) {
     width: auto;
+    // padding-right: 60px;
   }
 }
 
@@ -68,17 +69,17 @@
   @media ($screen-md) {
     height: 250px;
     width: 250px;
-    margin-bottom: 0;
+    margin: 0 auto;
   }
 }
 
 .profile-body {
-  text-align: center;
-  width: auto;
+  // text-align: center;
+  // width: auto;
 
-  @media ($screen-md) {
-    width: 1000px;
-  }
+  // @media ($screen-md) {
+  //   width: 1000px;
+  // }
 }
 
 .profile-category {
@@ -89,7 +90,7 @@
 .profile-name {
   font-size: 46px;
   margin: 0 0 10px;
-  text-align: center;
+  // text-align: center;
 
   @media ($screen-md) {
     margin: 10px 0;
@@ -112,7 +113,7 @@
 }
 
 .subtitle {
-  text-align: center;
+  // text-align: center;
   font-weight: 700;
 
   @media ($screen-md) {
