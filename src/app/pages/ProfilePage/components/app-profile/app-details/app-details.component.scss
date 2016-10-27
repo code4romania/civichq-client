@@ -38,17 +38,25 @@
   .media-body {
     display: block;
 
-    @media ($screen-md) {
+    @media ($screen-sm) {
       display: table-cell;
+    }
+  }
+
+  .media-body {
+    width: auto;
+
+    @media ($screen-sm) {
+      width: 1000px;
     }
   }
 }
 
 .profile-media {
-  max-width: 250px;
+  max-width: 350px;
   padding-right: 0;
 
-  @media ($screen-md) {
+  @media ($screen-sm) {
     padding-right: ($distance * 2 / 3);
     max-width: 100%;
   }
@@ -58,9 +66,9 @@
   margin: ($distance / 3) auto;
   overflow: hidden;
 
-  @media ($screen-md) {
-    height: 250px;
-    width: 250px;
+  @media ($screen-sm) {
+    height: 350px;
+    width: 350px;
     margin: 0 auto;
 
   }
@@ -71,7 +79,7 @@
   letter-spacing: 1px;
   color: lighten($black, 50);
 
-  @media ($screen-md) {
+  @media ($screen-sm) {
     position: absolute;
     top: 0;
     left: 290px; //grr
@@ -102,14 +110,15 @@
 }
 
 .profile-date {
-
+  display: block;
+  line-height: 40px;
 }
 
 .subtitle {
   // text-align: center;
   font-weight: 700;
 
-  @media ($screen-md) {
+  @media ($screen-sm) {
     text-align: left;
   }
 }
