@@ -159,11 +159,19 @@
       color: rgba($white, .8);
     }
 
+    &:hover,
     &:focus {
       background: darken($primary, 5);
-      color: $white;
       box-shadow: none;
+      color: $white;
 
+      &::-webkit-input-placeholder,
+      + .fa-search {
+        color: $white;
+      }
+    }
+
+    &:focus {
       @media ($screen-sm) {
         width: 170px;
       }
@@ -171,23 +179,15 @@
       @media ($screen-lg) {
         width: 250px;
       }
-
-      &::-webkit-input-placeholder {
-        color: $white;
-      }
-
-      + .fa-search {
-        color: $white;
-      }
     }
   }
 
   .fa-search {
     color: rgba($white, .8);
+    left: 20px;
     line-height: 40px;
     position: absolute;
     top: 0;
-    left: 20px;
 
     @media ($screen-sm) {
       left: 10px;

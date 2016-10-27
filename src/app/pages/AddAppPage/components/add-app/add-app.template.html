@@ -132,32 +132,47 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb" #ngoFb="ngModel"
-                           placeholder="Facebook page" url>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i aria-hidden="true" class="fa fa-facebook"></i>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb" #ngoFb="ngModel" placeholder="Facebook page" url>
+                    </div>
 
                     <div *ngIf="submitted" [hidden]="!ngoFb.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+"
-                           name="ngoGooglePlus" #ngoGooglePlus="ngModel" url>
-
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i aria-hidden="true" class="fa fa-google-plus"></i>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="app.ngogoogleplus" placeholder="G+" name="ngoGooglePlus" #ngoGooglePlus="ngModel" url>
+                    </div>
                     <div *ngIf="submitted" [hidden]="!ngoGooglePlus.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn"
-                           placeholder="LinkedIn page" #ngoLinkedIn="ngModel" url>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i aria-hidden="true" class="fa fa-linkedin"></i>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn" placeholder="LinkedIn page" #ngoLinkedIn="ngModel" url>
+                    </div>
 
                     <div *ngIf="submitted" [hidden]="!ngoLinkedIn.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter "
-                           placeholder="Twitter" #ngoTwitter="ngModel" url>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i aria-hidden="true" class="fa fa-twitter"></i>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter " placeholder="Twitter" #ngoTwitter="ngModel" url>
+                    </div>
                     <div *ngIf="submitted" [hidden]="!ngoTwitter.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
