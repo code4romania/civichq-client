@@ -1,2 +1,7 @@
 @import '../../../../../assets/scss/variables';
 @import '../../../../../assets/scss/tools';
+
+.ngo-card {
+  background: $white;
+  box-shadow: 3px 3px 3px 0 $grey;
+}

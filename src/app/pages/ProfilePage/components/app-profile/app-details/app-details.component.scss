@@ -104,10 +104,16 @@
     width: 100%;
   }
 
-  @media ($screen-sm) {
+  @media ($screen-xs) {
+    height: 150px;
+    width: 150px;
+    margin: 0 0 10px 0;
+  }
+
+  @media ($screen-xs) {
     height: 250px;
     width: 250px;
-    margin-top: 12px;
+    margin: 12px 0;
   }
 }
 
