@@ -10,6 +10,7 @@
   display: inline-block;
   padding: 10px;
   white-space: nowrap;
+  margin-bottom: ($distance / 6);
 
   &:hover {
     background: $grey;
@@ -26,6 +27,12 @@
   .fa {
     font-size: 18px;
     margin-right: 5px;
+  }
+}
+
+.app-profile {
+  @media ($screen-md) {
+    margin-top: ($distance / 3);
   }
 }
 
@@ -53,24 +60,54 @@
 }
 
 .profile-media {
-  max-width: 350px;
+  max-width: 100%;
   padding-right: 0;
 
   @media ($screen-sm) {
     padding-right: ($distance * 2 / 3);
-    max-width: 100%;
+  }
+}
+
+.profile-tags {
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+.profile-url {
+  font-size: 20px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 6px;
+  margin-left: -6px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  span {
+    @include underline($primary);
+  }
+
+  .fa {
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+    right: -3px;
   }
 }
 
 .profile-image {
-  margin: ($distance / 3) auto;
+  margin: 0 auto;
   overflow: hidden;
 
-  @media ($screen-sm) {
-    height: 350px;
-    width: 350px;
-    margin: 0 auto;
+  img {
+    width: 100%;
+  }
 
+  @media ($screen-sm) {
+    height: 250px;
+    width: 250px;
+    margin-top: 12px;
   }
 }
 
@@ -78,18 +115,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: lighten($black, 50);
-
-  @media ($screen-sm) {
-    position: absolute;
-    top: 0;
-    left: 290px; //grr
-    line-height: 40px;
-  }
+  line-height: 40px;
 }
 
 .profile-name {
   font-size: 46px;
-  margin: 0 0 10px;
+  margin: 0;
 }
 
 .profile-meta {
@@ -111,11 +142,29 @@
 
 .profile-date {
   display: block;
-  line-height: 40px;
+  line-height: 20px;
+}
+
+.profile-actions {
+  margin-top: ($distance / 2);
+
+  .btn {
+    background: $primary;
+    margin-right: ($distance / 4);
+    margin-bottom: ($distance / 6);
+    color: $white;
+    line-height: 26px;
+
+    .fa {
+      color: $white;
+      font-size: 24px;
+      position: relative;
+      top: 2px;
+    }
+  }
 }
 
 .subtitle {
-  // text-align: center;
   font-weight: 700;
 
   @media ($screen-sm) {
