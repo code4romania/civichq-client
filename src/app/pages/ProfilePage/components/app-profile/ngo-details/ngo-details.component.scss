@@ -2,6 +2,97 @@
 @import '../../../../../assets/scss/tools';
 
 .ngo-card {
+  border-radius: $radius;
   background: $white;
   box-shadow: 3px 3px 3px 0 $grey;
+  overflow: hidden;
+
+  .media-left,
+  .media-right,
+  .media-body {
+    display: block;
+
+    @media ($screen-xs) {
+      display: table-cell;
+    }
+  }
+
+  .media-body {
+    width: auto;
+    padding: 0 15px;
+
+    @media ($screen-xs) {
+      padding: 0;
+      width: 1000px;
+    }
+  }
+}
+
+.ngo-media {
+  padding-right: 0;
+
+  @media ($screen-xs) {
+    padding-right: 15px;
+  }
+}
+
+.ngo-image {
+  width: 100%;
+  height: auto;
+
+  @media ($screen-xs) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.ngo-body {
+  h3 {
+    margin: 15px 0 5px;
+
+    @media ($screen-xs) {
+      margin: 10px 0 5px;
+    }
+  }
+}
+
+.ngo-contact {
+  margin: 0;
+
+  > a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 ($distance / 6);
+    margin: 0 ($distance / 4) 0 (-$distance / 6);
+    line-height: 28px;
+  }
+
+  .ngo-email{
+    span {
+      @include underline($primary);
+    }
+  }
+}
+
+.ngo-meta {
+  padding: 10px 15px 15px;
+
+  @media ($screen-xs) {
+    padding: 15px;
+  }
+}
+
+.ngo-socialist {
+  margin: 0;
+  padding: 0;
+
+  > li {
+    display: inline-block;
+
+    > a {
+      display: inline-block;
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
 }

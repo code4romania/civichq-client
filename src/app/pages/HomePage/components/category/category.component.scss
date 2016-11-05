@@ -141,6 +141,7 @@
 
 .card {
   background: $white;
+  border-radius: $radius;
   box-shadow: 3px 3px 3px 0 $grey;
   cursor: pointer;
   overflow: hidden;

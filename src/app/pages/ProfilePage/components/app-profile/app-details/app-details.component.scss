@@ -64,7 +64,7 @@
   padding-right: 0;
 
   @media ($screen-sm) {
-    padding-right: ($distance * 2 / 3);
+    padding-right: ($distance / 2);
   }
 }
 
@@ -97,6 +97,7 @@
 }
 
 .profile-image {
+  border-radius: $radius;
   margin: 0 auto;
   overflow: hidden;
 
@@ -105,15 +106,17 @@
   }
 
   @media ($screen-xs) {
-    height: 150px;
-    width: 150px;
+    height: auto;
+    width: 70%;
+    max-width: 500px;
     margin: 0 0 10px 0;
   }
 
-  @media ($screen-xs) {
+  @media ($screen-sm) {
     height: 250px;
     width: 250px;
     margin: 12px 0;
+    max-width: auto;
   }
 }
 
@@ -126,7 +129,7 @@
 
 .profile-name {
   font-size: 46px;
-  margin: 0;
+  margin: 0 0 5px;
 }
 
 .profile-meta {
@@ -152,7 +155,7 @@
 }
 
 .profile-actions {
-  margin-top: ($distance / 2);
+  margin-top: ($distance / 3);
 
   .btn {
     background: $primary;
@@ -163,7 +166,7 @@
 
     .fa {
       color: $white;
-      font-size: 24px;
+      font-size: 20px;
       position: relative;
       top: 2px;
     }
