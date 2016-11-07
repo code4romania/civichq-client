@@ -20,7 +20,7 @@
           {{appDetails.hashtags}}
         </span>
         <span *ngIf="appDetails.creationdate" class="profile-date">
-          Data lansării: {{appDetails.creationdate | date:'dd/MM/yyyy'}}
+          <strong>Data lansării:</strong> {{appDetails.creationdate | date:'dd/MM/yyyy'}}
         </span>
       </p>
       <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="profile-url" target="_blank">

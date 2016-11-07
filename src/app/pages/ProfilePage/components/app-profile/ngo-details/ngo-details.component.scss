@@ -3,8 +3,7 @@
 
 .ngo-card {
   border-radius: $radius;
-  background: $white;
-  box-shadow: 3px 3px 3px 0 $grey;
+  background: lighten($grey, 10);
   overflow: hidden;
 
   .media-left,
@@ -51,7 +50,7 @@
     margin: 15px 0 5px;
 
     @media ($screen-xs) {
-      margin: 10px 0 5px;
+      margin: 0 0 10px;
     }
   }
 }
