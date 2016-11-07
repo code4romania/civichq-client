@@ -1,8 +1,65 @@
 <div class="col-xs-12 col-md-offset-2 col-md-6">
   <h2 class="subtitle">Autorul</h2>
-  <pre>
-    <code>
-      {{ngoDetails | json}}
-    </code>
-  </pre>
+  <div class="ngo-card">
+
+    <div class="media">
+      <div class="media-left ngo-media">
+        <div class="ngo-image">
+          <img src="http://www.fillmurray.com/500/500" alt="{{ngoDetails.name}}" class="img-responsive">
+          <!-- <img src="{{ngoDetails.logoname}}" alt="{{ngoDetails.name}}"> -->
+        </div>
+      </div>
+
+      <div class="media-body media-middle ngo-body">
+        <h3>{{ngoDetails.name}}</h3>
+
+        <p class="ngo-contact">
+          <a href="tel:{{ngoDetails.phone}}" class="ngo-phone">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span>{{ngoDetails.phone}}</span>
+          </a>
+
+          <a href="mailto:{{ngoDetails.email}}" class="ngo-email">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <span>{{ngoDetails.email}}</span>
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="ngo-meta" *ngIf="ngoDetails.description || ngoDetails.facebook || ngoDetails.googleplus || ngoDetails.linkedin || ngoDetails.twitter || ngoDetails.instagram">
+      <p>{{ngoDetails.description}}</p>
+
+      <ul class="ngo-socialist">
+        <li *ngIf="ngoDetails.facebook">
+          <a href="{{ngoDetails.facebook}}" target="_blank" class="ngo-social">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.googleplus">
+          <a href="{{ngoDetails.googleplus}}" target="_blank" class="ngo-social">
+            <i class="fa fa-google-plus" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.linkedin">
+          <a href="{{ngoDetails.linkedin}}" target="_blank" class="ngo-social">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.twitter">
+          <a href="{{ngoDetails.twitter}}" target="_blank" class="ngo-social">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.instagram">
+          <a href="{{ngoDetails.instagram}}" target="_blank" class="ngo-social">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+
 </div>

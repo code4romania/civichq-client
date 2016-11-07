@@ -1,35 +1,40 @@
-<div class="col-xs-12 col-md-2">
+<div class="col-xs-2 col-sm-2 col-md-2">
   <a [routerLink]="['/home']" class="back">
     <i class="fa fa-caret-left" aria-hidden="true"></i>
     Înapoi
   </a>
 </div>
-<div class="col-xs-12 col-md-8">
+<div class="col-xs-12 col-md-10">
   <div class="profile media">
-    <div class="profile-media media-left media-middle">
+    <div class="profile-media media-left">
       <div class="profile-image">
         <img src="http://www.fillmurray.com/500/500" alt="{{appDetails.name}}" class="img-responsive">
         <!-- <img src="/assets/images/{{appDetails.logoname}}" alt="{{appDetails.name}}" class="img-responsive"> -->
       </div>
-      <span *ngIf="appDetails.creationdate" class="profile-date hidden-xs">
-        Data lansării: {{appDetails.creationdate | date:'dd / MM / yyyy'}}
-      </span>
     </div>
     <div class="profile-body media-body media-middle">
       <strong class="profile-category">{{appDetails.categoryname}}</strong>
       <h1 class="profile-name">{{appDetails.name}}</h1>
-      <p class="profile-tags text-muted" *ngIf="appDetails.creationdate || appDetails.hashtags">{{appDetails.hashtags}}</p>
-      <div class="clearfix">
-        <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="btn btn-primary" target="_blank">
-          <i class="fa fa-external-link" aria-hidden="true"></i>
-          Vezi aplicația
-        </a>
+      <p class="text-muted">
+        <span *ngIf="appDetails.hashtags" class="profile-tags">
+          {{appDetails.hashtags}}
+        </span>
+        <span *ngIf="appDetails.creationdate" class="profile-date">
+          Data lansării: {{appDetails.creationdate | date:'dd/MM/yyyy'}}
+        </span>
+      </p>
+      <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="profile-url" target="_blank">
+        <span>{{appDetails.website}}</span>
+        <i class="fa fa-external-link" aria-hidden="true"></i>
+      </a>
+      <div class="profile-actions clearfix">
         <a *ngIf="appDetails.github" href="{{appDetails.github}}" class="btn btn-secondary" target="_blank">
           <i class="fa fa-github" aria-hidden="true"></i>
-          Vezi codul sursă
+          Vezi codul
         </a>
         <a *ngIf="appDetails.facebook" href="{{appDetails.facebook}}" class="btn btn-facebook" target="_blank">
           <i class="fa fa-facebook" aria-hidden="true"></i>
+          Urmărește
         </a>
       </div>
     </div>
