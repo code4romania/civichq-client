@@ -72,6 +72,7 @@ export class CategoriesService {
       appName: apiApp.AppName,
       tags: apiApp.Tags,
       logoName: apiApp.AppLogoName,
+      ngoLogoName : apiApp.NgoLogoName
     }
   }
 
