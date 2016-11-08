@@ -162,6 +162,7 @@
   padding-top: 100%;
   position: relative;
   background: $grey;
+  overflow: hidden;
 
   img {
     left: 0;
@@ -173,8 +174,11 @@
 
 .card-meta {
   margin: 0;
-  min-height: ($distance + 5);
   padding: ($distance / 6) ($distance / 4);
+
+  .media-body {
+    height: ($distance * 3 / 4);
+  }
 
   h4,
   span {
@@ -206,7 +210,13 @@
 }
 
 .card-owner {
+  background: $grey;
   border-radius: 50%;
   overflow: hidden;
   width: ($distance / 2);
+  height: ($distance / 2);
+}
+
+.card-owner-blank {
+  display: none;
 }

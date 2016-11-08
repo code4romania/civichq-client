@@ -18,7 +18,7 @@
 
   .media-body {
     width: auto;
-    padding: 0 15px;
+    padding: 0 ($distance / 4) ($distance / 3);
 
     @media ($screen-xs) {
       padding: 0;
@@ -31,17 +31,22 @@
   padding-right: 0;
 
   @media ($screen-xs) {
-    padding-right: 15px;
+    padding-right: ($distance / 3);
   }
 }
 
 .ngo-image {
   width: 100%;
+  max-width: 300px;
   height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: ($distance / 3) auto;
 
   @media ($screen-xs) {
     width: 100px;
     height: 100px;
+    margin: ($distance / 3) 0 ($distance / 3) ($distance / 3);
   }
 }
 
