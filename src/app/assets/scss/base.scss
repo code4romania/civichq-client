@@ -52,6 +52,7 @@ a {
   &:focus,
   &:active {
     color: darken($primary, 8);
+    text-decoration: none;
   }
 }
 
