@@ -112,6 +112,11 @@
   height: 30px;
   opacity: .5;
 
+  img {
+    height: 30px;
+    width: 100%;
+  }
+
   &:hover {
     opacity: 1;
   }
