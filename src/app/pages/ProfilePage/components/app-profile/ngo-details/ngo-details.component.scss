@@ -39,7 +39,7 @@
   width: 100%;
   max-width: 300px;
   height: auto;
-  border-radius: 50%;
+  border-radius: $radius;
   overflow: hidden;
   margin: ($distance / 3) auto;
 
@@ -52,10 +52,10 @@
 
 .ngo-body {
   h3 {
-    margin: 15px 0 5px;
+    margin: ($distance / 4) 0 5px;
 
     @media ($screen-xs) {
-      margin: 0 0 10px;
+      margin: ($distance / 3) 0 ($distance / 6);
     }
   }
 }
@@ -79,15 +79,15 @@
 }
 
 .ngo-meta {
-  padding: 10px 15px 15px;
+  padding: ($distance / 6) ($distance / 4) ($distance / 4);
 
   @media ($screen-xs) {
-    padding: 15px;
+    padding: ($distance / 4);
   }
 }
 
 .ngo-socialist {
-  margin: 0;
+  margin: 0 0 0 (-$distance / 6);
   padding: 0;
 
   > li {
@@ -96,7 +96,7 @@
     > a {
       display: inline-block;
       font-size: 20px;
-      padding: 10px;
+      padding: ($distance / 6);
     }
   }
 }
