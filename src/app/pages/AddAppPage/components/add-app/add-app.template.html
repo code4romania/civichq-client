@@ -15,8 +15,7 @@
         <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName"
-                           placeholder="Name" required minlength="2" #appName="ngModel"/>
+                    <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName" placeholder="Name" required minlength="2" #appName="ngModel"/>
 
 
                     <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
@@ -27,8 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite"
-                           placeholder="Website-ul aplicatiei" #appWebsite="ngModel" required url>
+                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite" placeholder="Website-ul aplicatiei" #appWebsite="ngModel" required url>
 
                     <div *ngIf="submitted" [hidden]="!appWebsite.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
@@ -50,24 +48,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit" #appGit="ngModel"
-                           placeholder="Github link" url>
+                    <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit" #appGit="ngModel" placeholder="Github link" url>
 
                     <div *ngIf="submitted" [hidden]="!appGit.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb" #appFb="ngModel"
-                           placeholder="Pagina de Facebook a aplicatiei" url>
+                    <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb" #appFb="ngModel" placeholder="Pagina de Facebook a aplicatiei" url>
 
                     <div *ngIf="submitted" [hidden]="!appFb.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="date" class="form-control" [(ngModel)]="app.appcreationdate" name="appCreatedOn"
-                           placeholder="Data crearii aplicatiei">
+                    <input type="date" class="form-control" [(ngModel)]="app.appcreationdate" name="appCreatedOn" placeholder="Data crearii aplicatiei">
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
@@ -76,8 +71,7 @@
                 </div>
                 <div class="form-group">
                 <textarea type="text" class="form-control" [(ngModel)]="app.appdescription" maxlength="1000"
-                          #appDescription="ngModel" name="appDescription"
-                          placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
+                          #appDescription="ngModel" name="appDescription" placeholder="Descrierea aplicatiei (1000 de caractere)"></textarea>
 
                 </div>
                 <div class="form-group">
@@ -89,7 +83,6 @@
                                (removed)="removeTags($event)"
                                (typed)="loadTags($event)"
                                placeholder="Alege un #hastag pentru aplicatia ta">
-
                     </ng-select>
                 </div>
 
@@ -99,8 +92,7 @@
                 <div class="form-group">
                     <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname" #ngoName="ngModel"
                            required
-                           minlength="2"
-                           placeholder="Numele organizatiei"/>
+                           minlength="2" placeholder="Numele organizatiei"/>
 
                     <div *ngIf="submitted" [hidden]="!ngoName.errors?.required" class="alert alert-danger">
                         Campul este obligatoriu!
@@ -110,8 +102,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail"
-                           placeholder="Email" #ngoEmail="ngModel"
+                    <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail" placeholder="Email" #ngoEmail="ngModel"
                            required email>
 
                     <div *ngIf="submitted" [hidden]="!ngoEmail.errors?.required" class="alert alert-danger">
@@ -123,8 +114,7 @@
                 </div>
                 <div class="form-group">
                     <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone"
-                           pattern="{{phoneRegex}}"
-                           placeholder="Telefon" #ngoPhone="ngModel">
+                           pattern="{{phoneRegex}}" placeholder="Telefon" #ngoPhone="ngModel">
 
                     <div *ngIf="submitted" [hidden]="!ngoPhone.errors?.pattern" class="alert alert-danger">
                         Numarul de telefon nu este valid!
@@ -177,15 +167,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram"
-                           placeholder="Instagram" #ngoInstagram ="ngModel" url>
+                    <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram" placeholder="Instagram" #ngoInstagram ="ngModel" url>
                     <div *ngIf="submitted" [hidden]="!ngoInstagram.errors?.url" class="alert alert-danger">
                         Url invalid!
                     </div>
                 </div>
                 <div class="form-group">
-                <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription" maxlength="1000"
-                          placeholder="Descriere organizatie (500 de caractere)"></textarea>
+                <textarea type="text" class="form-control" [(ngModel)]="app.ngodescription" name="ngoDescription" maxlength="500" placeholder="Descriere organizatie (500 de caractere)"></textarea>
 
                 </div>
                 <div class="form-group">
