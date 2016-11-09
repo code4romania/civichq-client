@@ -142,14 +142,11 @@
 .card {
   background: $white;
   border-radius: $radius;
-  box-shadow: 3px 3px 3px 0 $grey;
   cursor: pointer;
   overflow: hidden;
   transition: $ease-in-out;
 
   &:hover {
-    box-shadow: 3px 3px 3px 0 darken($grey, 8);
-
     h4,
     span {
       color: $primary;
