@@ -1,4 +1,69 @@
-// .form-group {
-//   margin: 28px 0 0;
-//   padding-bottom: 7px;
-// }
+@import 'variables';
+@import 'tools';
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.form-control {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid $grey;
+  border-radius: 0;
+  box-shadow: none;
+  color: $primary;
+  font-weight: 400;
+  font-size: 16px;
+  height: 50px;
+  padding: 12px 0 16px;
+  position: relative;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+
+  &.ui-select-multiple {
+    body & {
+      height: 50px;
+    }
+  }
+
+  .input-group & {
+    padding: 12px 10px 16px;
+  }
+}
+
+textarea {
+  &.form-control {
+    height: 150px;
+  }
+}
+
+.help-block {
+  font-size: 12px;
+}
+
+.input-group-addon {
+  border-radius: 0;
+  font-size: 18px;
+  border: 0;
+  background: $grey;
+  color: $primary;
+  width: 50px;
+}
+
+code {
+  color: darken(rgba($secondary, .7), 10);
+  background: lighten($secondary, 50);
+}
+
+.spacer {
+  @media ($screen-md) {
+    margin-bottom: 54px;
+  }
+}
