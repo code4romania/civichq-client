@@ -3,7 +3,7 @@
     {{category.catname}}
     <strong class="category-no">{{category.apps.length}} aplicații</strong>
   </h1>
-  <carousel class="category-carousel">
+  <carousel class="category-carousel" [class.carousel-no-arrows]="(category.apps.length <= 4) && (noOfApps >= category.apps.length)">
     <slide *ngFor="let slide of theSlides; let index=index" class="row">
       <div class="app-card"
         (click)="goToApp(app)"

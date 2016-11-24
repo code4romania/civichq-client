@@ -138,6 +138,12 @@
   }
 }
 
+.carousel-no-arrows {
+  .carousel-control {
+    display: none;
+  }
+}
+
 
 .card {
   background: $white;
