@@ -6,7 +6,7 @@
             tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-offset-1 col-md-10">
         <div class="custom-messages col-xs-12">
             <div class="sucess" *ngIf="submitted && message =='success' && !error">
                 <h3>Aplicația ta a fost adaugată cu succes!</h3>
@@ -20,7 +20,7 @@
         <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
-                    <label>Numele aplicației<span class="req">*</span></label>
+                    <label>Numele aplicației <span class="req">*</span></label>
                     <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName" placeholder="O aplicație civică" required minlength="2" #appName="ngModel"/>
 
 
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>În ce categorie se încadrează?</label>
+                    <label>În ce categorie se încadrează?  <span class="req">*</span></label>
                     <select class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid"
                             #appCategory="ngModel">
                         <option [disabled]="c.id == null" *ngFor="let c of categories" [value]="c.id">{{c.text}}
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Logo-ul aplicației </label>
+                    <label>Logo-ul aplicației <span class="req">*</span></label>
                     <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
                            (change)="appLogoChangeEvent($event)" placeholder=""/>
                     <span class="help-block">Logo-ul aplicației poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
@@ -120,7 +120,7 @@
 
             <section class="col-xs-12 col-md-6 ngo-details">
                 <div class="form-group">
-                    <label>Numele tău sau al organizației</label>
+                    <label>Numele tău sau al organizației <span class="req">*</span></label>
                     <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname" #ngoName="ngModel"
                            required
                            minlength="2" placeholder="Andrei Popescu"/>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>E-mail</label>
+                    <label>E-mail  <span class="req">*</span></label>
                     <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail" placeholder="andrei@popescu.ro" #ngoEmail="ngModel"
                            required email>
 
@@ -221,7 +221,7 @@
                     <label>Logo-ul tău</label>
                     <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
                            (change)="ngoLogoChangeEvent($event)" placeholder=""/>
-                    <span class="help-block">Logo-ul aplicației poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
+                    <span class="help-block">Logo-ul tău poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
 
                 </div>
             </section>

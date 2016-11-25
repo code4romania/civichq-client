@@ -3,6 +3,10 @@
 
 .form-group {
   margin-bottom: 30px;
+
+  label {
+    height: 20px;
+  }
 }
 
 .input-group {
@@ -66,4 +70,9 @@ code {
   @media ($screen-md) {
     margin-bottom: 54px;
   }
+}
+
+.req {
+  font-size: 20px;
+  color: $secondary;
 }

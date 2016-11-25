@@ -54,12 +54,6 @@
 }
 
 .social {
-  margin-bottom: ($distance * 2 / 3);
-
-  @media ($screen-md) {
-    margin-bottom: ($distance / 3);
-  }
-
   li {
     display: inline-block;
   }
