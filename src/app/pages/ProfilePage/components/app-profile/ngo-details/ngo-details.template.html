@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-offset-2 col-md-6">
+<div class="col-xs-12 col-md-offset-5 col-md-7">
   <div class="ngo-card">
 
     <div class="media">
@@ -16,44 +16,44 @@
             <i class="fa fa-phone" aria-hidden="true"></i>
             <span>{{ngoDetails.phone}}</span>
           </a>
-
+        </p>
+        <p class="ngo-contact">
           <a href="mailto:{{ngoDetails.email}}" class="ngo-email" *ngIf="ngoDetails.email">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
             <span>{{ngoDetails.email}}</span>
           </a>
         </p>
-
-        <ul class="ngo-socialist" *ngIf="ngoDetails.facebook || ngoDetails.googleplus || ngoDetails.linkedin || ngoDetails.twitter || ngoDetails.instagram">
-          <li *ngIf="ngoDetails.facebook">
-            <a href="{{ngoDetails.facebook}}" target="_blank" class="ngo-social">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li *ngIf="ngoDetails.googleplus">
-            <a href="{{ngoDetails.googleplus}}" target="_blank" class="ngo-social">
-              <i class="fa fa-google-plus" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li *ngIf="ngoDetails.linkedin">
-            <a href="{{ngoDetails.linkedin}}" target="_blank" class="ngo-social">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li *ngIf="ngoDetails.twitter">
-            <a href="{{ngoDetails.twitter}}" target="_blank" class="ngo-social">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li *ngIf="ngoDetails.instagram">
-            <a href="{{ngoDetails.instagram}}" target="_blank" class="ngo-social">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
 
     <div class="ngo-meta" *ngIf="ngoDetails.description">
+      <ul class="ngo-socialist" *ngIf="ngoDetails.facebook || ngoDetails.googleplus || ngoDetails.linkedin || ngoDetails.twitter || ngoDetails.instagram">
+        <li *ngIf="ngoDetails.facebook">
+          <a href="{{ngoDetails.facebook}}" target="_blank" class="ngo-social">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.googleplus">
+          <a href="{{ngoDetails.googleplus}}" target="_blank" class="ngo-social">
+            <i class="fa fa-google-plus" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.linkedin">
+          <a href="{{ngoDetails.linkedin}}" target="_blank" class="ngo-social">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.twitter">
+          <a href="{{ngoDetails.twitter}}" target="_blank" class="ngo-social">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="ngoDetails.instagram">
+          <a href="{{ngoDetails.instagram}}" target="_blank" class="ngo-social">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
       <p>{{ngoDetails.description}}</p>
     </div>
 

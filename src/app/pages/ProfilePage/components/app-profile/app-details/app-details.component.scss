@@ -37,7 +37,6 @@
 }
 
 .profile {
-  margin: ($distance / 3) 0 0;
   position: relative;
 
   .media-left,
@@ -113,8 +112,7 @@
   }
 
   @media ($screen-sm) {
-    height: 250px;
-    width: 250px;
+    width: 100%;
     margin: 0;
   }
 }

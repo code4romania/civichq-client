@@ -140,6 +140,7 @@
   .form-control {
     background: transparent;
     border: 0;
+    border-radius: ($radius);
     box-shadow: none;
     color: rgba($white, .8);
     font-weight: 700;
