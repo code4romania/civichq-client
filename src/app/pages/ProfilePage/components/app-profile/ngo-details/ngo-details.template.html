@@ -27,6 +27,7 @@
     </div>
 
     <div class="ngo-meta" *ngIf="ngoDetails.description">
+      <p>{{ngoDetails.description}}</p>
       <ul class="ngo-socialist" *ngIf="ngoDetails.facebook || ngoDetails.googleplus || ngoDetails.linkedin || ngoDetails.twitter || ngoDetails.instagram">
         <li *ngIf="ngoDetails.facebook">
           <a href="{{ngoDetails.facebook}}" target="_blank" class="ngo-social">
@@ -54,7 +55,6 @@
           </a>
         </li>
       </ul>
-      <p>{{ngoDetails.description}}</p>
     </div>
 
 
