@@ -74,3 +74,13 @@ a {
 .main-content {
   min-height: 600px;
 }
+
+.btn-cc {
+  background: $primary;
+  color: $white;
+
+  &:focus,
+  &:hover {
+    color: $white;
+  }
+}
