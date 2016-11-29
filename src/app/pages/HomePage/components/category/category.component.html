@@ -1,7 +1,7 @@
 <div class="category col-xs-12" (window:resize)="onResize($event)">
   <h1 class="category-name">
     {{category.catname}}
-    <strong class="category-no">{{category.apps.length}} aplicații</strong>
+    <strong class="category-no">{{category.apps.length === 1 ? ' aplicație' : ' aplicații'}}</strong>
   </h1>
   <carousel class="category-carousel" [class.carousel-no-arrows]="(category.apps.length <= 4) && (noOfApps >= category.apps.length)">
     <slide *ngFor="let slide of theSlides; let index=index" class="row">
