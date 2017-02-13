@@ -4,4 +4,5 @@ export class App {
     appName: string;
     tags: string;
     logoName: string;
+    ngoLogoName : string;
 }

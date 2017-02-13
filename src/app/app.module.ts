@@ -19,6 +19,8 @@ import { SearchModule } from './pages/SearchPage/search.module';
 import { AuthService } from './services/auth.service';
 import { enableProdMode } from '@angular/core';
 
+import { ReCaptchaModule } from 'angular2-recaptcha';
+
 enableProdMode();
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ enableProdMode();
     AddAppModule,
     ApproveAppModule,
     LoginModule,
-    SearchModule
+    SearchModule,
+    ReCaptchaModule
   ],
   providers: [AuthService],
   declarations: [

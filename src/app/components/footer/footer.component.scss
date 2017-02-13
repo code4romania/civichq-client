@@ -54,12 +54,6 @@
 }
 
 .social {
-  margin-bottom: ($distance * 2 / 3);
-
-  @media ($screen-md) {
-    margin-bottom: ($distance / 3);
-  }
-
   li {
     display: inline-block;
   }
@@ -111,6 +105,11 @@
   display: inline-block;
   height: 30px;
   opacity: .5;
+
+  img {
+    height: 30px;
+    width: auto;
+  }
 
   &:hover {
     opacity: 1;

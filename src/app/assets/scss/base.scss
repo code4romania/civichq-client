@@ -41,8 +41,8 @@ p {
 }
 
 img {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
 }
 
 a {
@@ -52,6 +52,7 @@ a {
   &:focus,
   &:active {
     color: darken($primary, 8);
+    text-decoration: none;
   }
 }
 
@@ -72,4 +73,14 @@ a {
 
 .main-content {
   min-height: 600px;
+}
+
+.btn-cc {
+  background: $primary;
+  color: $white;
+
+  &:focus,
+  &:hover {
+    color: $white;
+  }
 }

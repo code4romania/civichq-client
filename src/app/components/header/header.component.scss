@@ -140,6 +140,7 @@
   .form-control {
     background: transparent;
     border: 0;
+    border-radius: ($radius);
     box-shadow: none;
     color: rgba($white, .8);
     font-weight: 700;
@@ -152,7 +153,7 @@
 
     @media ($screen-sm) {
       padding: ($distance / 6) ($distance / 6) ($distance / 6) 36px;
-      width: 100px;
+      width: 107px;
     }
 
     &::-webkit-input-placeholder {
@@ -197,11 +198,23 @@
 
 .logo-type {
   font-family: 'Raleway';
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 900;
   text-transform: uppercase;
   line-height: 40px;
   height: 40px;
+
+  @media ($screen-sm) {
+    font-size: 17px;
+  }
+
+  @media ($screen-md) {
+    font-size: 28px;
+  }
+
+  @media ($screen-lg) {
+    font-size: 38px;
+  }
 
   &:hover,
   &:active,
@@ -214,8 +227,22 @@
     color: $secondary;
     transform: rotate(-90deg);
     margin: 0 -4px;
-    font-size: 30px;
+    font-size: 20px;
     position: relative;
     top: -2px;
+
+    @media ($screen-sm) {
+      font-size: 15px;
+    }
+
+    @media ($screen-md) {
+      margin: 0 -4px 0 -2px;
+      font-size: 21px;
+    }
+
+    @media ($screen-lg) {
+      margin: 0 -4px 0 -2px;
+      font-size: 28px;
+    }
   }
 }

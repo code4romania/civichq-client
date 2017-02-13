@@ -203,7 +203,7 @@ export class AddAppComponent implements OnInit {
             });
         }
         else{
-            this.error = 'Cel putin unul din logo-uri este invalid.'
+            this.error = 'Logo-ul aplicației sau al organizației este invalid, poate sa fie doar .png sau .jpg, maxim 500px x 500px.';
         }
 
 

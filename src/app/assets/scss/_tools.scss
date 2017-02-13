@@ -14,7 +14,8 @@
     background: $color;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: darken($color, 8);
 
     &::after {
@@ -31,7 +32,8 @@
     display: none;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $black;
   }
 }

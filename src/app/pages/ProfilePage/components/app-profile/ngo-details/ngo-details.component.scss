@@ -1,2 +1,107 @@
 @import '../../../../../assets/scss/variables';
 @import '../../../../../assets/scss/tools';
+
+.ngo-card {
+  border-radius: $radius;
+  background: lighten($grey, 10);
+  overflow: hidden;
+  margin-top: ($distance / 3);
+
+  .media {
+    padding: 0 20px 15px 0;
+  }
+
+  .media-left,
+  .media-right,
+  .media-body {
+    display: block;
+
+    @media ($screen-xs) {
+      display: table-cell;
+    }
+  }
+
+  .media-body {
+    width: auto;
+    padding: 0 ($distance / 4) ($distance / 3);
+
+    @media ($screen-xs) {
+      padding: 0;
+      width: 1000px;
+    }
+  }
+}
+
+.ngo-media {
+  padding-right: 0;
+
+  @media ($screen-xs) {
+    padding-right: ($distance / 3);
+  }
+}
+
+.ngo-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: $radius;
+  overflow: hidden;
+  margin: ($distance / 3) auto;
+
+  @media ($screen-xs) {
+    width: 100px;
+    height: 100px;
+    margin: ($distance / 3) 0 ($distance / 3) ($distance / 3);
+  }
+}
+
+.ngo-body {
+  h3 {
+    margin: ($distance / 4) 0 5px;
+
+    @media ($screen-xs) {
+      margin: ($distance / 3) 0 ($distance / 6);
+    }
+  }
+}
+
+.ngo-contact {
+  margin: 0;
+
+  > a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 ($distance / 6);
+    margin: 0 ($distance / 4) 0 (-$distance / 6);
+    line-height: 28px;
+  }
+
+  .ngo-email{
+    span {
+      @include underline($primary);
+    }
+  }
+}
+
+.ngo-meta {
+  padding: ($distance / 6) ($distance / 4) ($distance / 4);
+
+  @media ($screen-xs) {
+    padding: ($distance / 4);
+  }
+}
+
+.ngo-socialist {
+  margin: 0 0 0 (-$distance / 6);
+  padding: 0;
+
+  > li {
+    display: inline-block;
+
+    > a {
+      display: inline-block;
+      font-size: 20px;
+      padding: ($distance / 6);
+    }
+  }
+}

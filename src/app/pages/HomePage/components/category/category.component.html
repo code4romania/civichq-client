@@ -3,7 +3,7 @@
     {{category.catname}}
     <strong class="category-no">{{category.apps.length}} aplicații</strong>
   </h1>
-  <carousel class="category-carousel">
+  <carousel class="category-carousel" [class.carousel-no-arrows]="(category.apps.length <= 4) && (noOfApps >= category.apps.length)">
     <slide *ngFor="let slide of theSlides; let index=index" class="row">
       <div class="app-card"
         (click)="goToApp(app)"
@@ -11,16 +11,15 @@
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card">
               <div class="card-image">
-                <img src="http://www.fillmurray.com/500/500" alt="{{app.appName}}" class="img-responsive">
-                <!-- <img src="/assets/images/{{app.logoName}}" alt="{{app.appName}}" class="img-responsive"> -->
+                <img src="{{app.logoName}}" alt="{{app.appName}}" onError="this.src='http://civichq.s3.amazonaws.com/app-images/jmZ9iotldefault.png'">
               </div>
               <div class="card-meta media">
                 <div class="media-left media-middle">
                   <div class="card-owner">
-                    <img src="http://www.fillmurray.com/100/100" alt="{{app.ownerName}}" class="img-responsive">
+                    <img src="{{app.ngoLogoName}}" alt="{{app.ownerName}}" class="img-responsive" onError="this.src='http://civichq.s3.amazonaws.com/app-images/jmZ9iotldefault.png'">
                   </div>
                 </div>
-                <div class="media-body">
+                <div class="media-body media-middle">
                   <h4 class="media-heading">{{app.appName}}</h4>
                   <span class="text-muted">{{app.tags}}</span>
                 </div>

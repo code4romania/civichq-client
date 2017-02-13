@@ -10,6 +10,7 @@
   display: inline-block;
   padding: 10px;
   white-space: nowrap;
+  margin-bottom: ($distance / 6);
 
   &:hover {
     background: $grey;
@@ -29,8 +30,13 @@
   }
 }
 
+.app-profile {
+  @media ($screen-md) {
+    margin-top: ($distance / 3);
+  }
+}
+
 .profile {
-  margin: ($distance / 3) 0 0;
   position: relative;
 
   .media-left,
@@ -53,24 +59,61 @@
 }
 
 .profile-media {
-  max-width: 350px;
+  max-width: 100%;
   padding-right: 0;
 
   @media ($screen-sm) {
-    padding-right: ($distance * 2 / 3);
-    max-width: 100%;
+    padding-right: ($distance / 2);
+  }
+}
+
+.profile-tags {
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+.profile-url {
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 6px;
+  margin-left: -6px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  span {
+    @include underline($primary);
+  }
+
+  .fa {
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+    right: -3px;
   }
 }
 
 .profile-image {
-  margin: ($distance / 3) auto;
+  border-radius: $radius;
+  margin: 0 auto;
   overflow: hidden;
 
-  @media ($screen-sm) {
-    height: 350px;
-    width: 350px;
-    margin: 0 auto;
+  img {
+    width: 100%;
+  }
 
+  @media ($screen-xs) {
+    height: auto;
+    width: 70%;
+    max-width: 500px;
+    margin: 0 0 10px 0;
+  }
+
+  @media ($screen-sm) {
+    width: 100%;
+    margin: 0;
   }
 }
 
@@ -78,18 +121,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: lighten($black, 50);
-
-  @media ($screen-sm) {
-    position: absolute;
-    top: 0;
-    left: 290px; //grr
-    line-height: 40px;
-  }
+  line-height: 40px;
 }
 
 .profile-name {
   font-size: 46px;
-  margin: 0 0 10px;
+  margin: 0 0 5px;
 }
 
 .profile-meta {
@@ -111,11 +148,33 @@
 
 .profile-date {
   display: block;
-  line-height: 40px;
+  line-height: 20px;
+}
+
+.profile-actions {
+  margin: ($distance / 3) 0;
+
+  .btn {
+    background: $primary;
+    margin-right: ($distance / 4);
+    margin-bottom: ($distance / 6);
+    color: $white;
+    line-height: 26px;
+
+    .fa {
+      color: $white;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+.profile-description {
+  margin-bottom: ($distance * 2 / 3);
 }
 
 .subtitle {
-  // text-align: center;
   font-weight: 700;
 
   @media ($screen-sm) {
