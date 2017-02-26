@@ -1,5 +1,5 @@
-import { AppDetails } from './app-details.model.ts';
-import { NgoDetails } from './ngo-details.model.ts';
+import { AppDetails } from './app-details.model';
+import { NgoDetails } from './ngo-details.model';
 
 export class AppProfile {
 

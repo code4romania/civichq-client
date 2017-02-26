@@ -1,10 +1,13 @@
+<div *ngIf="!isAddingNewApp">
+    <h1>Edit App</h1>
+</div>
 <div *ngIf="app" class="add-app">
-    <div class="page-title">
+    <div *ngIf="isAddingNewApp" class="page-title">
         <h1>Adaugă-ți aplicația in Centru Civic</h1>
 
         <p>Ai dezvoltat o aplicație care rezolvă o problemă socială? Dacă ai construit un tool, non profit, menit sa ajute oamenii să scape de birocrație, să informeze cetățenii cu privire la aspecte importante ale societății, să susțină educația, cultura sau grupurile defavorizate, completează formularul și intra în Centru Civic ca sa afle cât mai mulți oameni despre ea.</p>
     </div>
-
+   
     <div class="col-xs-12 col-md-offset-1 col-md-10">
         <div class="custom-messages col-xs-12">
             <div class="sucess" *ngIf="submitted && message =='success' && !error">

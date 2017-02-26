@@ -1,4 +1,5 @@
 export  class AddAppModel {
+    appid: number;
     appname: string;
     appcategoryid: number;
     appwebsite: string;
@@ -18,6 +19,6 @@ export  class AddAppModel {
     ngoinstagram:string;
     ngodescription:string;
     ngologoname:string;
-
+    
 
 }

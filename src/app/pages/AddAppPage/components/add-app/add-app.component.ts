@@ -26,10 +26,12 @@ export class AddAppComponent implements OnInit {
     constructor(private appService: AppService, private tagsService: TagsService, private categoriesService: CategoriesService, private uploadService: UploadService) {
 
         this.submitted = false;
+        this.isAddingNewApp = true;
     }
 
 
     @Input() app: AddAppModel;
+    @Input() isAddingNewApp: boolean
     public categories: Array<Object> = [{ id: null, text: 'Alege o categorie' }];
     public tags: Array<string> = [];
     private value: any = {};
@@ -47,9 +49,11 @@ export class AddAppComponent implements OnInit {
     public phoneRegex = '\\+4\\d{10}';
 
     ngOnInit() {
+
         this.app = new AddAppModel();
         this.setDefaultsForLogoRelated();
         this.app.appcategoryid = null;
+
         this.categoriesService.getCategories()
             .subscribe(cats => {
                 this.categories = this.categories.concat(cats.map((category) => {
@@ -57,6 +61,7 @@ export class AddAppComponent implements OnInit {
                 }))
 
             })
+
 
     }
 
@@ -170,9 +175,10 @@ export class AddAppComponent implements OnInit {
         if (this.isAppLogoValid && this.isNgoLogoValid) {
             var l1 = this.uploadLogo(this.appLogo, true);
 
-            var l2 = new Promise((resolve, reject) =>{
+            var l2 = new Promise((resolve, reject) => {
                 this.isNgoLogoUploaded = true;
-                resolve('')});
+                resolve('')
+            });
             if (this.isNgoLogoValid && this.ngoLogo) {
                 l2 = this.uploadLogo(this.ngoLogo, false);
             }
@@ -202,14 +208,14 @@ export class AddAppComponent implements OnInit {
 
             });
         }
-        else{
+        else {
             this.error = 'Logo-ul aplicației sau al organizației este invalid, poate sa fie doar .png sau .jpg, maxim 500px x 500px.';
         }
 
 
     }
 
-    private setDefaultsForLogoRelated(){
+    private setDefaultsForLogoRelated() {
         this.ngoLogo = null;
         this.appLogo = null;
         this.isAppLogoUploaded = false;
