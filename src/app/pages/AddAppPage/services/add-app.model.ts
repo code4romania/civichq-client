@@ -6,7 +6,7 @@ export  class AddAppModel {
     appfacebook: string;
     appgithub: string;
     appdescription: string;
-    appcreationdate: Date;
+    appcreationdate: string;
     applogoname: string;
     apphashtags: string;
     ngoname: string;
@@ -19,6 +19,7 @@ export  class AddAppModel {
     ngoinstagram:string;
     ngodescription:string;
     ngologoname:string;
+    ngoid:number;
     
 
 }

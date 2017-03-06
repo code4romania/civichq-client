@@ -10,5 +10,6 @@ export class NgoDetails{
     instagram: string;
     description: string;
     logoname: string;
+    id: number;
 
 }

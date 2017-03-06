@@ -37,15 +37,8 @@ export class ApproveAppComponent implements OnInit {
     editApp(app: AppProfile){
         this.selectedApp = new AddAppModel();
 
-        var simpleCreationDate : Date;
-        simpleCreationDate = new Date();
-        //simpleCreationDate = new Date(app.appdetail.creationdate.toISOString().slice(0,10));
-       var zi =  (app.appdetail.creationdate as Date).getDate();
-       console.log("ziua este " + zi);
-       //console.log("ceva este " + app.appdetail.creationdate.getVarDate());
-
         this.selectedApp.appcategoryid = app.appdetail.categoryid;
-        this.selectedApp.appcreationdate =  simpleCreationDate; //app.appdetail.creationdate;
+        this.selectedApp.appcreationdate =  this.getDateAsString(app.appdetail.creationdate); //;
         this.selectedApp.appdescription = app.appdetail.description;
         this.selectedApp.appfacebook = app.appdetail.facebook;
         this.selectedApp.appgithub = app.appdetail.github;
@@ -65,7 +58,27 @@ export class ApproveAppComponent implements OnInit {
         this.selectedApp.ngoname = app.ngodetail.name;
         this.selectedApp.ngophone = app.ngodetail.phone;
         this.selectedApp.ngotwitter = app.ngodetail.twitter;
+        this.selectedApp.ngoid = app.ngodetail.id;
         
+    }
+
+    private getDateAsString(theDateAsString): string{
+        var simpleCreationDate = new Date(theDateAsString);
+        var dateAsString = simpleCreationDate.getFullYear() + '-' + this.getMonthNoAsString(simpleCreationDate) + '-' + this.getDayNoAsString(simpleCreationDate);
+        //console.log('data este ' + dateAsString);
+        return dateAsString;
+    }
+
+    private getMonthNoAsString(date: Date) : string {
+        var mnt = date.getMonth() + 1;
+        var str = mnt < 10 ? '0'+mnt : ''+mnt;
+        return str;
+    }
+
+    private getDayNoAsString(date: Date): string{
+        var dayNo = date.getDate();
+        var str = dayNo < 10 ? '0'+dayNo : ''+dayNo;
+        return str;
     }
 
 }

@@ -46,23 +46,26 @@ export class AddAppComponent implements OnInit {
     private isAppLogoValid: boolean;
     private isNgoLogoUploaded: boolean;
     private isNgoLogoValid: boolean;
+    private needsToUpdateAppLogo: boolean;
+    private needsToUpdateNgoLogo: boolean;
     public phoneRegex = '\\+4\\d{10}';
 
     ngOnInit() {
 
-        this.app = new AddAppModel();
-        this.setDefaultsForLogoRelated();
-        this.app.appcategoryid = null;
+        if (this.isAddingNewApp) {
+            console.log('is adding new app');
+            this.app = new AddAppModel();
+            this.setDefaultsForLogoRelated();
+            this.app.appcategoryid = null;
+        }
+
 
         this.categoriesService.getCategories()
             .subscribe(cats => {
                 this.categories = this.categories.concat(cats.map((category) => {
                     return { id: category.id, text: category.catname }
                 }))
-
             })
-
-
     }
 
     public selectTags(value: any): void {
@@ -103,6 +106,7 @@ export class AddAppComponent implements OnInit {
 
     appLogoChangeEvent(fileInput: any) {
         this.isAppLogoValid = true;
+        this.needsToUpdateAppLogo = !this.isAddingNewApp;
         var theLogo = fileInput.target.files[0];
         this.app.applogoname = this.uploadService.GetNewLogoName(theLogo.name);
         this.appLogo = new CivicFile(theLogo, this.app.applogoname);
@@ -127,6 +131,7 @@ export class AddAppComponent implements OnInit {
 
     ngoLogoChangeEvent(fileInput: any) {
         this.isNgoLogoValid = true;
+        this.needsToUpdateNgoLogo = !this.isAddingNewApp;
         var theLogo = fileInput.target.files[0];
         this.app.ngologoname = this.uploadService.GetNewLogoName(theLogo.name);
         this.ngoLogo = new CivicFile(theLogo, this.app.ngologoname);
@@ -157,18 +162,87 @@ export class AddAppComponent implements OnInit {
             } else {
                 this.isNgoLogoUploaded = (r == '200');
             }
+            if (r !== '200') {
+                var msg = 'Eroare la upload-ul logo-urilor! '
+                if (!this.isAddingNewApp) {
+                    msg = msg + r.message;
+                }
+                this.handleLogoUploadError(isUploadingAppLogo, msg);
+            }
 
         }).catch((err) => {
-            if (isUploadingAppLogo) {
+            this.handleLogoUploadError(isUploadingAppLogo, err);
+        });
+    }
+
+    private handleLogoUploadError(isUploadingAppLogo: boolean, err: any){
+        if (isUploadingAppLogo) {
                 this.isAppLogoUploaded = false;
             } else {
                 this.isNgoLogoUploaded = false;
             }
             this.error = err.toString();
-        });
     }
 
     addApp(form) {
+        if (this.isAddingNewApp) {
+            this.addNewApp(form)
+        } else {
+            this.editExistingApp(form)
+        }
+
+    }
+
+    private editExistingApp(form) {
+        //console.log('submit for edit')
+        this.submitted = true;
+        if (this.isAppLogoValid && this.isNgoLogoValid && this.needsToUpdateAppLogo) {
+            //console.log('editing app logo');
+            var l1 = this.uploadLogo(this.appLogo, true);
+
+            var l2 = new Promise((resolve, reject) => {
+                this.isNgoLogoUploaded = true;
+                resolve('')
+            });
+            if (this.isNgoLogoValid && this.ngoLogo && this.needsToUpdateNgoLogo) {
+                //console.log('editing ngo logo');
+                l2 = this.uploadLogo(this.ngoLogo, false);
+            }
+
+            Promise.all([l1, l2]).then(() => {
+                if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
+                    //console.log('editing started');
+                    
+                    if (form.valid) {
+                        this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
+                            : this.app.apphashtags = this.newTag;
+
+                        this.appService.editApp(this.app)
+                            .subscribe(response => {
+                                this.message = response.data
+                                //console.log('response este')
+                                //console.log(response)
+                                if (this.message === 'success') {
+                                    this.error = null;
+                                    //this.setDefaultsForLogoRelated();
+                                    console.log('succes')
+
+                                }
+
+                                else {
+                                    let errorRegex = /\(ERROR\)\:(.*)/;
+                                    this.error = errorRegex.exec(response.data);
+                                    console.log('ERROR')
+
+                                }
+                            })
+                    }
+                }
+            });
+        }
+    }
+
+    private addNewApp(form) {
         console.log('form', form)
         this.submitted = true;
 
@@ -211,7 +285,6 @@ export class AddAppComponent implements OnInit {
         else {
             this.error = 'Logo-ul aplicației sau al organizației este invalid, poate sa fie doar .png sau .jpg, maxim 500px x 500px.';
         }
-
 
     }
 

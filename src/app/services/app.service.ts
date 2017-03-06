@@ -62,6 +62,17 @@ export class AppService extends BaseService {
         });
     }
 
+    editApp(app){
+        return this.auth.loginSentinel().flatMap(() => {
+            const url = `${this.rootAddress + 'editapp'}`;
+            console.log('url este ' + url)
+            return this.http.put(url, JSON.stringify(app), { headers: this.auth.headers })
+                .map((response: Response) => {
+                    return response.json()
+                });
+        });
+    }
+
     approveApp(appid: number) {
         const urlupd = `${this.rootAddress + 'updateapp'}/${appid}`;
 

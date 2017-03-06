@@ -5,9 +5,12 @@
     <div *ngIf="isAddingNewApp" class="page-title">
         <h1>Adaugă-ți aplicația in Centru Civic</h1>
 
-        <p>Ai dezvoltat o aplicație care rezolvă o problemă socială? Dacă ai construit un tool, non profit, menit sa ajute oamenii să scape de birocrație, să informeze cetățenii cu privire la aspecte importante ale societății, să susțină educația, cultura sau grupurile defavorizate, completează formularul și intra în Centru Civic ca sa afle cât mai mulți oameni despre ea.</p>
+        <p>Ai dezvoltat o aplicație care rezolvă o problemă socială? Dacă ai construit un tool, non profit, menit sa ajute oamenii
+            să scape de birocrație, să informeze cetățenii cu privire la aspecte importante ale societății, să susțină educația,
+            cultura sau grupurile defavorizate, completează formularul și intra în Centru Civic ca sa afle cât mai mulți
+            oameni despre ea.</p>
     </div>
-   
+
     <div class="col-xs-12 col-md-offset-1 col-md-10">
         <div class="custom-messages col-xs-12">
             <div class="sucess" *ngIf="submitted && message =='success' && !error">
@@ -20,10 +23,15 @@
             </div>
         </div>
         <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
+            <div *ngIf="!isAddingNewApp">
+                <p>App id: {{app.appid}} </p>
+                <p>Ngo id: {{app.ngoid}} </p>
+            </div>
             <section class="col-xs-12 col-md-6 app-details">
                 <div class="form-group">
                     <label>Numele aplicației <span class="req">*</span></label>
-                    <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName" placeholder="O aplicație civică" required minlength="2" #appName="ngModel"/>
+                    <input type="text" class="form-control" [(ngModel)]="app.appname" name="appName" placeholder="O aplicație civică" required
+                        minlength="2" #appName="ngModel" />
 
 
                     <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
@@ -35,7 +43,8 @@
                 </div>
                 <div class="form-group">
                     <label>Adresa aplicației <span class="req">*</span></label>
-                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite" placeholder="http://www.aplicatia.ta" #appWebsite="ngModel" required url>
+                    <input type="text" class="form-control" [(ngModel)]="app.appwebsite" name="appWebsite" placeholder="http://www.aplicatia.ta"
+                        #appWebsite="ngModel" required url>
 
                     <div *ngIf="submitted" [hidden]="!appWebsite.errors?.required" class="alert alert-danger">
                         Acest câmp este obligatoriu.
@@ -46,8 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label>În ce categorie se încadrează?  <span class="req">*</span></label>
-                    <select class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid"
-                            #appCategory="ngModel">
+                    <select class="form-control" required name="appCategory" [(ngModel)]="app.appcategoryid" #appCategory="ngModel">
                         <option [disabled]="c.id == null" *ngFor="let c of categories" [value]="c.id">{{c.text}}
                         </option>
 
@@ -64,7 +72,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-facebook"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb" #appFb="ngModel" placeholder="http://www.facebook.com/aplicatia" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.appfacebook" name="appFb" #appFb="ngModel" placeholder="http://www.facebook.com/aplicatia"
+                                    url>
                             </div>
 
                             <div *ngIf="submitted" [hidden]="!appFb.errors?.url" class="alert alert-danger">
@@ -78,7 +87,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-github"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit" #appGit="ngModel" placeholder="http://github.com/your/app" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.appgithub" name="appGit" #appGit="ngModel" placeholder="http://github.com/your/app"
+                                    url>
                             </div>
 
                             <div *ngIf="submitted" [hidden]="!appGit.errors?.url" class="alert alert-danger">
@@ -94,27 +104,24 @@
                 </div>
                 <div class="form-group">
                     <label>Descrierea aplicației</label>
-                    <textarea type="text" class="form-control" [(ngModel)]="app.appdescription" maxlength="1000"
-                          #appDescription="ngModel" name="appDescription" placeholder="Maxim 1000 de caractere..."></textarea>
+                    <textarea type="text" class="form-control" [(ngModel)]="app.appdescription" maxlength="1000" #appDescription="ngModel" name="appDescription"
+                        placeholder="Maxim 1000 de caractere..."></textarea>
 
                 </div>
 
                 <div class="form-group">
                     <label>Logo-ul aplicației <span class="req">*</span></label>
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
-                           (change)="appLogoChangeEvent($event)" placeholder=""/>
+                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"
+                        placeholder="" />
                     <span class="help-block">Logo-ul aplicației poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
+                    <div *ngIf="!isAddingNewApp" class="card-image">
+                        <img src="{{app.applogoname}}" alt="{{app.appname}}" onError="this.src='http://civichq.s3.amazonaws.com/app-images/jmZ9iotldefault.png'">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <ng-select [items]="tags"
-                               name="appTags"
-                               (data)="refreshValue($event)"
-                               [multiple]="true"
-                               (selected)="selectTags($event)"
-                               (removed)="removeTags($event)"
-                               (typed)="loadTags($event)"
-                               placeholder="Alege un #hastag pentru aplicația ta">
+                    <ng-select [items]="tags" name="appTags" (data)="refreshValue($event)" [multiple]="true" (selected)="selectTags($event)"
+                        (removed)="removeTags($event)" (typed)="loadTags($event)" placeholder="Alege un #hastag pentru aplicația ta">
                     </ng-select>
                 </div>
 
@@ -123,9 +130,8 @@
             <section class="col-xs-12 col-md-6 ngo-details">
                 <div class="form-group">
                     <label>Numele tău sau al organizației <span class="req">*</span></label>
-                    <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname" #ngoName="ngModel"
-                           required
-                           minlength="2" placeholder="Andrei Popescu"/>
+                    <input name="ngoName" type="text" class="form-control" [(ngModel)]="app.ngoname" #ngoName="ngModel" required minlength="2"
+                        placeholder="Andrei Popescu" />
 
                     <div *ngIf="submitted" [hidden]="!ngoName.errors?.required" class="alert alert-danger">
                         Acest câmp este obligatoriu.
@@ -137,7 +143,7 @@
                 <div class="form-group">
                     <label>E-mail  <span class="req">*</span></label>
                     <input name="ngoEmail" type="email" class="form-control" [(ngModel)]="app.ngoemail" placeholder="andrei@popescu.ro" #ngoEmail="ngModel"
-                           required email>
+                        required email>
 
                     <div *ngIf="submitted" [hidden]="!ngoEmail.errors?.required" class="alert alert-danger">
                         Acest câmp este obligatoriu.
@@ -148,8 +154,8 @@
                 </div>
                 <div class="form-group">
                     <label>Telefon</label>
-                    <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone"
-                           pattern="{{phoneRegex}}" placeholder="+40729123123" #ngoPhone="ngModel">
+                    <input name="ngoPhone" type="text" class="form-control" [(ngModel)]="app.ngophone" pattern="{{phoneRegex}}" placeholder="+40729123123"
+                        #ngoPhone="ngModel">
 
                     <div *ngIf="submitted" [hidden]="!ngoPhone.errors?.pattern" class="alert alert-danger">
                         Numărul de telefon introdus nu este valid.
@@ -162,7 +168,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-facebook"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb" #ngoFb="ngModel" placeholder="http://www.facebook.com/tu/" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.ngofacebook" name="ngoFb" #ngoFb="ngModel" placeholder="http://www.facebook.com/tu/"
+                                    url>
                             </div>
 
                             <div *ngIf="submitted" [hidden]="!ngoFb.errors?.url" class="alert alert-danger">
@@ -176,7 +183,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-twitter"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter " placeholder="http://www.twitter.com/tu/" #ngoTwitter="ngModel" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.ngotwitter" name="ngoTwitter " placeholder="http://www.twitter.com/tu/"
+                                    #ngoTwitter="ngModel" url>
                             </div>
                             <div *ngIf="submitted" [hidden]="!ngoTwitter.errors?.url" class="alert alert-danger">
                                 Adresa introdusă nu este validă. <small>(http://www.adresa.mea)</small>
@@ -191,7 +199,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-linkedin"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn" placeholder="http://www.linkedin.com/in/tu" #ngoLinkedIn="ngModel" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.ngolinkedin" name="ngoLinkedIn" placeholder="http://www.linkedin.com/in/tu"
+                                    #ngoLinkedIn="ngModel" url>
                             </div>
 
                             <div *ngIf="submitted" [hidden]="!ngoLinkedIn.errors?.url" class="alert alert-danger">
@@ -205,7 +214,8 @@
                                 <div class="input-group-addon">
                                     <i aria-hidden="true" class="fa fa-instagram"></i>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram" placeholder="http://instagram.com/tu" #ngoInstagram ="ngModel" url>
+                                <input type="text" class="form-control" [(ngModel)]="app.ngoinstagram" name="ngoInstagram" placeholder="http://instagram.com/tu"
+                                    #ngoInstagram="ngModel" url>
                             </div>
                             <div *ngIf="submitted" [hidden]="!ngoInstagram.errors?.url" class="alert alert-danger">
                                 Adresa introdusă nu este validă. <small>(http://www.adresa.mea)</small>
@@ -221,17 +231,27 @@
 
                 <div class="form-group">
                     <label>Logo-ul tău</label>
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg"
-                           (change)="ngoLogoChangeEvent($event)" placeholder=""/>
+                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"
+                        placeholder="" />
                     <span class="help-block">Logo-ul tău poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
-
+                    <div *ngIf="!isAddingNewApp" class="media-left media-middle">
+                        <div class="card-owner">
+                            <img src="{{app.ngologoname}}" alt="{{app.ngoname}}" class="img-responsive" onError="this.src='http://civichq.s3.amazonaws.com/app-images/jmZ9iotldefault.png'">
+                        </div>
+                    </div>
                 </div>
             </section>
             <div class="col-xs-12 form-actions">
-                <button id="save" type="submit" class="btn btn-block btn-lg btn-cc pull-right">
+                <button *ngIf="isAddingNewApp" id="save" type="submit" class="btn btn-block btn-lg btn-cc pull-right">
                     <i class="fa fa-plus-square" aria-hidden="true"></i>
                     Adaugă aplicația
                 </button>
+
+                <button *ngIf="!isAddingNewApp" id="save" type="submit" class="btn btn-block btn-lg btn-cc pull-right">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    Salvează modificări
+                </button>
+
             </div>
         </form>
 
