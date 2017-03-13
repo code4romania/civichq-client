@@ -56,7 +56,7 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.newTag = '';
             this.value = this.app ? this.app.apphashtags : '';
             
-            this.selectedAppTags = this.app ? this.app.apphashtags.split("#"): [];
+            this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split("#"): [];
             
 
         }
@@ -177,7 +177,7 @@ export class AddAppComponent implements OnInit, OnChanges {
             } else {
                 this.isNgoLogoUploaded = (r == '200');
             }
-            if (r !== '200') {
+            if (r != '200') {
                 var msg = 'Eroare la upload-ul logo-urilor! '
                 if (!this.isAddingNewApp) {
                     msg = msg + r.message;

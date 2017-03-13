@@ -42,10 +42,10 @@ export class ApproveAppComponent implements OnInit {
         this.selectedApp.appdescription = app.appdetail.description;
         this.selectedApp.appfacebook = app.appdetail.facebook;
         this.selectedApp.appgithub = app.appdetail.github;
-        this.selectedApp.apphashtags = app.appdetail.hashtags.toString();
+        
+        this.selectedApp.apphashtags = (app.appdetail.hashtags) ? app.appdetail.hashtags.toString(): '';
         this.selectedApp.apphashtags = this.selectedApp.apphashtags.split("#").join(" #"); // replace all occurences
-        
-        
+                
         this.selectedApp.appid = app.appdetail.id;
         this.selectedApp.applogoname = app.appdetail.logoname;
         this.selectedApp.appname = app.appdetail.name;
