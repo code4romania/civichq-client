@@ -70,6 +70,9 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.setDefaultsForLogoRelated();
             this.app.appcategoryid = null;
         }
+        else{
+            this.setDefaultsForLogoWhenEditingApp();
+        }
 
 
         this.categoriesService.getCategories()
@@ -211,14 +214,29 @@ export class AddAppComponent implements OnInit, OnChanges {
     private editExistingApp(form) {
         //console.log('submit for edit')
         this.submitted = true;
-        if (this.isAppLogoValid && this.isNgoLogoValid && this.needsToUpdateAppLogo) {
-            //console.log('editing app logo');
-            var l1 = this.uploadLogo(this.appLogo, true);
+        console.log('isAppLogoValid - ' + this.isAppLogoValid)
+        console.log('isNgoLogoValid - ' + this.isNgoLogoValid)
+        console.log('needsToUpdateAppLogo - ' + this.needsToUpdateAppLogo)
+        console.log('needsToUpdateNgoLogo - ' + this.needsToUpdateNgoLogo)
 
-            var l2 = new Promise((resolve, reject) => {
+        var l1 = new Promise((resolve, reject) => {
+                this.isAppLogoUploaded = true;
+                resolve('')
+            });
+
+        var l2 = new Promise((resolve, reject) => {
                 this.isNgoLogoUploaded = true;
                 resolve('')
             });
+
+        if (this.isAppLogoValid && this.isNgoLogoValid) {
+            console.log('editing app logo');
+            if(this.needsToUpdateAppLogo){
+                l1 = this.uploadLogo(this.appLogo, true);
+            }
+            
+
+            
             if (this.isNgoLogoValid && this.ngoLogo && this.needsToUpdateNgoLogo) {
                 //console.log('editing ngo logo');
                 l2 = this.uploadLogo(this.ngoLogo, false);
@@ -226,20 +244,23 @@ export class AddAppComponent implements OnInit, OnChanges {
 
             Promise.all([l1, l2]).then(() => {
                 if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
-                    //console.log('editing started');
+                    console.log('editing started');
 
                     if (form.valid) {
-                        this.app.apphashtags.length ? this.app.apphashtags = this.app.apphashtags.replace(" ", "")
+                        console.log('app hashtags before '+ this.app.apphashtags)
+                        this.app.apphashtags.length ? this.app.apphashtags = this.app.apphashtags.split(" #").join("#")
                             : this.app.apphashtags = "";
+                        
+                        console.log('app hashtags after '+ this.app.apphashtags)
 
                         this.appService.editApp(this.app)
                             .subscribe(response => {
                                 this.message = response.data
-                                //console.log('response este')
-                                //console.log(response)
+                                console.log('response este')
+                                console.log(response)
                                 if (this.message === 'success') {
                                     this.error = null;
-                                    //this.setDefaultsForLogoRelated();
+                                    this.setDefaultsForLogoWhenEditingApp();
                                     console.log('succes')
 
                                 }
@@ -312,7 +333,15 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.isNgoLogoValid = true; //da, true
     }
 
-
+    private setDefaultsForLogoWhenEditingApp(){
+        this.isAppLogoUploaded = false;
+        this.isAppLogoValid = true;
+        this.isNgoLogoUploaded = false;
+        this.isNgoLogoValid = true; //da, true
+        this.needsToUpdateAppLogo = false;
+        this.needsToUpdateNgoLogo = false;
+        
+    }
 
 
 }
