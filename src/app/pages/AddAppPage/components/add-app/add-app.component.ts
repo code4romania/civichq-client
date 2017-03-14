@@ -65,7 +65,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     ngOnInit() {
 
         if (this.isAddingNewApp) {
-            console.log('is adding new app');
+            //console.log('is adding new app');
             this.app = new AddAppModel();
             this.setDefaultsForLogoRelated();
             this.app.appcategoryid = null;
@@ -84,7 +84,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     }
 
     public selectTags(value: any): void {
-        console.log('raised selectTags');
+        //console.log('raised selectTags');
         this.newTag = '';
         this.selectedAppTags.push(value.text)
     }
@@ -96,12 +96,12 @@ export class AddAppComponent implements OnInit, OnChanges {
 
 
     public refreshValue(value: any): void {
-        console.log('raised refreshValue');
+        //console.log('raised refreshValue');
         this.value = value;
     }
 
     public removeTags(value: any): void {
-        console.log('raised removeTags');
+        //console.log('raised removeTags');
         this.selectedAppTags.splice(this.selectedAppTags.indexOf(value.text), 1);
     }
 
@@ -214,11 +214,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     private editExistingApp(form) {
         //console.log('submit for edit')
         this.submitted = true;
-        console.log('isAppLogoValid - ' + this.isAppLogoValid)
-        console.log('isNgoLogoValid - ' + this.isNgoLogoValid)
-        console.log('needsToUpdateAppLogo - ' + this.needsToUpdateAppLogo)
-        console.log('needsToUpdateNgoLogo - ' + this.needsToUpdateNgoLogo)
-
+        
         var l1 = new Promise((resolve, reject) => {
                 this.isAppLogoUploaded = true;
                 resolve('')
@@ -230,7 +226,7 @@ export class AddAppComponent implements OnInit, OnChanges {
             });
 
         if (this.isAppLogoValid && this.isNgoLogoValid) {
-            console.log('editing app logo');
+            //console.log('editing app logo');
             if(this.needsToUpdateAppLogo){
                 l1 = this.uploadLogo(this.appLogo, true);
             }
@@ -244,20 +240,20 @@ export class AddAppComponent implements OnInit, OnChanges {
 
             Promise.all([l1, l2]).then(() => {
                 if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
-                    console.log('editing started');
+                    //console.log('editing started');
 
                     if (form.valid) {
-                        console.log('app hashtags before '+ this.app.apphashtags)
+                        //console.log('app hashtags before '+ this.app.apphashtags)
                         this.app.apphashtags.length ? this.app.apphashtags = this.app.apphashtags.split(" #").join("#")
                             : this.app.apphashtags = "";
                         
-                        console.log('app hashtags after '+ this.app.apphashtags)
+                        //console.log('app hashtags after '+ this.app.apphashtags)
 
                         this.appService.editApp(this.app)
                             .subscribe(response => {
                                 this.message = response.data
-                                console.log('response este')
-                                console.log(response)
+                                //console.log('response este')
+                                //console.log(response)
                                 if (this.message === 'success') {
                                     this.error = null;
                                     this.setDefaultsForLogoWhenEditingApp();
@@ -279,7 +275,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     }
 
     private addNewApp(form) {
-        console.log('form', form)
+        //console.log('form', form)
         this.submitted = true;
 
         if (this.isAppLogoValid && this.isNgoLogoValid) {
