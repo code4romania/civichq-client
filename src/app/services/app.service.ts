@@ -1,3 +1,4 @@
+import { AppProfile } from './../shared/models/app-profile.model';
 import { AuthService } from './auth.service';
 import { AuthResponse } from './../shared/models/auth-response.model';
 import { Injectable } from '@angular/core';
@@ -27,6 +28,18 @@ export class AppService extends BaseService {
             })
     }
 
+    getAppsFullDetails(): Observable<AppProfile[]> {
+        return this.http.get(this.rootAddress + 'apps')
+            .map((response: Response) => {
+                return (response.json() as AppProfile[]).map(app => this.updateStringToBoolean(app));
+            });
+    }
+
+    updateStringToBoolean(app: AppProfile): AppProfile{
+        app.appdetail.isapprovedbool = (app.appdetail.isapproved === 'true');
+        return app;
+    }
+
     getApp(id) {
         return this.auth.loginSentinel().flatMap(() => {
             const url = `${this.rootAddress + 'appprofile'}/${id}`;
@@ -49,8 +62,19 @@ export class AppService extends BaseService {
         });
     }
 
-    update(app: App) {
-        const urlupd = `${this.rootAddress + 'updateapp'}/${app.id}`;
+    editApp(app){
+        return this.auth.loginSentinel().flatMap(() => {
+            const url = `${this.rootAddress + 'editapp'}`;
+            console.log('url este ' + url)
+            return this.http.put(url, JSON.stringify(app), { headers: this.auth.headers })
+                .map((response: Response) => {
+                    return response.json()
+                });
+        });
+    }
+
+    approveApp(appid: number) {
+        const urlupd = `${this.rootAddress + 'updateapp'}/${appid}`;
 
         return this.getToken().map((resp: Response) => {
 
