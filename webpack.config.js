@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: 'build',
-    filename: '[name].js'
+    filename: '[name].[hash].js'
   },
   resolve: {
     extensions: ['', '.js', '.ts'],
