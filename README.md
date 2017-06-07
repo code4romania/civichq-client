@@ -1,8 +1,7 @@
 # civichq-client
 Client side for platform of civic applications developed within Romanian civic society.
 
-```
-npm install -g tsc
-npm install
-npm start
-```
+## Installation
+
+1. Run `npm install`
+1. Run `npm start`
