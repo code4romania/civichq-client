@@ -69,6 +69,8 @@ We are currently working on the 2.0 version of the project. Contact us in case y
 
 ## License
 
+This project is licensed under the MPL 2.0 License - see the [LICENSE](LICENSE) file for details
+
 ## About Code4Ro
 
 Started in 2016, Code for Romania is a civic tech NGO, official member of the Code for All network. We have a community of over 500 volunteers (developers, ux/ui, communications, data scientists, graphic designers, devops, it security and more) who work pro-bono for developing digital solutions to solve social problems. #techforsocialgood. If you want to learn more details about our projects [visit our site](https://www.code4.ro/en/) or if you want to talk to one of our staff members, please e-mail us at contact@code4.ro.
