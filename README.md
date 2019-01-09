@@ -19,7 +19,11 @@ In its second version, the Centru Civic aims to add more instruments to help dev
 
 This repo holds the client of Centru Civic app.
 
-[Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Contributing](#contributing) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
+[Contributing](#contributing) | [Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
+
+## Contributing
+
+This project is built by amazing volunteers and you can be one of them! Here's a list of ways in [which you can contribute to this project](.github/CONTRIBUTING.MD).
 
 ## Built With
 
@@ -47,18 +51,6 @@ Related to https://github.com/code4romania/civichq-api
 Run npm install
 Run npm start
 ```
-
-## Contributing
-
-If you would like to contribute to our repository, first identify the scale of what you would like to contribute. If it is small (grammar/spelling or a bug fix) feel free to start working on a fix. If you are submitting a feature or substantial code contribution, please discuss it with the team and ensure it follows the product roadmap. 
-
-* Fork it (https://github.com/code4romania/civichq-client/fork)
-* Create your feature branch (git checkout -b feature/fooBar)
-* Commit your changes (git commit -am 'Add some fooBar')
-* Push to the branch (git push origin feature/fooBar)
-* Create a new Pull Request
-
-We are currently working on the 2.0 version of the project. Contact us in case you are interested in helping!
 
 ## Feedback
 
