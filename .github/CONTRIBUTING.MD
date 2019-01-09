@@ -28,7 +28,7 @@ To send us a suggestion, just [open an issue](https://github.com/code4romania/ci
 
 We'd love for you to get your hands dirty and code for the project.
 
-For more info on how to set it up and get started, please see the [README](README). 
+For more info on how to set it up and get started, please see the [README](https://github.com/code4romania/civichq-client/blob/master/README.md). 
 
 If you are unsure where to begin contributing to the project, you can start by looking through these issues:  
 
