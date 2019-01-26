@@ -1,58 +1,30 @@
 <footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="social list-unstyled">
-          <li>
-            <a href="https://www.facebook.com/centrucivic/" target="_blank">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/Code4Romania" target="_blank">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-        <ul class="social list-unstyled">
-          <li>
-            <a href="https://github.com/code4romania/civichq-api" target="_blank">
-              <i class="fa fa-github" aria-hidden="true"></i>
-              <span>/api</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/code4romania/civichq-client" target="_blank">
-              <i class="fa fa-github" aria-hidden="true"></i>
-              <span>/client</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <a [routerLink]="['/home']" class="footer-logo logo-type">
-            Centru Ci<i class="fa fa-usb" aria-hidden="true"></i>ic
-        </a>
-        <p class="info">
-          Centru Civic este primul centralizator de aplicații civice dezvoltate de ONG-uri, instituții sau cetăţeni, în România. <br/>Pentru a adăuga o aplicație, completează descrierea ei în pagina  "Adaugă" sau trimite-ne informațiile la <a href="mailto:centrucivic@code4.ro">centrucivic@code4.ro</a>.
-        </p>
-      </div>
-      <div class="col-xs-12 col-md-offset-1 col-md-5 code">
-        <a class="code-logo" href="http://code4.ro/" target="_blank">
-          <img src="http://code4.ro/wp-content/themes/code4/dist/images/footer-logo.png" alt="Code for Romania">
-        </a>
-        <p class="legal">
-          &copy; 2016 Code for Society / Code for Romania.<br/>
-          Organizație neguvernamentală independentă,<br/> neafiliată politic și apolitică.
-        </p>
-      </div>
+  <div class="container has-text-centered">
+    <nav>
+      <ul class="navbar columns is-multiline is-mobile">
+        <li class="navbar-item"><a class="button is-text has-text-primary" target="_blank" href="//code4.ro/ro/sustinatori/">Susținători</a></li>
+        <li class="navbar-item"><a class="button is-text has-text-primary" target="_blank" href="//code4.ro/ro/parteneri/">Parteneri</a></li>
+        <li class="navbar-item"><a class="button is-text has-text-primary" target="_blank" href="//code4.ro/ro/legal/">Legal</a></li>
+        <li class="navbar-item"><a class="button is-text has-text-primary" target="_blank" href="//code4.ro/ro/codul-de-conduita/">Codul
+            de
+            Conduită</a></li>
+        <li class="navbar-item"><a class="button is-text has-text-primary" target="_blank" href="//code4.ro/ro/implica-te/">Implică-te</a></li>
+        <li class="navbar-item"><a class="button is-success" target="_blank" href="//code4.ro/ro/doneaza/">Donează</a></li>
+      </ul>
+    </nav>
+    <ul class="social">
+      <li class="navbar-item"><a href="https://www.facebook.com/code4romania/" target="_blank"><i class="fa fa-fw fa-facebook"
+            aria-hidden="true"></i></a></li>
+      <li class="navbar-item"><a href="https://twitter.com/Code4Romania" target="_blank"><i class="fa fa-fw fa-twitter"
+            aria-hidden="true"></i></a></li>
+      <li class="navbar-item"><a href="https://github.com/code4romania/" target="_blank"><i class="fa fa-fw fa-github"
+            aria-hidden="true"></i></a></li>
+      <li class="navbar-item"><a href="https://www.linkedin.com/company/code4romania/" target="_blank"><i class="fa fa-fw fa-linkedin"
+            aria-hidden="true"></i></a></li>
+    </ul>
+    <div class="copy"><a href="https://code4.ro/ro/" target="_blank" class="brand"><img src="https://code4.ro/images/logo-full-gray.svg"
+          class="logo svg-fallback" alt="Code for Romania"></a>
+      <p>© 2019 Code for Romania.<br>Organizație neguvernamentală independentă, neafiliată politic și apolitică.</p>
     </div>
-
   </div>
-
-  <ul class="admin" style="display: none;">
-    <li *ngIf="isLoggedIn"><a [routerLink]="['/approve-app']" routerLinkActive="active">Aprobă</a></li>
-    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-    <li *ngIf="isLoggedIn"><a [routerLink]="['/login']" (click)="logout()">Logout</a></li>
-  </ul>
 </footer>
