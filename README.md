@@ -53,7 +53,7 @@ Run npm start
 ```
 
 #### Change in webpack.config.js to production url
-If localserver api is not availabale change to production one.
+If localserver api is not availabale change to production one and install [extension](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)
 ```
 new DefinePlugin({
     SERVER_ADDRESS: JSON.stringify("http://api.centrucivic.ro/api/")
