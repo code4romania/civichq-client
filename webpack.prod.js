@@ -3,6 +3,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -63,6 +64,7 @@ module.exports = {
         }),
         new DefinePlugin({
             SERVER_ADDRESS: JSON.stringify("http://api.centrucivic.ro/api/"),
-        })
+        }),
+        new CopyWebpackPlugin([ { from: 'src/app/assets', to: 'assets' } ])
     ]
 };

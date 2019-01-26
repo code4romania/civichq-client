@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -60,6 +61,7 @@ module.exports = {
     }),
     new DefinePlugin({
       SERVER_ADDRESS: JSON.stringify("http://localhost:8080/api/")
-    })
+    }),
+    new CopyWebpackPlugin([ { from: 'src/app/assets', to: 'assets' } ])
   ]
 };
