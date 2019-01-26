@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -11,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].[hash].js'
+    filename: '[name].[hash].js',
   },
   resolve: {
     extensions: ['.js', '.ts'],
@@ -59,7 +60,8 @@ module.exports = {
       template: './src/index.html'
     }),
     new DefinePlugin({
-      SERVER_ADDRESS: JSON.stringify("http://localhost:8080/api/")
-    })
+      SERVER_ADDRESS: JSON.stringify("http://api.centrucivic.ro/api/")
+    }),
+    new CopyWebpackPlugin([ { from: 'src/app/assets', to: 'assets' } ])
   ]
 };
