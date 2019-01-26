@@ -8,4 +8,4 @@ const appRoutes:Routes = [
         path: 'approve-app', component: ApproveAppComponent,canActivate: [LoggedInGuard]
     }
 ];
-export const ApproveAppRouting =  RouterModule.forRoot(appRoutes, { useHash: true });
+export const ApproveAppRouting =  RouterModule.forChild(appRoutes);

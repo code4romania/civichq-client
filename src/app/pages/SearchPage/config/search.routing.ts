@@ -7,4 +7,4 @@ const appRoutes:Routes = [
         path: 'search', component: SearchComponent
     }
 ];
-export const SearchRouting =  RouterModule.forRoot(appRoutes, { useHash: true });
+export const SearchRouting =  RouterModule.forChild(appRoutes);
