@@ -2,6 +2,7 @@ export  class AddAppModel {
     appid: number;
     appname: string;
     appcategoryid: number;
+    technologies: string[];
     appwebsite: string;
     appfacebook: string;
     appgithub: string;

@@ -70,6 +70,18 @@
                         Acest câmp este obligatoriu.
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label>Tehnologii folosite<span class="req">*</span></label>
+                    <input type="text" class="form-control" [(ngModel)]="technologies" name="technologies" placeholder="Adaugă tehnologiile folosite de aplicația ta" required
+                        #appName="ngModel" />
+
+
+                    <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
+                        Acest câmp este obligatoriu.
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">

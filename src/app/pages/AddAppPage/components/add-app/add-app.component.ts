@@ -49,6 +49,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     private needsToUpdateAppLogo: boolean;
     private needsToUpdateNgoLogo: boolean;
     public phoneRegex = '\\+4\\d{10}';
+    public technologies: string = "";
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['app']) {
@@ -69,8 +70,10 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.app = new AddAppModel();
             this.setDefaultsForLogoRelated();
             this.app.appcategoryid = null;
-        }
-        else{
+        } else {
+            if (this.app) {
+                this.technologies = this.app.technologies ? this.app.technologies.join(", ") : "";
+            }
             this.setDefaultsForLogoWhenEditingApp();
         }
 
@@ -248,7 +251,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                             : this.app.apphashtags = "";
                         
                         //console.log('app hashtags after '+ this.app.apphashtags)
-
+                        this.formatTechnologiesKey(this.technologies);
                         this.appService.editApp(this.app)
                             .subscribe(response => {
                                 this.message = response.data
@@ -295,7 +298,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                     if (form.valid) {
                         this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
                             : this.app.apphashtags = this.newTag;
-
+                        this.formatTechnologiesKey(this.technologies);
                         this.appService.addApp(this.app)
                             .subscribe(response => {
                                 this.message = response.result;
@@ -339,5 +342,10 @@ export class AddAppComponent implements OnInit, OnChanges {
         
     }
 
+    private formatTechnologiesKey(inputString: string) {
+        //Regex to remove spaces and/or commas
+        const SEPARATOR = /[\s,]+/g;
+        this.app.technologies = inputString.split(SEPARATOR);
+    }
 
 }
