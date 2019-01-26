@@ -16,6 +16,7 @@ import './approve-apps.scss'
 export class ApproveAppComponent implements OnInit {
     apps:AppProfile[];
     selectedApp: AddAppModel;
+    showSpinner: Boolean = true;
 
     constructor(private appService:AppService, private router:Router) {
 
@@ -23,9 +24,10 @@ export class ApproveAppComponent implements OnInit {
 
     ngOnInit() {
         this.appService.getAppsFullDetails()
-            .subscribe(
-                apps =>  this.apps = apps
-            )
+            .subscribe(apps => {
+                this.showSpinner = false;
+                this.apps = apps;
+            })
 
     }
 

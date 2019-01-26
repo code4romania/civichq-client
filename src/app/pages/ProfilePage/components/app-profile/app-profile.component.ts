@@ -16,6 +16,7 @@ import './app-profile.component.scss';
 export class AppProfileComponent implements OnInit {
     errorMessage:string;
     app:AppProfile;
+    showSpinner:Boolean = true;
 
     constructor(private appProfileService: AppProfileService, private appService: AppService, private route: ActivatedRoute) {
     }
@@ -25,14 +26,22 @@ export class AppProfileComponent implements OnInit {
             if(params['id']){
                 let id = +params['id'];
                 this.appService.getApp(id)
-                    .subscribe(app => this.app = app );
+                    .subscribe(app => {
+                        this.showSpinner = false;
+                        this.app = app;
+                    });
             }
             else {
                 this.appProfileService.getAppProfile()
                     .subscribe(
-                        app => {this.app = app;},
-                        error =>  this.errorMessage = <any>error
-                    );
+                        app => {
+                            this.showSpinner = false;
+                            this.app = app;
+                        },
+                        error =>  {
+                            this.showSpinner = false;
+                            this.errorMessage = <any>error
+                        });
             }
 
         });

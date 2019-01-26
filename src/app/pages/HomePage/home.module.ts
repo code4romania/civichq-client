@@ -11,12 +11,13 @@ import { CategoryComponent } from './components/category/category.component';
 
 import { CarouselModule } from 'ng2-bootstrap/components/carousel';
 import { CategoriesService } from './../../services/category.service';
-
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     CarouselModule,
+    SharedModule,
     HomeRouting,
     HttpModule,
   ],
@@ -24,7 +25,7 @@ import { CategoriesService } from './../../services/category.service';
     HomeComponent,
     CategoriesNavComponent,
     CategoriesListComponent,
-    CategoryComponent,
+    CategoryComponent
   ],
   exports: [
     HomeComponent
