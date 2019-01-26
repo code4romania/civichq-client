@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 
@@ -9,11 +10,11 @@ module.exports = {
     'app': './src/main.ts'
   },
   output: {
-    path: 'build',
+    path: path.join(__dirname, 'build'),
     filename: '[name].[hash].js'
   },
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['.js', '.ts'],
     alias: {
       assets: './src/app/assets',
       shared: './src/app/shared',
@@ -24,29 +25,35 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'ts!angular2-template'
+        loader: 'ts-loader!angular2-template-loader'
       },
       {
         test: /\.html$/,
-        loader: 'raw'
+        loader: 'raw-loader'
       },
       {
         test: /\.(jpe|png|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core/,
+      path.resolve(__dirname, 'src'), // path to your src
+      {}
+    ),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+      name: ['app', 'vendor', 'polyfills'],
+      children: true,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'

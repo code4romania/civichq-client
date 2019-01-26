@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
@@ -10,47 +11,53 @@ module.exports = {
         'app': './src/main.ts'
     },
     output: {
-        path: 'dist',
+        path: path.join(__dirname, 'dist'),
         filename: '[name].[hash].js'
     },
     resolve: {
-        extensions: ['', '.js', '.ts']
+        extensions: ['.js', '.ts']
     },
     //devtool: 'cheap-source-map',
     module: {
         loaders: [
             {
                 test: /\.ts$/,
-                loader: 'ts!angular2-template'
+                loader: 'ts-loader!angular2-template-loader'
             },
             {
                 test: /\.html$/,
-                loader: 'raw'
+                loader: 'raw-loader'
             },
             {
                 test: /\.(jpe|jpg|png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
+                loader: 'file-loader?name=assets/[name].[hash].[ext]'
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass'
+                loader: 'style-loader!css-loader!sass-loader'
             }
         ]
     },
     plugins: [
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core/,
+            path.resolve(__dirname, 'src'), // path to your src
+            {}
+        ),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor', 'polyfills']
+            name: ['app', 'vendor', 'polyfills'],
+            children: true,
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
         new UglifyJsPlugin({
             beautify: false, //prod
-            mangle: { screw_ie8 : true, keep_fnames: true }, //prod
+            mangle: { screw_ie8: true, keep_fnames: true }, //prod
             compress: { screw_ie8: true }, //prod
             comments: false //prod
         }),
