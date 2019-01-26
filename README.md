@@ -52,6 +52,15 @@ Run npm install
 Run npm start
 ```
 
+#### Change in webpack.config.js to production url
+If localserver api is not availabale change to production one.
+```
+new DefinePlugin({
+    SERVER_ADDRESS: JSON.stringify("http://api.centrucivic.ro/api/")
+})
+```
+
+
 ## Feedback
 
 * Request a new feature on GitHub.
