@@ -15,6 +15,7 @@ import { AddAppModule } from './pages/AddAppPage/addApp.module';
 import { ApproveAppModule } from './pages/ApproveApp/approveApp.module';
 import { LoginModule } from './pages/LoginPage/login.module';
 import { SearchModule } from './pages/SearchPage/search.module';
+import { TermsModule } from "./pages/TermsPage/terms.module";
 
 import { AuthService } from './services/auth.service';
 import { enableProdMode } from '@angular/core';
@@ -33,6 +34,7 @@ enableProdMode();
     ApproveAppModule,
     LoginModule,
     SearchModule,
+    TermsModule,
     ReCaptchaModule
   ],
   providers: [AuthService],
