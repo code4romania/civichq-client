@@ -254,3 +254,11 @@
     }
   }
 }
+
+.facebook-menu {
+  .facebook-text {
+    @media($screen-sm) {
+      display: none;
+    }
+  }
+}
