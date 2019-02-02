@@ -80,6 +80,14 @@
 
   .nav {
     > li {
+
+      &.highlight {
+        background-color: $secondary;
+        > a {
+          color: white;
+        }
+      }
+
       @media ($screen-sm) {
         margin-left: ($distance / 6);
       }
