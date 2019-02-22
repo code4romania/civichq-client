@@ -1,5 +1,20 @@
 @import '../../assets/scss/variables';
 
+.header-branding {
+  text-align: center;
+  font-size: 16px;
+  padding: 6px;
+  .logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    img {
+      display: block;
+      width: 62px;
+    }
+  }
+}
+
 .navbar-custom {
   background: $primary;
   border: 0;
@@ -80,6 +95,14 @@
 
   .nav {
     > li {
+
+      &.highlight {
+        background-color: $secondary;
+        > a {
+          color: white;
+        }
+      }
+
       @media ($screen-sm) {
         margin-left: ($distance / 6);
       }
@@ -243,6 +266,14 @@
     @media ($screen-lg) {
       margin: 0 -4px 0 -2px;
       font-size: 28px;
+    }
+  }
+}
+
+.facebook-menu {
+  .facebook-text {
+    @media($screen-sm) {
+      display: none;
     }
   }
 }
