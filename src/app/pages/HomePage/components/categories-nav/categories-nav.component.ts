@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import './categories-nav.component.scss';
-
 @Component({
     selector: 'categories-nav',
     templateUrl: './categories-nav.component.html',
+    styleUrls: ['./categories-nav.component.scss']
 })
 
 export class CategoriesNavComponent implements OnInit{

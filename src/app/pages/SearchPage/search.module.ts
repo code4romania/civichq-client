@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { SearchRouting } from './config/search.routing';
 import { SearchComponent } from './components/search/search.component';
-import { AppService } from './../../services/app.service';
+import { AppService } from '../../services/app.service';
 
 
 @NgModule({
