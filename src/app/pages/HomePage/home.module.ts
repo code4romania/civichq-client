@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './components/home/home.component';
 
 import { HomeRouting } from './config/home.routing';
+import { BannerComponent } from './components/banner/banner.component';
 import { CategoriesNavComponent } from './components/categories-nav/categories-nav.component';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { CategoryComponent } from './components/category/category.component';
@@ -23,6 +24,7 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   declarations: [
     HomeComponent,
+    BannerComponent,
     CategoriesNavComponent,
     CategoriesListComponent,
     CategoryComponent
