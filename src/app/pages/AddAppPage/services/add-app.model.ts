@@ -9,6 +9,7 @@ export  class AddAppModel {
     appcreationdate: string;
     applogoname: string;
     apphashtags: string;
+    apptechnologies: string;
     ngoname: string;
     ngoemail: string;
     ngophone:string;

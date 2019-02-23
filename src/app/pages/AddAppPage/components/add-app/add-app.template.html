@@ -250,6 +250,27 @@
                         </div>
                     </div>
                 </div>
+
+                <div *ngIf="isAddingNewApp" class="form-group">
+                    <label>Tehnologiile folosite<span class="req">*</span></label>
+                    <ng-select [items]="technologies" name="appTechnologies" (data)="refreshValue($event)" [multiple]="true" (selected)="selectTechnologies($event)"
+                        (removed)="removeTechnologies($event)" placeholder="Alege tehnologiile aplicației tale">
+                    </ng-select>
+
+                    <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
+                        Acest câmp este obligatoriu.
+                    </div>
+                </div>
+
+                <div *ngIf="!isAddingNewApp" class="form-group">
+                    <label>Tehnologiile folosite<span class="req">*</span></label>
+                    <input name="appTechnologies" type="text" class="form-control" [(ngModel)]="app.apptechnologies" #ngoName="ngModel" 
+                        placeholder="Alege tehnologiile aplicației tale" />
+
+                    <div *ngIf="submitted" [hidden]="!appName.errors?.required" class="alert alert-danger">
+                        Acest câmp este obligatoriu.
+                    </div>
+                </div>
             </section>
             <div class="col-xs-12 form-actions">
                 <button *ngIf="isAddingNewApp" id="save" type="submit" class="btn btn-block btn-lg btn-cc pull-right">

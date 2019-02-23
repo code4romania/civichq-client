@@ -8,6 +8,7 @@ import { CivicFileValidationResult } from './../../../../shared/models/file-vali
 
 import { AppService } from './../../../../services/app.service';
 import { CategoriesService } from './../../../../services/category.service';
+import { TechnologiesService } from './../../../../services/technology.service';
 import { TagsService } from './../../../../services/tags.service';
 import { AddAppModel } from './../../services/add-app.model';
 
@@ -16,14 +17,14 @@ import './add-app.component.scss';
 
 @Component({
     selector: 'add-app',
-    providers: [AppService, TagsService, CategoriesService, UploadService],
+    providers: [AppService, TagsService, CategoriesService, UploadService, TechnologiesService],
     templateUrl: './add-app.template.html',
 })
 
 export class AddAppComponent implements OnInit, OnChanges {
 
 
-    constructor(private appService: AppService, private tagsService: TagsService, private categoriesService: CategoriesService, private uploadService: UploadService) {
+    constructor(private appService: AppService, private tagsService: TagsService, private categoriesService: CategoriesService, private uploadService: UploadService, private technologiesService: TechnologiesService) {
 
         this.submitted = false;
         this.isAddingNewApp = true;
@@ -34,9 +35,12 @@ export class AddAppComponent implements OnInit, OnChanges {
     @Input() isAddingNewApp: boolean
     public categories: Array<Object> = [{ id: null, text: 'Alege o categorie' }];
     public tags: Array<string> = [];
+    public technologies: Array<string> = [];
     private value: any = {};
     private selectedAppTags: Array<string> = [];
+    private selectedAppTechnologies: Array<string> = [];
     private newTag: string;
+    private newTechnology: string;
     private submitted: boolean;
     private message;
     private error;
@@ -54,6 +58,7 @@ export class AddAppComponent implements OnInit, OnChanges {
         if (changes['app']) {
             this.submitted = false;
             this.newTag = '';
+            this.newTechnology = '';
             this.value = this.app ? this.app.apphashtags : '';
             
             this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split("#"): [];
@@ -81,12 +86,22 @@ export class AddAppComponent implements OnInit, OnChanges {
                     return { id: category.id, text: category.catname }
                 }))
             })
+        this.technologiesService.getTechnologies()
+            .subscribe(response => {
+                this.technologies = response
+            })
     }
 
     public selectTags(value: any): void {
         //console.log('raised selectTags');
         this.newTag = '';
         this.selectedAppTags.push(value.text)
+    }
+
+    public selectTechnologies(value: any): void {
+        //console.log('raised selectTags');
+        this.newTechnology = '';
+        this.selectedAppTechnologies.push(value.text)
     }
 
 
@@ -105,6 +120,11 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.selectedAppTags.splice(this.selectedAppTags.indexOf(value.text), 1);
     }
 
+    public removeTechnologies(value: any): void {
+        //console.log('raised removeTags');
+        this.selectedAppTechnologies.splice(this.selectedAppTechnologies.indexOf(value.text), 1);
+    }
+
     public loadTags(value: any): void {
         value.charAt(0) == '#' ? this.newTag = value : this.newTag = '#' + value;
         let searchTerm = value.replace('#', '');
@@ -115,6 +135,22 @@ export class AddAppComponent implements OnInit, OnChanges {
                         return { text: item['Tag'] }
                     });
                 })
+        }
+
+
+    }
+
+    public loadTechnologies(value: any): void {
+        let searchTerm = value;
+        if (searchTerm && searchTerm.length) {
+            
+
+            // this.tagsService.getTags(searchTerm)
+            //     .subscribe(tags => {
+            //         this.tags = tags.map(function (item) {
+            //             return { text: item['Tag'] }
+            //         });
+            //     })
         }
 
 
@@ -246,6 +282,8 @@ export class AddAppComponent implements OnInit, OnChanges {
                         //console.log('app hashtags before '+ this.app.apphashtags)
                         this.app.apphashtags.length ? this.app.apphashtags = this.app.apphashtags.split(" #").join("#")
                             : this.app.apphashtags = "";
+                        this.app.apptechnologies.length ? this.app.apptechnologies = this.app.apptechnologies
+                            : this.app.apptechnologies = "";
                         
                         //console.log('app hashtags after '+ this.app.apphashtags)
 
@@ -255,8 +293,10 @@ export class AddAppComponent implements OnInit, OnChanges {
                                 //console.log('response este')
                                 //console.log(response)
                                 if (this.message === 'success') {
+
                                     this.error = null;
                                     this.setDefaultsForLogoWhenEditingApp();
+                                    window.scrollTo(0, 0);
                                     console.log('succes')
 
                                 }
@@ -295,6 +335,8 @@ export class AddAppComponent implements OnInit, OnChanges {
                     if (form.valid) {
                         this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
                             : this.app.apphashtags = this.newTag;
+                        this.selectedAppTechnologies.length ? this.app.apptechnologies = this.selectedAppTechnologies.toString() + this.newTechnology
+                            : this.app.apptechnologies = this.newTechnology;
 
                         this.appService.addApp(this.app)
                             .subscribe(response => {
