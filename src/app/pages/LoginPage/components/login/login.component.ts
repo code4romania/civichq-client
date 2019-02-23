@@ -12,6 +12,8 @@ import './login.scss';
 
 export class LoginComponent implements OnInit {
     private submitted:boolean = false;
+    private showSpinner = false;
+
     errors: string
     private user = {
         username: '',
@@ -25,10 +27,13 @@ export class LoginComponent implements OnInit {
     }
     login(form){
         this.submitted = true;
+        this.showSpinner = true;
+
         if(form.valid){
             this.auth.login(form.value.username, form.value.password)
                 .subscribe(res => {
                     console.log('res',res)
+                    this.showSpinner = false;
                     if(res.success){
                         this.router.navigate(['/approve-app'])
                     }

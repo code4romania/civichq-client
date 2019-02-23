@@ -14,6 +14,7 @@ import './search.component.scss';
 export class SearchComponent implements OnInit {
     filter:string;
     apps: App;
+    showSpinner:Boolean = true;
     constructor(private route:ActivatedRoute, private appService: AppService,private router:Router ) {
 
     }
@@ -23,8 +24,10 @@ export class SearchComponent implements OnInit {
             this.filter = null;
             this.filter = data['filter'];
             if (this.filter) {
+                this.showSpinner = true;
                 this.appService.searchBy(this.filter).subscribe((apps)=>{
-                    this.apps = apps
+                    this.showSpinner = false;
+                    this.apps = apps;                    
                 })
             }
         })

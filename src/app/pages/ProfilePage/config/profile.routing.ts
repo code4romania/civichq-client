@@ -12,4 +12,4 @@ const appRoutes:Routes = [
 ];
 
 
-export const ProfileRouting =  RouterModule.forRoot(appRoutes, { useHash: true });
+export const ProfileRouting =  RouterModule.forChild(appRoutes);

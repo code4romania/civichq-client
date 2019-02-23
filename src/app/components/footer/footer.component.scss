@@ -1,117 +1,98 @@
 @import '../../assets/scss/variables';
 @import '../../assets/scss/tools';
-
 .footer {
-  background: $white;
-  border-top: 1px solid lighten($primary, 50);
-  font-family: $font-monospace;
-  letter-spacing: 1px;
-  margin-top: $distance;
-  padding: $distance 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Titillium Web", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  border-top: 2px solid $primary;
+  margin-top: 3rem;
+  padding: 6rem 1.5rem 6rem;
+  background-color: white;
   text-align: center;
-
-  @media ($screen-md) {
-    text-align: left;
-  }
-}
-
-.legal,
-.info {
-  font-size: 12px;
-  line-height: 16px;
-  margin: ($distance / 3) 0;
-
-  @media ($screen-md) {
-    margin-bottom: 0;
-  }
-}
-
-.code {
-  @media ($screen-md) {
-    text-align: right;
-
-    .legal {
-      text-align: right;
+  .navbar {
+    display: flex;
+    .navbar-item {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding: 0.5rem 0.75rem;
+      .button {
+        background-color: #fff;
+        border-color: #dbdbdb;
+        border-width: 1px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #363636;
+        cursor: pointer;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-bottom: calc(0.375em - 1px);
+        padding-left: .75em;
+        padding-right: .75em;
+        padding-top: calc(0.375em - 1px);
+        text-align: center;
+        white-space: nowrap;
+        font-size: 16px;
+      }
+      .button.is-success {
+        background-color: #6FCF97;
+        border-color: transparent;
+        color: #fff;
+      }
+      .button.is-text {
+        background-color: transparent;
+        border-color: transparent;
+        color: #4a4a4a;
+        text-decoration: underline;
+      }
+      .button.is-text:hover,
+      .button.is-text:active {
+        background-color: #f5f5f5;
+        color: #363636;
+      }
+      .has-text-primary {
+        color: #3A54A4 !important;
+      }
     }
   }
-}
-
-.legal {
-  opacity: .6;
-}
-
-.info {
-  color: lighten($primary, 50);
-  margin-bottom: ($distance * 2 / 3);
-
-  @media ($screen-md) {
-    margin-bottom: 0;
+  .navbar,
+  .social {
+    justify-content: center;
   }
-
-  a {
-    @include underline(lighten($primary, 50));
-  }
-}
-
-.social {
-  li {
-    display: inline-block;
-  }
-
-  a {
-    color: lighten($primary, 50);
-    display: inline-block;
-    font-size: 24px;
-    padding: 5px 10px;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: $primary;
-      text-decoration: none;
+  .social {
+    padding: 2.125rem 0 3.25rem;
+    align-items: stretch;
+    font-size: 3rem;
+    display: flex;
+    a {
+      color: #3A54A4;
     }
-
-    span {
-      font-size: 12px;
-      left: -5px;
-      line-height: 24px;
-      position: relative;
-      top: -5px;
+    li {
+      align-items: center;
+      display: flex;
+      margin: 0 7px 0 7px;
     }
   }
-}
-
-.footer-logo {
-  color: lighten($primary, 50);
-  font-size: 30px;
-  height: 30px;
-  line-height: 30px;
-
-  .fa {
-    color: lighten($primary, 50);
-    font-size: 20px;
+  p {
+    font-size: 13px;
+    line-height: 22px;
   }
-
-  &:hover {
-    color: $primary;
-
-    .fa {
-      color: $secondary;
+  .copy {
+    font-family: Courier, monospace;
+    font-size: 0.8125rem;
+    .brand {
+      display: inline-block;
+      margin: 0 0 1rem;
     }
-  }
-}
-
-.code-logo {
-  display: inline-block;
-  height: 30px;
-  opacity: .5;
-
-  img {
-    height: 30px;
-    width: auto;
-  }
-
-  &:hover {
-    opacity: 1;
+    .logo {
+      width: 10.7125rem;
+      height: 4.875rem;
+    }
   }
 }
