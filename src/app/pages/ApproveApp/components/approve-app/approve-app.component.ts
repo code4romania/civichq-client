@@ -28,12 +28,20 @@ export class ApproveAppComponent implements OnInit {
                 this.showSpinner = false;
                 this.apps = apps;
             })
-
     }
 
     updateApp(app) {
         this.appService.approveApp(app.appdetail.id)
             .subscribe(success => console.log('success?', success))
+
+        let scrollToTop = window.setInterval(() => {
+            let pos = window.pageYOffset;
+            if (pos > 0) {
+                window.scrollTo(0, pos - 50); // how far to scroll on each step
+            } else {
+                window.clearInterval(scrollToTop);
+            }
+        }, 16);
     }
 
     editApp(app: AppProfile){
