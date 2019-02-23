@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 
 export class CategoryComponent implements OnInit {
     @Input() category;
-    private noOfApps = 1;
-    private theSlides = [];
+    public noOfApps = 1;
+    public theSlides = [];
 
 
     constructor(@Inject('Window') window:Window, private router:Router) {

@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
     private submitted: boolean = false;
     errors: string;
-    private showSpinner = false;
+    public showSpinner = false;
     private user = {
         username: '',
         password: ''

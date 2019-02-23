@@ -7,8 +7,9 @@ import {CategoriesListComponent} from './components/categories-list/categories-l
 import {CarouselModule} from "ngx-bootstrap";
 import {CategoryComponent} from './components/category/category.component';
 import {CategoriesService} from '../../services/category.service';
-import { BannerComponent } from './components/banner/banner.component';
-import { SharedModule } from '../../shared/shared.module';
+import {BannerComponent} from './components/banner/banner.component';
+import {SharedModule} from '../../shared/shared.module';
+import {AppNamePipe} from "./services/app.pipe";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { SharedModule } from '../../shared/shared.module';
     BannerComponent,
     CategoriesNavComponent,
     BannerComponent,
+    AppNamePipe,
     CategoriesListComponent,
     CategoryComponent
   ],
