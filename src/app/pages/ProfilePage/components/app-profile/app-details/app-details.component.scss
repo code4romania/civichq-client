@@ -75,19 +75,14 @@
 .profile-technologies {
   margin: 6px 0;
 
-  &-label {
-    font-weight: bold;
-  }
-
   &-pill {
     font-weight: bold;
     background: #45285b;
     display: inline-block;
-    padding: 1px 14px;
+    padding: 3px 15px;
     border-radius: 15px;
     color: white;
-    margin: 0 1px;
-    font-size: 12px;
+    margin-right: 5px;
   }
 }
 

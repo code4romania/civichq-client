@@ -14,4 +14,12 @@ export class AppDetailsComponent {
 
     @Input() appDetails: AppDetails;
 
+    technologies: string[];
+
+    ngOnInit(){
+    	console.log(this);
+    	this.technologies = this.appDetails.technologies.split(',').map(e=>e.trim());
+
+    }
+
 }
