@@ -7,4 +7,4 @@ const appRoutes:Routes = [
         path: 'add-app', component: AddAppComponent
     }
 ];
-export const AddAppRouting =  RouterModule.forRoot(appRoutes, { useHash: true });
+export const AddAppRouting =  RouterModule.forChild(appRoutes);

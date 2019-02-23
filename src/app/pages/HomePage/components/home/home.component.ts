@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit{
     categoryNames = [];
     selectedCategory: number = 1;
 
+    showSpinner = true;
+
     constructor(private categoriesService: CategoriesService){ }
 
     ngOnInit() {
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit{
             this.categories = res;
             this.categoryNames =
               res.map(category => { return {name: category.catname, id: category.id} });
+            this.showSpinner = false;
           });
     }
 
