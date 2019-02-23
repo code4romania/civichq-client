@@ -5,6 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { ApproveAppComponent } from './components/approve-app/approve-app.component';
 import { ApproveAppRouting } from './config/approve-app.routing';
 import {LoggedInGuard} from '../../services/login-guard';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {LoggedInGuard} from '../../services/login-guard';
         ApproveAppRouting,
         BrowserModule,
         FormsModule,
-        AddAppModule
+        AddAppModule,
+        SharedModule
     ],
     declarations: [
         ApproveAppComponent

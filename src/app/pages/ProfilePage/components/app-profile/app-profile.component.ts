@@ -16,6 +16,7 @@ import { AppService } from '../../../../services/app.service';
 export class AppProfileComponent implements OnInit {
     errorMessage:string;
     app:AppProfile;
+    showSpinner:Boolean = true;
 
     constructor(private appProfileService: AppProfileService, private appService: AppService, private route: ActivatedRoute) {
     }
@@ -25,8 +26,10 @@ export class AppProfileComponent implements OnInit {
             if (params['id']) {
                 let id = +params['id'];
                 this.app = await this.appService.getApp(id);
+                this.showSpinner = false;
             } else {
                 this.app = await this.appProfileService.getAppProfile();
+                this.showSpinner = false;
             }
 
         });

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
     categories: Category[] = [];
     categoryNames = [];
     selectedCategory: number = 1;
+    showSpinner = true;
 
     constructor(private categoriesService: CategoriesService) {
     }
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit {
     async ngOnInit() {
         this.categories = await this.categoriesService.getCategoriesWithApps();
         this.categoryNames = this.categories.map(category => {
-            return {name: category.catname, id: category.id}
+            return {name: category.catname, id: category.id};
         });
+        this.showSpinner = false;
     }
 
     onCategoryClick(id) {

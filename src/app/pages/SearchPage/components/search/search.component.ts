@@ -13,6 +13,7 @@ import  { App } from '../../../../shared/models/app.model';
 export class SearchComponent implements OnInit {
     filter:string;
     apps: App;
+    showSpinner:Boolean = true;
     constructor(private route:ActivatedRoute, private appService: AppService,private router:Router ) {
 
     }
@@ -23,9 +24,11 @@ export class SearchComponent implements OnInit {
             this.filter = data['filter'];
             if (this.filter) {
                 this.apps = await this.appService.searchBy(this.filter);
+                this.showSpinner = false;
             }
         })
     }
+
     goToApp(app) {
         let appName = app.appName = app.appName.replace(/\s+/g, '');
         let link = ['/apps', app.id, appName];

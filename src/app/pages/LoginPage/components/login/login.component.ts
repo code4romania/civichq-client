@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
     private submitted: boolean = false;
     errors: string;
+    private showSpinner = false;
     private user = {
         username: '',
         password: ''
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
         if (form.valid) {
             let res = await this.auth.login(form.value.username, form.value.password);
+            this.showSpinner = false;
             if (res.success) {
                 this.router.navigate(['/approve-app'])
             } else {

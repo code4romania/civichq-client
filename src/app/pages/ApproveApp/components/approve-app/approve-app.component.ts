@@ -15,6 +15,7 @@ import { AddAppModel } from '../../../AddAppPage/services/add-app.model';
 export class ApproveAppComponent implements OnInit {
     apps:AppProfile[];
     selectedApp: AddAppModel;
+    showSpinner: Boolean = true;
 
     constructor(private appService:AppService, private router:Router) {
 
@@ -22,6 +23,7 @@ export class ApproveAppComponent implements OnInit {
 
     async ngOnInit() {
         this.apps = await this.appService.getAppsFullDetails();
+        this.showSpinner = false;
     }
 
     updateApp(app) {
