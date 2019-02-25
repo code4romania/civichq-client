@@ -34,7 +34,7 @@ typescript
 
 ### Frontend framework
 
-angular 6, bootstrap
+angular 7, bootstrap
 
 ### Package managers
 
