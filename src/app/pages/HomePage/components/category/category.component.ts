@@ -1,22 +1,20 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import './category.component.scss';
-import { AppProfile } from '../../../../shared/models/app-profile.model';
-
 @Component({
     selector: 'category',
     templateUrl: './category.component.html',
+    styleUrls: ['./category.component.scss']
 })
 
 export class CategoryComponent implements OnInit {
     @Input() category;
-    private noOfApps = 1;
-    private theSlides = [];
-    window:Window;
+    public noOfApps = 1;
+    public theSlides = [];
+
 
     constructor(@Inject('Window') window:Window, private router:Router) {
-        this.noOfApps = this.getNumberOfAppsPerSlide(window.innerWidth);
+        this.noOfApps = CategoryComponent.getNumberOfAppsPerSlide(window.innerWidth);
     }
 
     ngOnInit() {
@@ -38,7 +36,7 @@ export class CategoryComponent implements OnInit {
     onResize(event) {
         const size = event.target.innerWidth;
         const oldNoOfApps = this.noOfApps;
-        this.noOfApps = this.getNumberOfAppsPerSlide(size);
+        this.noOfApps = CategoryComponent.getNumberOfAppsPerSlide(size);
         if (oldNoOfApps != this.noOfApps) {
             this.theSlides = [];
             setTimeout(() => {
@@ -47,7 +45,7 @@ export class CategoryComponent implements OnInit {
         }
     }
 
-    getNumberOfAppsPerSlide(size) {
+    static getNumberOfAppsPerSlide(size) {
         if (size > 1200) {
             return 4;
         } else if (size > 991 ) {

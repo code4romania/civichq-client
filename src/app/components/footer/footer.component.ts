@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
-import { Subscription }   from 'rxjs/Subscription';
+import { AuthService } from '../../services/auth.service';
+import { Subscription }   from 'rxjs';
 
-import './footer.component.scss';
+
 
 @Component({
     selector: 'footer-component',
-    templateUrl: './footer.template.html'
+    templateUrl: './footer.template.html',
+    styleUrls: ['./footer.component.scss']
 })
 
 export class FooterComponent {
@@ -15,9 +16,6 @@ export class FooterComponent {
     subscription: Subscription;
 
     constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute){
-        this.subscription = authService.isLoggedIn$.subscribe((data)=>{
-            this.isLoggedIn = data;
-        })
     }
 
     logout(){
