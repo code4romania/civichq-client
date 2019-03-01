@@ -1,6 +1,6 @@
 import { AppProfile } from './../../../../shared/models/app-profile.model';
 import { Router } from '@angular/router';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { AppService } from '../../../../services/app.service';
 import { AddAppModel } from '../../../AddAppPage/services/add-app.model';
@@ -18,6 +18,9 @@ export class ApproveAppComponent implements OnInit {
     selectedApp: AddAppModel;
     showSpinner: Boolean = true;
 
+    @ViewChild('addAppComponent', {read: ElementRef})
+    addAppComponentRef : ElementRef;
+
     constructor(private appService:AppService, private router:Router) {
 
     }
@@ -34,14 +37,7 @@ export class ApproveAppComponent implements OnInit {
         this.appService.approveApp(app.appdetail.id)
             .subscribe(success => console.log('success?', success))
 
-        let scrollToTop = window.setInterval(() => {
-            let pos = window.pageYOffset;
-            if (pos > 0) {
-                window.scrollTo(0, pos - 50); // how far to scroll on each step
-            } else {
-                window.clearInterval(scrollToTop);
-            }
-        }, 16);
+        this.addAppComponentRef.nativeElement.scrollIntoView({behavior: "smooth", block:"start"});
     }
 
     editApp(app: AppProfile){
@@ -72,6 +68,7 @@ export class ApproveAppComponent implements OnInit {
         this.selectedApp.ngophone = app.ngodetail.phone;
         this.selectedApp.ngotwitter = app.ngodetail.twitter;
         this.selectedApp.ngoid = app.ngodetail.id;
+        
         
     }
 

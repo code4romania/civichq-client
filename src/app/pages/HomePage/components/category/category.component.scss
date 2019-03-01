@@ -88,11 +88,6 @@
   height: ($distance / 2);
   width: ($distance / 2);
 
-  .glyphicon{
-    font-size: inherit;
-    width: initial;
-  }
-
   @media ($screen-md) {
     margin-top: -65px;
     height: ($distance * 2 / 3);
