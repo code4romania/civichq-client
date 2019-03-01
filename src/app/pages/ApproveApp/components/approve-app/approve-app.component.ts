@@ -5,12 +5,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../../../../services/app.service';
 import { AddAppModel } from '../../../AddAppPage/services/add-app.model';
 
-import './approve-apps.scss'
-
 @Component({
     selector: 'approve-app',
     providers: [AppService],
     templateUrl: './approve-app.template.html',
+    styleUrls: ['./approve-apps.scss']
 })
 
 export class ApproveAppComponent implements OnInit {
@@ -25,17 +24,14 @@ export class ApproveAppComponent implements OnInit {
 
     }
 
-    ngOnInit() {
-        this.appService.getAppsFullDetails()
-            .subscribe(apps => {
-                this.showSpinner = false;
-                this.apps = apps;
-            })
+    async ngOnInit() {
+        this.apps = await this.appService.getAppsFullDetails();
+        this.showSpinner = false;
     }
 
     updateApp(app) {
         this.appService.approveApp(app.appdetail.id)
-            .subscribe(success => console.log('success?', success))
+            .then(success => console.log('success?', success))
 
         this.addAppComponentRef.nativeElement.scrollIntoView({behavior: "smooth", block:"start"});
     }
@@ -75,7 +71,6 @@ export class ApproveAppComponent implements OnInit {
     private getDateAsString(theDateAsString): string{
         var simpleCreationDate = new Date(theDateAsString);
         var dateAsString = simpleCreationDate.getFullYear() + '-' + this.getMonthNoAsString(simpleCreationDate) + '-' + this.getDayNoAsString(simpleCreationDate);
-        //console.log('data este ' + dateAsString);
         return dateAsString;
     }
 

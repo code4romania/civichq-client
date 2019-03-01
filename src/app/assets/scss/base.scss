@@ -1,7 +1,14 @@
 @import 'variables';
 @import 'tools';
-
 @import 'inputs';
+
+body {
+  background-color: $light-grey;
+  color: $font-black;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+}
 
 h1 {
   font-weight: 700;

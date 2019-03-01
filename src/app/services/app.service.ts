@@ -1,132 +1,66 @@
-import { AppProfile } from './../shared/models/app-profile.model';
-import { AuthService } from './auth.service';
-import { AuthResponse } from './../shared/models/auth-response.model';
-import { Injectable } from '@angular/core';
-import { Response, Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs';
-import { Subject }    from 'rxjs/Subject';
-import { BaseService } from "./base.service";
-
-import { App } from './../shared/models/app.model';
-
+import {AppProfile} from '../shared/models/app-profile.model';
+import {AuthService} from './auth.service';
+import {Injectable} from '@angular/core';
+import {BaseService} from "./base.service";
+import {App} from '../shared/models/app.model';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class AppService extends BaseService {
-    
-    private token:string;
 
-    constructor(private http: Http, private auth: AuthService) {
+    private token: string;
+
+    constructor(private http: HttpClient, private auth: AuthService) {
         super(http);
     }
 
-    getApps() {
-        return this.http.get(this.rootAddress + 'apps')
-            .map((response: Response) => {
-                return response.json().map(
-                    app => this.parseApps(app)
-                );
-            })
+    async getApps() {
+        let apps: any[] = await this.http.get<any>(this.rootAddress + 'apps').toPromise();
+        return apps.map(app => AppService.parseApps(app));
     }
 
-    getAppsFullDetails(): Observable<AppProfile[]> {
-        return this.http.get(this.rootAddress + 'apps')
-            .map((response: Response) => {
-                return (response.json() as AppProfile[]).map(app => this.updateStringToBoolean(app));
-            });
+    async getAppsFullDetails() {
+        let appDetails: AppProfile[] = await this.http.get<AppProfile[]>(this.rootAddress + 'apps').toPromise();
+        return appDetails.map(app => AppService.updateStringToBoolean(app));
+
     }
 
-    updateStringToBoolean(app: AppProfile): AppProfile{
+    static updateStringToBoolean(app: AppProfile): AppProfile {
         app.appdetail.isapprovedbool = (app.appdetail.isapproved === 'true');
         return app;
     }
 
-    getApp(id) {
-        return this.auth.loginSentinel().flatMap(() => {
-            const url = `${this.rootAddress + 'appprofile'}/${id}`;
-
-            return this.http.get(url, { headers: this.auth.headers })
-                .map((response: Response) => {
-                    return response.json()
-                });
-        });
-
+    async getApp(id) {
+        const url = `${this.rootAddress + 'appprofile'}/${id}`;
+        return await this.http.get<AppProfile>(url).toPromise();
     }
 
-    addApp(app){
-        return this.auth.loginSentinel().flatMap(() => {
-            const url = `${this.rootAddress + 'addapp'}`;
-            return this.http.post(url, JSON.stringify(app), { headers: this.auth.headers })
-                .map((response: Response) => {
-                    return response.json()
-                });
-        });
+    async addApp(app) {
+        const url = `${this.rootAddress + 'addapp'}`;
+        return await this.http.post(url, app).toPromise();
     }
 
-    editApp(app){
-        return this.auth.loginSentinel().flatMap(() => {
-            const url = `${this.rootAddress + 'editapp'}`;
-            console.log('url este ' + url)
-            return this.http.put(url, JSON.stringify(app), { headers: this.auth.headers })
-                .map((response: Response) => {
-                    return response.json()
-                });
-        });
+    async editApp(app) {
+        const url = `${this.rootAddress + 'editapp'}`;
+        return await this.http.put(url, app).toPromise();
     }
 
-    approveApp(appid: number) {
+    async approveApp(appid: number) {
         const urlupd = `${this.rootAddress + 'updateapp'}/${appid}`;
-
-        return this.getToken().map((resp: Response) => {
-
-            if (this.token) {
-                this.headers.set(this.authHeaderName, this.token);
-
-
-                return this.http.put(urlupd, '', { headers: this.headers })
-                    .toPromise()
-                    .then(r => r.json())
-                    .catch(err => JSON.stringify({success: false}));
-            }
-
-        });
+        return await this.http.put(urlupd, '',).toPromise();
     }
 
-    searchBy(src:string):Observable<any> {
+    async searchBy(src: string) {
         const url = `${this.rootAddress + 'search'}/${src}`;
         if (!src) {
             return;
         }
-
-        return this.auth.loginSentinel().flatMap(() => {
-            return this.http.get(url, {headers: this.auth.headers})
-                .map((response: Response) => {
-                    return response.json().map(
-                        app => this.parseAppsFromSearch(app)
-                    );
-                });
-        })
+        let appsFromSearch: any = await this.http.get(url).toPromise();
+        return appsFromSearch.map(app => AppService.parseAppsFromSearch(app));
     }
 
-    getToken():Observable<any> {
-        const url = `${this.rootAddress + 'auth'}`;
 
-
-        //console.log('Form stringify este ' + JSON.stringify({ username: 'code4', password: 'civitas123#' }));
-
-        return this.http.post(url,
-            JSON.stringify({username: 'code4', password: 'civitas123#'}),
-            {headers: this.headers})
-            .map((response:Response) => {
-                let r = response.json() as AuthResponse;
-                //console.log('r este ' + JSON.stringify(r));
-                if (r) {
-                    this.token = r.token;
-                    //console.log(`Token (getToken) este ${this.token}`);
-                }
-            });
-    }
-
-    parseApps(apiApp):App {
+    static parseApps(apiApp): App {
         return {
             id: apiApp.appdetail.id,
             appName: apiApp.appdetail.name,
@@ -136,7 +70,7 @@ export class AppService extends BaseService {
         }
     }
 
-    parseAppsFromSearch(apiApp):App {
+    static parseAppsFromSearch(apiApp): App {
         return {
             id: apiApp.AppId,
             appName: apiApp.AppName,
