@@ -124,15 +124,15 @@
                     </div>
                 </div>
 
-                <div *ngIf="isAddingNewApp" class="form-group">
-                    <ng-select [items]="tags" name="appTags" (data)="refreshValue($event)" [multiple]="true" (selected)="selectTags($event)"
-                        (removed)="removeTags($event)" (typed)="loadTags($event)" placeholder="Alege un #hastag pentru aplicația ta">
+                <div class="form-group">
+                    <ng-select class="form-control"  name="appTags" placeholder="Alege un #hashtag pentru aplicația ta"
+                               bindLabel="Tag" bindValue="Tag" notFoundText="#hashtag-ul introdus nu există"
+                               typeToSearchText ="Scrie pentru a căuta" loadingText="Se incarcă"
+                               addTagText="Adaugă #hashtag-ul"
+                               [items]="tagsObservable | async" [multiple]="true" [addTag]="true"
+                               [(ngModel)]="selectedAppTags" [typeahead]="tagInput"
+                               [loading]="tagsLoading">
                     </ng-select>
-                </div>
-
-                <div *ngIf="!isAddingNewApp" class="form-group">
-                    <input name="appTags" type="text" class="form-control" [(ngModel)]="app.apphashtags" #ngoName="ngModel" 
-                        placeholder="Alege un #hastag pentru aplicația ta" />
                 </div>
 
             </section>

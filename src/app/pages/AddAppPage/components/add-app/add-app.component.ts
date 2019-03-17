@@ -6,6 +6,9 @@ import {AppService} from '../../../../services/app.service';
 import {CategoriesService} from '../../../../services/category.service';
 import {TagsService} from '../../../../services/tags.service';
 import {AddAppModel} from '../../services/add-app.model';
+import {concat, Observable, of, Subject} from "rxjs";
+import {catchError, debounceTime, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
+import {AppTag} from "../../../../shared/models/app-tag.model";
 
 
 
@@ -28,9 +31,11 @@ export class AddAppComponent implements OnInit, OnChanges {
     @Input() app: AddAppModel;
     @Input() isAddingNewApp: boolean;
     public categories: Array<Object> = [{id: null, text: 'Alege o categorie'}];
-    public tags: Array<string> = [];
+    public tagsObservable: Observable<AppTag[]>;
+    public tagInput: Subject<String> = new Subject<String>();
+    public tagsLoading: boolean = false;
     private value: any = {};
-    private selectedAppTags: Array<string> = [];
+    public selectedAppTags: string[] = [];
     private newTag: string;
     private submitted: boolean;
     private message;
@@ -50,7 +55,7 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.submitted = false;
             this.newTag = '';
             this.value = this.app ? this.app.apphashtags : '';
-            this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split("#") : [];
+            this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split(" ") : [];
         }
     }
 
@@ -62,6 +67,7 @@ export class AddAppComponent implements OnInit, OnChanges {
         } else {
             this.setDefaultsForLogoWhenEditingApp();
         }
+        this.initTagsInput();
         this.categoriesService.getCategories()
             .then(cats => {
                 this.categories = this.categories.concat(cats.map((category) => {
@@ -83,19 +89,22 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.value = value;
     }
 
-    public removeTags(value: any): void {
-        this.selectedAppTags.splice(this.selectedAppTags.indexOf(value.text), 1);
-    }
-
-    public async loadTags(value: any) {
-        value.charAt(0) == '#' ? this.newTag = value : this.newTag = '#' + value;
-        let searchTerm = value.replace('#', '');
-        if (searchTerm && searchTerm.length) {
-            let tags = await this.tagsService.getTags(searchTerm);
-            this.tags = tags.map((item) => {
-                return item['Tag'];
-            });
-        }
+    public initTagsInput() {
+        this.tagsObservable = concat(
+            of([]), // default items
+            this.tagInput.pipe(
+                debounceTime(200),
+                distinctUntilChanged(),
+                tap(() => this.tagsLoading = true),
+                switchMap(term => {
+                    let searchTerm = term.replace('#', '');
+                    return this.tagsService.getTags(searchTerm).pipe(
+                        catchError(() => of([])), // empty list on error
+                        tap(() => this.tagsLoading = false)
+                    );
+                })
+            )
+        );
     }
 
     appLogoChangeEvent(fileInput: any) {
@@ -170,6 +179,20 @@ export class AddAppComponent implements OnInit, OnChanges {
 
     }
 
+
+    private parseAppTagsForSave(): string {
+        if (this.selectedAppTags.length) {
+            //an item may contain whitespaces: create hashtag for each word.
+            this.selectedAppTags = this.selectedAppTags.join(" ").split(" ").map(tag => {
+                //add # when it does not exist.
+                return tag[0] !== "#" ? "#" + tag : tag;
+            });
+            return this.selectedAppTags.join(" ");
+        } else {
+            return "";
+        }
+    }
+
     private editExistingApp(form) {
         this.submitted = true;
 
@@ -197,8 +220,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                 if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
 
                     if (form.valid) {
-                        this.app.apphashtags.length ? this.app.apphashtags = this.app.apphashtags.split(" #").join("#")
-                            : this.app.apphashtags = "";
+                        this.app.apphashtags = this.parseAppTagsForSave();
 
                         let response = await this.appService.editApp(this.app);
                         this.message = response['data'];
@@ -238,8 +260,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                 if (this.isAppLogoUploaded && this.isNgoLogoUploaded) {
 
                     if (form.valid) {
-                        this.selectedAppTags.length ? this.app.apphashtags = this.selectedAppTags.toString() + this.newTag
-                            : this.app.apphashtags = this.newTag;
+                        this.app.apphashtags = this.parseAppTagsForSave();
 
                         var response = await this.appService.addApp(this.app);
 
