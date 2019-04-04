@@ -35,13 +35,13 @@ export class ApproveAppComponent implements OnInit {
         this.selectedApp = new AddAppModel();
 
         this.selectedApp.appcategoryid = app.appdetail.categoryid;
-        this.selectedApp.appcreationdate =  this.getDateAsString(app.appdetail.creationdate); //;
+        this.selectedApp.appcreationdate =  this.getDateAsString(app.appdetail.creationdate);
         this.selectedApp.appdescription = app.appdetail.description;
         this.selectedApp.appfacebook = app.appdetail.facebook;
         this.selectedApp.appgithub = app.appdetail.github;
-        
-        this.selectedApp.apphashtags = (app.appdetail.hashtags) ? app.appdetail.hashtags.toString(): '';
 
+        this.selectedApp.apphashtags = (app.appdetail.hashtags) ? app.appdetail.hashtags.toString() : '';
+        this.selectedApp.apptechnologies = (app.appdetail.technologies) ? app.appdetail.technologies.toString() : '';
         this.selectedApp.appid = app.appdetail.id;
         this.selectedApp.applogoname = app.appdetail.logoname;
         this.selectedApp.appname = app.appdetail.name;

@@ -10,6 +10,7 @@ export class AppDetails{
     categoryid: number;
     categoryname: string;
     hashtags: string[];
+    technologies: string[];
     isapproved: string;
     isapprovedbool: boolean;
 }
