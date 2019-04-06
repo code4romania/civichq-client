@@ -26,6 +26,7 @@ This repo holds the client of Centru Civic app.
 This project is built by amazing volunteers and you can be one of them! Here's a list of ways in [which you can contribute to this project](.github/CONTRIBUTING.MD).
 
 ## Built With
+Angular-CLI
 
 ### Programming languages
 
@@ -33,11 +34,11 @@ typescript
 
 ### Frontend framework
 
-angular 2, bootstrap
+angular 7, bootstrap
 
 ### Package managers
 
-webpack
+npm
 
 ## Repos and projects
 
@@ -47,10 +48,10 @@ Related to https://github.com/code4romania/civichq-api
 
 ### Installation
 
-```
-Run npm install
-Run npm start
-```
+
+Run `npm install`
+
+Run `npm start`
 
 ## Feedback
 

@@ -1,6 +1,5 @@
-import { Component, OnInit,Input} from '@angular/core';
-import { Router } from '@angular/router';
-import { AppDetails } from './../../../../../shared/models/app-details.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {AppDetails} from '../../../../../shared/models/app-details.model';
 
 import './app-details.component.scss';
 
@@ -10,16 +9,12 @@ import './app-details.component.scss';
 
 })
 
-export class AppDetailsComponent {
+export class AppDetailsComponent implements OnInit {
 
     @Input() appDetails: AppDetails;
+    technologies: string[] = [];
 
-    technologies: string[];
-
-    ngOnInit(){
-    	console.log(this);
-    	this.technologies = this.appDetails.technologies.split(',').map(e=>e.trim());
-
+    ngOnInit(): void {
+        this.technologies = this.appDetails && this.appDetails.technologies ? this.appDetails.technologies.split(',') : [];
     }
-
 }

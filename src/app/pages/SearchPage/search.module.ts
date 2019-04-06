@@ -6,7 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { SearchRouting } from './config/search.routing';
 import { SearchComponent } from './components/search/search.component';
-import { AppService } from './../../services/app.service';
+import { AppService } from '../../services/app.service';
 
 
 @NgModule({
