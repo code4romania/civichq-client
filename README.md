@@ -48,10 +48,10 @@ Related to https://github.com/code4romania/civichq-api
 
 ### Installation
 
-```
-Run npm install
-Run npm start
-```
+
+Run `npm install`
+
+Run `npm start`
 
 ## Feedback
 
