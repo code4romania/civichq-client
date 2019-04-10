@@ -2,7 +2,7 @@
 <spinner *ngIf = "showSpinner"></spinner>
 <div *ngIf="apps" class="approve-app container">
     <div class="row">
-    <div *ngFor="let app of apps ">
+        <div *ngFor="let app of apps ">
             <div class="col-xs-12 col-sm-4">
                 <div class="app-card" (click) = "editApp(app)">
                     <div class="app-card-logo">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="app-card-bottom-banner">
                         <div class="app-card-hash">{{app.appdetail.hashtags}}</div>
-                        <label class="switch">
+                        <label class="switch" (click)="stopClickPropagation($event)">
                             <input [(ngModel)]= "app.appdetail.isapprovedbool" [checked]="app.appdetail.isapprovedbool"  (ngModelChange)="updateApp(app)" type="checkbox">
                             <div class="slider round"></div>
                         </label>
