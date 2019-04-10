@@ -9,12 +9,13 @@ import {AddAppModel} from '../../services/add-app.model';
 import {concat, Observable, of, Subject} from "rxjs";
 import {catchError, debounceTime, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
 import {AppTag} from "../../../../shared/models/app-tag.model";
+import {TechnologiesService} from "../../../../services/technology.service";
 
 
 
 @Component({
     selector: 'add-app',
-    providers: [AppService, TagsService, CategoriesService, UploadService],
+    providers: [AppService, TagsService, TechnologiesService, CategoriesService, UploadService],
     templateUrl: './add-app.template.html',
     styleUrls: ['./add-app.component.scss']
 })
@@ -22,7 +23,7 @@ import {AppTag} from "../../../../shared/models/app-tag.model";
 export class AddAppComponent implements OnInit, OnChanges {
 
 
-    constructor(private appService: AppService, private tagsService: TagsService, private categoriesService: CategoriesService, private uploadService: UploadService) {
+    constructor(private appService: AppService, private tagsService: TagsService, private technologiesService: TechnologiesService, private categoriesService: CategoriesService, private uploadService: UploadService) {
 
         this.submitted = false;
         this.isAddingNewApp = true;
@@ -34,8 +35,10 @@ export class AddAppComponent implements OnInit, OnChanges {
     public tagsObservable: Observable<AppTag[]>;
     public tagInput: Subject<String> = new Subject<String>();
     public tagsLoading: boolean = false;
+    public availableTechnologies: Array<String>;
     private value: any = {};
     public selectedAppTags: string[] = [];
+    public selectedTechnologies: string[] = [];
     private newTag: string;
     private submitted: boolean;
     private message;
@@ -55,7 +58,8 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.submitted = false;
             this.newTag = '';
             this.value = this.app ? this.app.apphashtags : '';
-            this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split(" ") : [];
+            this.selectedAppTags = (this.app && this.app.apphashtags) ? this.app.apphashtags.split(' ') : [];
+            this.selectedTechnologies = (this.app && this.app.apptechnologies) ? this.app.apptechnologies.split(',') : [];
         }
     }
 
@@ -68,21 +72,22 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.setDefaultsForLogoWhenEditingApp();
         }
         this.initTagsInput();
+        this.getAllTechnologies();
         this.categoriesService.getCategories()
             .then(cats => {
                 this.categories = this.categories.concat(cats.map((category) => {
-                    return {id: category.id, text: category.catname}
-                }))
-            })
+                    return {id: category.id, text: category.catname};
+                }));
+            });
     }
 
     public selectTags(value: any): void {
         this.newTag = '';
-        this.selectedAppTags.push(value.text)
+        this.selectedAppTags.push(value.text);
     }
 
     public selectCat(value: any): void {
-        this.app.appcategoryid = value.id
+        this.app.appcategoryid = value.id;
     }
 
     public refreshValue(value: any): void {
@@ -107,6 +112,10 @@ export class AddAppComponent implements OnInit, OnChanges {
         );
     }
 
+    public async getAllTechnologies() {
+        this.availableTechnologies = await this.technologiesService.getTechnologies();
+    }
+
     appLogoChangeEvent(fileInput: any) {
         this.isAppLogoValid = true;
         this.needsToUpdateAppLogo = !this.isAddingNewApp;
@@ -127,11 +136,11 @@ export class AddAppComponent implements OnInit, OnChanges {
     ngoLogoChangeEvent(fileInput: any) {
         this.isNgoLogoValid = true;
         this.needsToUpdateNgoLogo = !this.isAddingNewApp;
-        var theLogo = fileInput.target.files[0];
+        const theLogo = fileInput.target.files[0];
         this.app.ngologoname = UploadService.GetNewLogoName(theLogo.name);
         this.ngoLogo = new CivicFile(theLogo, this.app.ngologoname);
 
-        var isFileAllowed = this.uploadService.IsFileAllowed(this.ngoLogo);
+        const isFileAllowed = this.uploadService.IsFileAllowed(this.ngoLogo);
 
         if (!isFileAllowed.IsValid) {
             this.error = isFileAllowed.ErrorMessage;
@@ -149,7 +158,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                 this.isNgoLogoUploaded = (r == '200');
             }
             if (r != '200') {
-                var msg = 'Eroare la upload-ul logo-urilor! ';
+                let msg = 'Eroare la upload-ul logo-urilor! ';
                 if (!this.isAddingNewApp) {
                     msg = msg + r.message;
                 }
@@ -172,9 +181,9 @@ export class AddAppComponent implements OnInit, OnChanges {
 
     addApp(form) {
         if (this.isAddingNewApp) {
-            this.addNewApp(form)
+            this.addNewApp(form);
         } else {
-            this.editExistingApp(form)
+            this.editExistingApp(form);
         }
 
     }
@@ -182,28 +191,28 @@ export class AddAppComponent implements OnInit, OnChanges {
 
     private parseAppTagsForSave(): string {
         if (this.selectedAppTags.length) {
-            //an item may contain whitespaces: create hashtag for each word.
-            this.selectedAppTags = this.selectedAppTags.join(" ").split(" ").map(tag => {
-                //add # when it does not exist.
-                return tag[0] !== "#" ? "#" + tag : tag;
+            // an item may contain whitespaces: create hashtag for each word.
+            this.selectedAppTags = this.selectedAppTags.join(' ').split(' ').map(tag => {
+                // add # when it does not exist.
+                return tag[0] !== '#' ? '#' + tag : tag;
             });
-            return this.selectedAppTags.join(" ");
+            return this.selectedAppTags.join(' ');
         } else {
-            return "";
+            return '';
         }
     }
 
     private editExistingApp(form) {
         this.submitted = true;
 
-        var l1 = new Promise((resolve, reject) => {
+        let l1 = new Promise((resolve, reject) => {
             this.isAppLogoUploaded = true;
-            resolve('')
+            resolve('');
         });
 
-        var l2 = new Promise((resolve, reject) => {
+        let l2 = new Promise((resolve, reject) => {
             this.isNgoLogoUploaded = true;
-            resolve('')
+            resolve('');
         });
 
         if (this.isAppLogoValid && this.isNgoLogoValid) {
@@ -221,19 +230,17 @@ export class AddAppComponent implements OnInit, OnChanges {
 
                     if (form.valid) {
                         this.app.apphashtags = this.parseAppTagsForSave();
+                        this.app.apptechnologies = this.selectedTechnologies.join(',');
 
-                        let response = await this.appService.editApp(this.app);
+                        const response = await this.appService.editApp(this.app);
                         this.message = response['data'];
                         if (this.message === 'success') {
                             this.error = null;
                             this.setDefaultsForLogoWhenEditingApp();
-                            console.log('succes')
 
                         } else {
-                            let errorRegex = /\(ERROR\)\:(.*)/;
+                            const errorRegex = /\(ERROR\)\:(.*)/;
                             this.error = errorRegex.exec(this.message);
-                            console.log('ERROR')
-
                         }
 
                     }
@@ -246,11 +253,11 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.submitted = true;
 
         if (this.isAppLogoValid && this.isNgoLogoValid) {
-            var l1 = this.uploadLogo(this.appLogo, true);
+            const l1 = this.uploadLogo(this.appLogo, true);
 
-            var l2 = new Promise((resolve, reject) => {
+            let l2 = new Promise((resolve, reject) => {
                 this.isNgoLogoUploaded = true;
-                resolve('')
+                resolve('');
             });
             if (this.isNgoLogoValid && this.ngoLogo) {
                 l2 = this.uploadLogo(this.ngoLogo, false);
@@ -261,15 +268,15 @@ export class AddAppComponent implements OnInit, OnChanges {
 
                     if (form.valid) {
                         this.app.apphashtags = this.parseAppTagsForSave();
-
-                        var response = await this.appService.addApp(this.app);
+                        this.app.apptechnologies = this.selectedTechnologies.join(',');
+                        const response = await this.appService.addApp(this.app);
 
                         this.message = response['result'];
                         if (this.message === 'success') {
                             this.error = null;
                             this.setDefaultsForLogoRelated();
                         } else {
-                            let errorRegex = /\(ERROR\):(.*)/;
+                            const errorRegex = /\(ERROR\):(.*)/;
                             this.error = errorRegex.exec(this.message)[1];
                         }
                     }
@@ -287,14 +294,14 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.isAppLogoUploaded = false;
         this.isAppLogoValid = false;
         this.isNgoLogoUploaded = false;
-        this.isNgoLogoValid = true; //da, true
+        this.isNgoLogoValid = true;
     }
 
     private setDefaultsForLogoWhenEditingApp() {
         this.isAppLogoUploaded = false;
         this.isAppLogoValid = true;
         this.isNgoLogoUploaded = false;
-        this.isNgoLogoValid = true; //da, true
+        this.isNgoLogoValid = true;
         this.needsToUpdateAppLogo = false;
         this.needsToUpdateNgoLogo = false;
 

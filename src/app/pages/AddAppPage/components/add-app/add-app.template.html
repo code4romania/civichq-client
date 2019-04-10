@@ -250,6 +250,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <ng-select *ngIf="isAddingNewApp" class="form-control"  name="appTags" placeholder="Alege tehnologiile pentru aplicația ta"
+                               bindLabel="Tag" bindValue="Tag" notFoundText="Tehnologia introdusă nu există"
+                               typeToSearchText ="Scrie pentru a căuta"
+                               [items]="availableTechnologies" [multiple]="true"
+                               [(ngModel)]="selectedTechnologies">
+                    </ng-select>
+                </div>
+
             </section>
             <div class="col-xs-12 form-actions">
                 <button *ngIf="isAddingNewApp" id="save" type="submit" class="btn btn-block btn-lg btn-cc pull-right">
