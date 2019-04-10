@@ -4,11 +4,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AppService } from './../../../../services/app.service';
 import { App } from './../../../../shared/models/app.model';
 
-import './terms.component.scss';
 
 @Component({
     selector: 'terms',
-    templateUrl: './terms.component.html'
+    templateUrl: './terms.component.html',
+    styleUrls: ['./terms.component.scss']
 })
 
 export class TermsComponent implements OnInit {
