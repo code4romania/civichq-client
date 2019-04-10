@@ -1,11 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppDetails} from '../../../../../shared/models/app-details.model';
 
-import './app-details.component.scss';
-
 @Component({
     selector: 'app-details',
-    templateUrl: './app-details.template.html'
+    templateUrl: './app-details.template.html',
+    styleUrls: ['./app-details.component.scss']
 
 })
 
