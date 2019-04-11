@@ -1,5 +1,10 @@
 @import '../../assets/scss/variables';
-
+.header-container {
+  @media ($screen-sm) {
+    display: flex;
+    justify-content: center;
+  }
+}
 .header-branding {
   text-align: center;
   font-size: 16px;
@@ -7,7 +12,6 @@
   .logo {
     display: inline-block;
     vertical-align: middle;
-    margin-left: 10px;
     img {
       display: block;
       width: 62px;
@@ -104,7 +108,12 @@
       }
 
       @media ($screen-sm) {
-        margin-left: ($distance / 6);
+        font-size: 13px;
+        margin-left: ($distance / 12);
+      }
+
+      @media ($screen-lg) {
+        font-size: 14px;
       }
 
       > a {
@@ -116,6 +125,7 @@
         text-transform: uppercase;
 
         @media ($screen-sm) {
+
           padding: ($distance / 6);
         }
 
@@ -132,7 +142,6 @@
         }
 
         .fa {
-          font-size: 18px;
           margin-right: 5px;
           position: relative;
           top: 1px;
@@ -176,8 +185,13 @@
 
     @media ($screen-sm) {
       padding: ($distance / 6) ($distance / 6) ($distance / 6) 36px;
+      font-size: 13px;
       width: 107px;
     }
+    @media ($screen-md) {
+      font-size: 14px;
+    }
+
 
     &::-webkit-input-placeholder {
       color: rgba($white, .8);
@@ -197,11 +211,10 @@
 
     &:focus {
       @media ($screen-sm) {
-        width: 170px;
+        width: 140px;
       }
-
-      @media ($screen-lg) {
-        width: 250px;
+      @media($screen-lg){
+        width: 200px;
       }
     }
   }
@@ -228,15 +241,15 @@
   height: 40px;
 
   @media ($screen-sm) {
-    font-size: 17px;
+    font-size: 13px;
   }
 
   @media ($screen-md) {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   @media ($screen-lg) {
-    font-size: 38px;
+    font-size: 36px;
   }
 
   &:hover,
