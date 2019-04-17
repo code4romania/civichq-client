@@ -125,6 +125,7 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Hashtag-urile aplicației</label>
                     <ng-select class="form-control"  name="appTags" placeholder="Alege un #hashtag pentru aplicația ta"
                                bindLabel="Tag" bindValue="Tag" notFoundText="#hashtag-ul introdus nu există"
                                typeToSearchText ="Scrie pentru a căuta" loadingText="Se incarcă"
@@ -252,7 +253,8 @@
                 </div>
 
                 <div class="form-group">
-                    <ng-select *ngIf="isAddingNewApp" class="form-control"  name="appTags" placeholder="Alege tehnologiile pentru aplicația ta"
+                    <label>Tehnologiile aplicației</label>
+                    <ng-select class="form-control"  name="appTechnologies" placeholder="Alege tehnologiile pentru aplicația ta"
                                bindLabel="Tag" bindValue="Tag" notFoundText="Tehnologia introdusă nu există"
                                typeToSearchText ="Scrie pentru a căuta"
                                [items]="availableTechnologies" [multiple]="true"
