@@ -4,12 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Titillium Web", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   border-top: 2px solid $primary;
   margin-top: 3rem;
   padding: 6rem 1.5rem 6rem;
-  background-color: white;
   text-align: center;
   .navbar {
     display: flex;
@@ -22,20 +20,20 @@
       display: flex;
       padding: 0.5rem 0.75rem;
       .button {
-        background-color: #fff;
+        background-color: $secondary;
         border-color: #dbdbdb;
         border-width: 1px;
         border: 1px solid transparent;
-        border-radius: 4px;
-        color: #363636;
+        //border-radius: 4px;
+        color: $white;
         cursor: pointer;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        padding-bottom: calc(0.375em - 1px);
-        padding-left: .75em;
-        padding-right: .75em;
-        padding-top: calc(0.375em - 1px);
+        padding-bottom: calc(0.6em - 1px);
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: calc(0.6em - 1px);
         text-align: center;
         white-space: nowrap;
         font-size: 16px;
