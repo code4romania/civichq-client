@@ -1,11 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import './header.component.scss';
-
 @Component({
     selector: 'header-component',
-    templateUrl: './header.template.html'
+    templateUrl: './header.template.html',
+    styleUrls: ['./header.component.scss']
 })
 
 export class HeaderComponent{

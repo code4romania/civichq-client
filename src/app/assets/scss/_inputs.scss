@@ -31,12 +31,6 @@
     box-shadow: none;
   }
 
-  &.ui-select-multiple {
-    body & {
-      height: 50px;
-    }
-  }
-
   .input-group & {
     padding: 12px 10px 16px;
   }
@@ -88,4 +82,9 @@ code {
 
 .form-actions {
   margin: ($distance / 2) 0;
+}
+
+input.search-box:-ms-input-placeholder {
+  line-height: normal!important;
+  display: inline-block!important;
 }

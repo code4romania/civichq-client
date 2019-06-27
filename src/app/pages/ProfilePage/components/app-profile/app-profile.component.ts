@@ -1,41 +1,37 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { AppProfile } from './../../../../shared/models/app-profile.model';
+import { AppProfile } from '../../../../shared/models/app-profile.model';
 import { AppProfileService } from '../../services/app-profile.service';
-import { AppService } from './../../../../services/app.service';
+import { AppService } from '../../../../services/app.service';
 
-import './app-profile.component.scss';
 
 @Component({
     selector: 'profile',
     providers: [AppProfileService,AppService],
     templateUrl: './app-profile.template.html',
+    styleUrls: ['./app-profile.component.scss']
 })
 
 export class AppProfileComponent implements OnInit {
     errorMessage:string;
     app:AppProfile;
+    showSpinner:Boolean = true;
 
     constructor(private appProfileService: AppProfileService, private appService: AppService, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            if(params['id']){
+        this.route.params.forEach(async (params: Params) => {
+            if (params['id']) {
                 let id = +params['id'];
-                this.appService.getApp(id)
-                    .subscribe(app => this.app = app );
-            }
-            else {
-                this.appProfileService.getAppProfile()
-                    .subscribe(
-                        app => {this.app = app;},
-                        error =>  this.errorMessage = <any>error
-                    );
+                this.app = await this.appService.getApp(id);
+                this.showSpinner = false;
+            } else {
+                this.app = await this.appProfileService.getAppProfile();
+                this.showSpinner = false;
             }
 
         });
     }
-
 }

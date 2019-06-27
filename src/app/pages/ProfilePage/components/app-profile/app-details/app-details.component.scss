@@ -72,6 +72,20 @@
   font-weight: 700;
 }
 
+.profile-technologies {
+  margin: 6px 0;
+
+  &-pill {
+    font-weight: bold;
+    background: #45285b;
+    display: inline-block;
+    padding: 3px 15px;
+    border-radius: 15px;
+    color: white;
+    margin-right: 5px;
+  }
+}
+
 .profile-url {
   font-size: 16px;
   text-decoration: none;
@@ -181,5 +195,3 @@
     text-align: left;
   }
 }
-
-

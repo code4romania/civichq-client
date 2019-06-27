@@ -14,14 +14,17 @@
     <div class="profile-body">
       <strong class="profile-category">{{appDetails.categoryname}}</strong>
       <h1 class="profile-name">{{appDetails.name}}</h1>
-      <p class="text-muted">
+      <div class="text-muted">
+        <div *ngIf="appDetails.technologies" class="profile-technologies">
+          <span *ngFor="let technology of technologies" class="profile-technologies-pill">{{technology}}</span>
+        </div>
         <span *ngIf="appDetails.hashtags" class="profile-tags">
           {{appDetails.hashtags}}
         </span>
         <span *ngIf="appDetails.creationdate" class="profile-date">
           <strong>Data lansării:</strong> {{appDetails.creationdate | date:'dd/MM/yyyy'}}
         </span>
-      </p>
+      </div>
       <a *ngIf="appDetails.website" href="{{appDetails.website}}" class="profile-url" target="_blank">
         <span>{{appDetails.website}}</span>
         <i class="fa fa-external-link" aria-hidden="true"></i>
