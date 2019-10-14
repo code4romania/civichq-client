@@ -1,6 +1,6 @@
 import {CivicFile} from '../../../../shared/models/civic-file.model';
 import {UploadService} from '../../../../services/upload.service';
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef} from '@angular/core';
 
 import {AppService} from '../../../../services/app.service';
 import {CategoriesService} from '../../../../services/category.service';
@@ -10,6 +10,7 @@ import {concat, Observable, of, Subject} from "rxjs";
 import {catchError, debounceTime, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
 import {AppTag} from "../../../../shared/models/app-tag.model";
 import {TechnologiesService} from "../../../../services/technology.service";
+import {scrollToElementRef} from '../../../../util/scroll.util';
 
 
 
@@ -26,6 +27,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     constructor(private appService: AppService, private tagsService: TagsService, private technologiesService: TechnologiesService, private categoriesService: CategoriesService, private uploadService: UploadService) {
 
         this.submitted = false;
+        this.successful = false;
         this.isAddingNewApp = true;
     }
 
@@ -41,6 +43,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     public selectedTechnologies: string[] = [];
     private newTag: string;
     private submitted: boolean;
+    private successful: boolean;
     private message;
     private error;
     private appLogo: CivicFile;
@@ -52,6 +55,11 @@ export class AddAppComponent implements OnInit, OnChanges {
     private needsToUpdateAppLogo: boolean;
     private needsToUpdateNgoLogo: boolean;
     public phoneRegex = '\\+4\\d{10}';
+
+    @ViewChild('appLogoInput') appLogoInputRef: ElementRef;
+    @ViewChild('ngoLogoInput') ngoLogoInputRef: ElementRef;
+    @ViewChild('addAppContainer', {read: ElementRef})
+    addAppComponentRef: ElementRef;
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['app']) {
@@ -177,7 +185,7 @@ export class AddAppComponent implements OnInit, OnChanges {
             this.isNgoLogoUploaded = false;
         }
         this.error = err.toString();
-    }
+    }    
 
     addApp(form) {
         if (this.isAddingNewApp) {
@@ -237,12 +245,11 @@ export class AddAppComponent implements OnInit, OnChanges {
                         if (this.message === 'success') {
                             this.error = null;
                             this.setDefaultsForLogoWhenEditingApp();
-
                         } else {
                             const errorRegex = /\(ERROR\)\:(.*)/;
                             this.error = errorRegex.exec(this.message);
                         }
-
+                        scrollToElementRef(this.addAppComponentRef);
                     }
                 }
             });
@@ -250,6 +257,7 @@ export class AddAppComponent implements OnInit, OnChanges {
     }
 
     private addNewApp(form) {
+        this.successful = false;
         this.submitted = true;
 
         if (this.isAppLogoValid && this.isNgoLogoValid) {
@@ -273,22 +281,33 @@ export class AddAppComponent implements OnInit, OnChanges {
 
                         this.message = response['result'];
                         if (this.message === 'success') {
+                            this.submitted = false;
+                            this.successful = true;
                             this.error = null;
-                            this.setDefaultsForLogoRelated();
+                            form.reset();
+                            this.setFormDefaults();
                         } else {
                             const errorRegex = /\(ERROR\):(.*)/;
                             this.error = errorRegex.exec(this.message)[1];
                         }
+                        scrollToElementRef(this.addAppComponentRef);
                     }
                 }
 
             });
         } else {
             this.error = 'Logo-ul aplicației sau al organizației este invalid, poate sa fie doar .png sau .jpg, maxim 500px x 500px.';
+            scrollToElementRef(this.addAppComponentRef);
         }
     }
 
     private setDefaultsForLogoRelated() {
+        if (this.appLogoInputRef) {
+            this.appLogoInputRef.nativeElement.value = null;
+        }
+        if (this.ngoLogoInputRef) {
+            this.ngoLogoInputRef.nativeElement.value = null;
+        }
         this.ngoLogo = null;
         this.appLogo = null;
         this.isAppLogoUploaded = false;
@@ -305,5 +324,11 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.needsToUpdateAppLogo = false;
         this.needsToUpdateNgoLogo = false;
 
+    }
+
+    private setFormDefaults() {
+        this.setDefaultsForLogoRelated();
+        this.selectedAppTags = [];
+        this.selectedTechnologies = [];
     }
 }

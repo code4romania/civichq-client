@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { AppService } from '../../../../services/app.service';
 import { AddAppModel } from '../../../AddAppPage/services/add-app.model';
+import {scrollToElementRef} from '../../../../util/scroll.util';
 
 @Component({
     selector: 'approve-app',
@@ -60,7 +61,7 @@ export class ApproveAppComponent implements OnInit {
         this.selectedApp.ngophone = app.ngodetail.phone;
         this.selectedApp.ngotwitter = app.ngodetail.twitter;
         this.selectedApp.ngoid = app.ngodetail.id;
-        this.scrollToEditApp();
+        scrollToElementRef(this.addAppComponentRef);
     }
 
     private getDateAsString(theDateAsString): string{
@@ -79,10 +80,6 @@ export class ApproveAppComponent implements OnInit {
         var dayNo = date.getDate();
         var str = dayNo < 10 ? '0'+dayNo : ''+dayNo;
         return str;
-    }
-
-    scrollToEditApp() {
-        this.addAppComponentRef.nativeElement.scrollIntoView({behavior: "smooth", block:"start"});
     }
 
     stopClickPropagation($event: MouseEvent) {

@@ -1,7 +1,7 @@
 <div *ngIf="!isAddingNewApp">
     <h1>Edit App</h1>
 </div>
-<div *ngIf="app" class="add-app">
+<div #addAppContainer *ngIf="app" class="add-app">
     <div *ngIf="isAddingNewApp" class="page-title">
         <h1>Adaugă-ți aplicația in Centru Civic</h1>
 
@@ -13,18 +13,16 @@
 
     <div class="col-xs-12 col-md-offset-1 col-md-10">
         <div class="custom-messages col-xs-12">
-            <div class="sucess" *ngIf="submitted && message =='success' && !error && isAddingNewApp">
-                <h3>Aplicația ta a fost adaugată cu succes!</h3>
-                <p>Te vom contacta când aceasta este publicată pe site. Mulțumim!</p>
+            <div class="alert alert-success" *ngIf="successful && message =='success' && !error && isAddingNewApp">
+                <b>Aplicația ta a fost adaugată cu succes! Te vom contacta când aceasta este publicată pe site. Mulțumim!</b>
             </div>
 
-            <div class="sucess" *ngIf="submitted && message =='success' && !error && !isAddingNewApp">
-                <h3>Aplicația a fost modificată cu succes!</h3>
-                
+            <div class="alert alert-success" *ngIf="submitted && message =='success' && !error && !isAddingNewApp">
+                <b>Aplicația a fost modificată cu succes!</b>
             </div>
 
             <div class="alert alert-danger" *ngIf="submitted && error">
-                {{error}}
+                <b>{{error}}</b>
             </div>
         </div>
         <form #form="ngForm" (ngSubmit)="addApp(form)" novalidate name="addAppForm">
@@ -116,7 +114,7 @@
 
                 <div class="form-group">
                     <label>Logo-ul aplicației <span class="req">*</span></label>
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"
+                    <input #appLogoInput type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="appLogoChangeEvent($event)"
                         placeholder="" />
                     <span class="help-block">Logo-ul aplicației poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
                     <div *ngIf="!isAddingNewApp" class="card-image">
@@ -242,7 +240,7 @@
 
                 <div class="form-group">
                     <label>Logo-ul tău</label>
-                    <input type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"
+                    <input #ngoLogoInput type="file" class="form-control" accept=".jpg,.png,image/png,image/jpeg,image/jpg" (change)="ngoLogoChangeEvent($event)"
                         placeholder="" />
                     <span class="help-block">Logo-ul tău poate să fie doar <code>.png</code> sau <code>.jpg</code>, maxim <code>500px x 500px</code>.</span>
                     <div *ngIf="!isAddingNewApp" class="media-left media-middle">
