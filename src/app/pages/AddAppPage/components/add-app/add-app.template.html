@@ -1,7 +1,7 @@
 <div *ngIf="!isAddingNewApp">
     <h1>Edit App</h1>
 </div>
-<div *ngIf="app" class="add-app">
+<div #addAppContainer *ngIf="app" class="add-app">
     <div *ngIf="isAddingNewApp" class="page-title">
         <h1>Adaugă-ți aplicația in Centru Civic</h1>
 

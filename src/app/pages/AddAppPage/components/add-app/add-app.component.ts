@@ -10,6 +10,7 @@ import {concat, Observable, of, Subject} from "rxjs";
 import {catchError, debounceTime, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
 import {AppTag} from "../../../../shared/models/app-tag.model";
 import {TechnologiesService} from "../../../../services/technology.service";
+import {scrollToElementRef} from '../../../../util/scroll.util';
 
 
 
@@ -57,6 +58,8 @@ export class AddAppComponent implements OnInit, OnChanges {
 
     @ViewChild('appLogoInput') appLogoInputRef: ElementRef;
     @ViewChild('ngoLogoInput') ngoLogoInputRef: ElementRef;
+    @ViewChild('addAppContainer', {read: ElementRef})
+    addAppComponentRef: ElementRef;
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['app']) {
@@ -246,7 +249,7 @@ export class AddAppComponent implements OnInit, OnChanges {
                             const errorRegex = /\(ERROR\)\:(.*)/;
                             this.error = errorRegex.exec(this.message);
                         }
-                        AddAppComponent.scrollToTop();
+                        scrollToElementRef(this.addAppComponentRef);
                     }
                 }
             });
@@ -287,14 +290,14 @@ export class AddAppComponent implements OnInit, OnChanges {
                             const errorRegex = /\(ERROR\):(.*)/;
                             this.error = errorRegex.exec(this.message)[1];
                         }
-                        AddAppComponent.scrollToTop();
+                        scrollToElementRef(this.addAppComponentRef);
                     }
                 }
 
             });
         } else {
             this.error = 'Logo-ul aplicației sau al organizației este invalid, poate sa fie doar .png sau .jpg, maxim 500px x 500px.';
-            AddAppComponent.scrollToTop();
+            scrollToElementRef(this.addAppComponentRef);
         }
     }
 
@@ -327,15 +330,5 @@ export class AddAppComponent implements OnInit, OnChanges {
         this.setDefaultsForLogoRelated();
         this.selectedAppTags = [];
         this.selectedTechnologies = [];
-    }
-
-    private static scrollToTop() {
-        (function scrollSmoothly() {
-            const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(scrollSmoothly);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-            }
-        })();
     }
 }
