@@ -24,7 +24,7 @@
     "@angular/router": "^7.2.6",
     "@auth0/angular-jwt": "^2.1.0",
     "@ng-select/ng-select": "^2.0.0",
-    "ajv": "^6.9.1",
+    "ajv": "^6.12.3",
     "bootstrap": "^3.3.7",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
